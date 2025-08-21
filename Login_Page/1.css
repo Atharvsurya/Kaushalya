@@ -6,14 +6,32 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-image: url("/images/bg.jpg");
+    background-size: cover;
+}
+@keyframes popup {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 .container {
     background: white;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
     text-align: center;
     width: 300px;
+    height: 300px;
+    background-image: url("/images/bg2.jpg");
+    background-size: cover;
+    box-shadow: 0px 21px 100px rgba(0, 0, 0, 1);
+    animation: popup 0.5s ease-out forwards;
+    transform: scale(0.9);
 }
 h2 {
     
@@ -21,7 +39,7 @@ h2 {
     font-family: 'Poppins', sans-serif; /* Stylish font */
     font-size: 24px;
     font-weight: bold;
-    color: #1bbcc5; /* Bright orange color */
+    color: indigo; /* Bright orange color */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* subtle shadow */
 
 }
@@ -36,7 +54,7 @@ h3{
 }
 .role-option {
     display: block;
-    background: #f1f1f1;
+    background: #e9f7ff;
     padding: 12px;
     margin: 10px 0;
     border-radius: 10px;

@@ -8,6 +8,7 @@ body {
     margin: 0;
     background-image: url("/images/bg.jpg");
     background-size: cover;
+    background-position: center;
 }
 @keyframes popup {
     0% {

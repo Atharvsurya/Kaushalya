@@ -8,21 +8,22 @@
     <link rel="icon" type="image/ico" href="/favicon.ico">
 </head>
 <body>
+<script src=".\sign_in.js"></script>
 <div class="header">
     <h2>Welcome to Kaushalya</h2>
 <div class="container">
     <h3>SIGN IN</h3>
-    <form>
+    <form onsubmit="return login()">
         <label>
             <div class="input-option">
                 <label for="input">Email:</label>
-                <input type="text" name="email">
+                <input type="text" name="email" id="email">
             </div>
         </label>
         <label>
             <div class="input-option">
                 <label for="input">Password:</label>
-                <input type="password" name="pass">
+                <input type="password" name="password" id="password">
             </div>
         </label>
         <button type="submit">Continue</button>

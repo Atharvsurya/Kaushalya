@@ -5,8 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaushalya</title>
     <link rel="icon" type="image/ico" href="favicon.ico">
-    <meta http-equiv="refresh" content="0; url=Login_Page/sign_in.html">
+    <style>
+        html{
+            overflow-y: hidden;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("/images/bg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .splash {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 2s ease;
+        }
+        .splash.fade-out {
+            opacity: 0;
+        }
+        .logo img {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            border-radius: 50%;
+        }
+        .typing {
+            font-size: 30px;
+            font-weight: bold;
+            border-right: 2px solid black;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
+    <div class="splash" id="splash">
+        <div class="logo">
+            <img src="./images/logo.png" alt="Kaushalya Logo">
+        </div>
+        <div class="typing" id="typing-text"></div>
+    </div>
+<script>
+    const text = "KAUSHALYA";
+    let i = 0;
+    const speed = 170;
+    const typingElement = document.getElementById("typing-text");
+    function typeWriter() {
+      if (i < text.length) {
+        typingElement.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      } else {
+        setTimeout(() => {
+          document.getElementById("splash").classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = "Login_Page/sign_in.html";
+          }, 1000);
+        }, 1000);
+      }
+    }
+    window.addEventListener("load", typeWriter);
+  </script>
 </body>
 </html>

@@ -27,7 +27,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #0f1111;
+  background:#0f1111;
   padding: 10px 20px;
   color: white;
   font-weight: 600;
@@ -128,7 +128,7 @@
   border: 4px solid #B197FC;
   margin-bottom: 4px;
   border-radius: 20px;
- 
+  box-shadow: 0 0 10px black;
 }
 .inquire-panel {
   display: flex;
@@ -237,4 +237,140 @@
     height: 66vh;
     justify-content: start;
   }
+}
+.note{
+  text-align: center; 
+}
+.content{
+  color: black;
+  text-align: center;
+}
+.container{
+  height: 20px;
+  background-color:#0f1111;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  border-top: 2px solid purple ;
+  /* margin: 5px; */
+  flex-wrap: wrap;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: black;
+  /* border-radius: 10px; */
+  box-shadow: 0 0 10px black;
+}
+.box
+{
+  /* padding: 10px 20px; */
+  /* margin: 5px; */
+  cursor: pointer;
+  /* position: relative; */
+  transition: all 0.3s ease;
+}
+.box a{
+  color: white;
+  text-decoration: none;
+}
+.box a:hover{
+  background: rgba(255,255,255,0.1);
+  color: #B197FC;
+}
+
+.recommended_courses{
+  display: flex;
+  text-align: center;
+  /* text-decoration:underline #B197FC; */
+  height: 30px;
+  width: 190px;
+  /* background-color: #B197FC; */
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  /* border: 5px solid purple; */
+  /* border-radius: 10px; */
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  margin-left: 30px;
+}
+/* .recommended_courses:hover{
+  border: 5px solid purple;
+  background: #B197FC;
+  color: white;
+  text-decoration: underline white;
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px black;
+} */
+.all_courses{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  height: 150px;
+  width: 100%;
+  /* row-gap: 20px; */
+  /* padding: 10px; */
+  /* flex-wrap: wrap; */
+  /* width: 1314.4px; */
+  color: black;
+}
+.c1, .c2, .c3, .c4, .c5{
+  flex: 1 1 200px;
+  padding: 8px;
+  border: 2px solid #B197FC ;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 15px;
+  height: 100px;
+  transition: all 0.4s ease-in-out;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.c1:hover, .c2:hover, .c3:hover, .c4:hover, .c5:hover{
+  border: 3px solid purple;
+  background: #B197FC;
+  color: white;           /*CHNAGE THE COLOR UI/UX DESIGNER*/
+  /* text-decoration: underline white; */
+  transform: translateY(-3px);
+  /* box-shadow: 0 0 10px black; */
+}
+.entertainment_section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+  width: 1314.4px;
+  margin: 50px auto 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.entertainment_section > div {
+  border: 2px solid #B197FC;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f9f9ff;
+  transition: 0.3s ease-in-out;
+}
+
+.entertainment_section > div:hover {
+  background: #B197FC;
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* Row 1: 2 divs (leave 3rd column empty) */
+.e1 { grid-column: 1; }
+.e2 { grid-column: 3; }
+
+/* Row 2: 3 divs side by side */
+.e3 { grid-column: 1; }
+.e4 { grid-column: 2; }
+.e5 { grid-column: 3; }
+
+/* Row 3: 1 div centered across all 3 columns */
+.e6 {
+  grid-column: 1 / span 3; 
+  justify-self: center;
+  width: 50%; /* optional, keeps it centered */
 }

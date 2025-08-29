@@ -253,7 +253,7 @@
   padding: 10px;
   border-top: 2px solid purple ;
   /* margin: 5px; */
-  flex-wrap: wrap;
+  flex-wrap: wrap;;
   transition: all 0.3s ease;
   cursor: pointer;
   text-decoration: underline;
@@ -304,35 +304,51 @@
 } */
 .all_courses{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  gap: 20px;
+  /* justify-content: space-evenly; */
   align-items: center;
   text-align: center;
-  height: 150px;
+  /* overflow: visible; */
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;;
+  height: 250px;
   width: 100%;
   /* row-gap: 20px; */
-  /* padding: 10px; */
+  padding-left: 10px;
   /* flex-wrap: wrap; */
   /* width: 1314.4px; */
   color: black;
 }
-.c1, .c2, .c3, .c4, .c5{
-  flex: 1 1 200px;
-  padding: 8px;
+.c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8{
+  /* width: auto; */
+  flex: 0 0 400px;
+  background: #f9f9ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 10px 20px;
+  /* padding: 8px; */
   border: 2px solid #B197FC ;
   border-radius: 10px;
   overflow: hidden;
   font-size: 15px;
-  height: 100px;
+  height: 200px;
   transition: all 0.4s ease-in-out;
-  margin-left: 10px;
-  margin-right: 10px;
+  /* margin-left: 10px; */
+  /* margin-right: 10px; */
 }
-.c1:hover, .c2:hover, .c3:hover, .c4:hover, .c5:hover{
+.c1:hover, .c2:hover, .c3:hover, .c4:hover, .c5:hover, .c6:hover, .c7:hover, .c8:hover{
   border: 3px solid purple;
   background: #B197FC;
   color: white;           /*CHNAGE THE COLOR UI/UX DESIGNER*/
   /* text-decoration: underline white; */
   transform: translateY(-3px);
+  cursor: pointer;
   /* box-shadow: 0 0 10px black; */
 }
 .entertainment_section {

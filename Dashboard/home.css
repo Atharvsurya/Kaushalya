@@ -344,10 +344,10 @@
 }
 .c1:hover, .c2:hover, .c3:hover, .c4:hover, .c5:hover, .c6:hover, .c7:hover, .c8:hover{
   border: 3px solid purple;
-  background: #B197FC;
-  color: white;           /*CHNAGE THE COLOR UI/UX DESIGNER*/
+  /* background: #B197FC; */
+  /* color: white;           CHNAGE THE COLOR UI/UX DESIGNER */
   /* text-decoration: underline white; */
-  transform: translateY(-3px);
+  /* transform: translateY(-3px); */
   cursor: pointer;
   /* box-shadow: 0 0 10px black; */
 }
@@ -370,9 +370,10 @@
 }
 
 .entertainment_section > div:hover {
-  background: #B197FC;
-  color: white;
-  transform: translateY(-5px);
+  /* background: #B197FC; */
+  border: 3px solid purple;
+  /* color: white; */
+  /* transform: translateY(-5px); */
 }
 .entertainment_section div{
   border: 2px solid #333;

@@ -4,6 +4,10 @@
   border: border-box;
   font-family: serif, sans-serif;
   overflow-x: hidden;
+/*   background-color: white; */
+}
+
+body,html{
   background-color: white;
 }
 

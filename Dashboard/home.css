@@ -103,7 +103,8 @@ body,html{
   font-weight: 600;
 }
 a{
-  text-decoration: none
+  text-decoration: none;
+  text-color: deafult;
 }
 /* Icons */
 .navbar i {

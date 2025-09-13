@@ -5,7 +5,6 @@
   font-family: serif, sans-serif;
   overflow-x: hidden;
 }
-
 .logo-container {
   background-size: contain;
   background-repeat: no-repeat;
@@ -33,8 +32,6 @@
   gap: 20px;
   flex-wrap: wrap;
 }
-
-
 /* Common Item Style */
 .navbar-items,
 .navbar-item1,
@@ -51,7 +48,6 @@
   border-radius: 8px;
   transition: 0.3s ease, color 0.3s ease;
 }
-
 /* Hover Effect */
 .navbar-items:hover,
 .navbar-item1:hover,
@@ -60,13 +56,11 @@
   background: rgba(255,255,255,0.1);
   color: #B197FC;
 }
-
 /* Dashboard Highlight */
 .first {
   color: white;
   font-weight: 600;
 }
-
 /* Search Bar */
 .navbar-item_search-bar {
   flex: 1;
@@ -87,11 +81,9 @@
   width: 100%-250px;
   transition: box-shadow 0.3s ease;
 }
-
 .search-bar:focus {
   box-shadow: 0 0 8px #B197FC;
 }
-
 /* Profile Special */
 .nav-profile {
   font-weight: 600;
@@ -104,7 +96,6 @@ a{
 .navbar i {
   font-size: 16px;
 }
-
 .menu{
     display: none;
 }
@@ -112,8 +103,6 @@ a{
 .content{
     height: auto;
 }
-
-
 .footer-panel1 {
   height: 30px;
   width: 120px;
@@ -248,20 +237,21 @@ a{
   text-align: center;
 }
 .container{
-  height: 20px;
-  background-color:#0f1111;
+  height: 60px;
+  background-color: #90E0EF;  
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
-  border-top: 2px solid purple ;
-  /* margin: 5px; */
-  flex-wrap: wrap;;
+  align-items: center;        
+  border-top: 5px solid #023e8a; 
+  margin: 5px;
+  flex-wrap: wrap;
   transition: all 0.3s ease;
   cursor: pointer;
   text-decoration: underline;
+  border-radius: 10px;
   text-decoration-color: black;
-  /* border-radius: 10px; */
   box-shadow: 0 0 10px black;
+  color: black;      
 }
 .box
 {
@@ -283,27 +273,27 @@ a{
 .recommended_courses{
   display: flex;
   text-align: center;
-  /* text-decoration:underline #B197FC; */
-  height: 30px;
-  width: 190px;
-  /* background-color: #B197FC; */
+  text-decoration:underline #B197FC; 
+  height: 60px;
+  width: 200px;
+  background-color: #B197FC; 
   justify-content: center;
   align-items: center;
   margin-top: 15px;
-  /* border: 5px solid purple; */
-  /* border-radius: 10px; */
+  border: 5px solid purple;
+  border-radius: 10px; 
   transition: all 0.4s ease-in-out;
   cursor: pointer;
   margin-left: 30px;
 }
-/* .recommended_courses:hover{
+.recommended_courses:hover{
   border: 5px solid purple;
   background: #B197FC;
   color: white;
   text-decoration: underline white;
   transform: translateY(-3px);
   box-shadow: 0 0 10px black;
-} */
+} 
 .all_courses{
   display: flex;
   justify-content: flex-start;
@@ -319,39 +309,100 @@ a{
   width: 100%;
   /* row-gap: 20px; */
   padding-left: 10px;
-  /* flex-wrap: wrap; */
-  /* width: 1314.4px; */
+  flex-wrap: wrap; 
+  /*width: 1314.4px; */ 
   color: black;
 }
 .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8{
-  /* width: auto; */
-  flex: 0 0 400px;
-  background: #f9f9ff;
+  width: 250px;
+  height: 120px;
   display: flex;
   flex-direction: column;
-  justify-content: center;  
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  gap: 10px;
-  padding: 10px 20px;
-  /* padding: 8px; */
-  border: 2px solid #B197FC ;
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 15px;
-  height: 200px;
-  transition: all 0.4s ease-in-out;
-  /* margin-left: 10px; */
-  /* margin-right: 10px; */
+  padding: 10px;
+  border: 2px solid #B197FC;
+  border-radius: 12px;
+  font-size: auto;
+  font-weight: 600px;
+  color: white;                    
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.8); 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  flex-shrink: 0;
+  row-gap: 15px ;
+  text-decoration: underline;
+   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+.c1{
+  background-image: url("images/music1_img.jpeg");
+}
+.c2{
+  background-image: url("images/performanceart2_img.jpg");
+}
+.c3{
+  background-image: url("images/sp2_img.jpeg");
+  color: black;
+}
+.c4{
+  background-image: url("images/craft_img.jpg");
+}
+.c5{
+  background-image: url("images/studies_img.jpeg");
+}
+.c6{
+  background-image: url("images/Technology and Digital skills.jpeg");
+}
+.c7{
+  background-image: url("images/Life skills and Personal development.jpeg");
+  color: black;
+}
+.c8{
+  background-image: url("images/Enterpreneur and Business Idea.jpeg");
 }
 .c1:hover, .c2:hover, .c3:hover, .c4:hover, .c5:hover, .c6:hover, .c7:hover, .c8:hover{
-  border: 3px solid purple;
-  /* background: #B197FC; */
-  /* color: white;           CHNAGE THE COLOR UI/UX DESIGNER */
-  /* text-decoration: underline white; */
-  /* transform: translateY(-3px); */
+  border: 2px solid purple;
+  background: #B197FC;
+  color: white;               /* text turns white */
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.8);
   cursor: pointer;
-  /* box-shadow: 0 0 10px black; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  text-decoration: underline;
+}
+.c1:hover{
+  background-image: url("images/music1_img.jpeg");
+}
+.c2:hover{
+  background-image: url("images/performanceart2_img.jpg");
+}
+.c3:hover{
+  background-image: url("images/sp2_img.jpeg");
+  color: black;
+}
+.c4:hover{
+  background-image: url("images/craft_img.jpg");
+}
+.c5:hover{
+  background-image: url("images/studies_img.jpeg")
+}
+.c6:hover{
+  background-image: url("images/Technology and Digital skills.jpeg");
+}
+.c7:hover{
+  background-image: url("images/Life skills and Personal development.jpeg");
+  color: black;
+}
+.c8:hover{
+  background-image: url("images/Enterpreneur and Business Idea.jpeg");
 }
 .entertainment_section {
   display: grid;
@@ -400,4 +451,37 @@ a{
   grid-column: 1 / span 3; 
   justify-self: center;
   width: 50%; /* optional, keeps it centered */
+}
+.tie_ups {
+ text-align: center;
+ padding: 40px 20px;
+ color: #B197FC;
+ text-decoration: underline;
+}
+.head123 {
+  display: flex;
+  justify-content: space-evenly;  
+  gap: 30px;                
+  flex-wrap: wrap;  
+  align-items: center;
+  margin: 10px 20px 10px 20px;
+  
+}
+.tie_ups > div {
+  padding: 20px 30px;
+  border: 5px solid #023e8a;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  background-color: #90E0EF;   
+  box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.tie_ups > div:hover {
+  background: rgba(177,151,252,0.15); 
+  transform: translateY(-5px);        
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }

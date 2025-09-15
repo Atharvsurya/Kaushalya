@@ -340,30 +340,30 @@ a{
   color: white;
 }
 .c1{
-  background-image: url("images/musicandinstru2.jpg");
+  background-image: url("../images/musicandinstru2.jpg");
 }
 .c2{
-  background-image: url("images/performanceart2_img.jpg");
+  background-image: url("../images/performanceart2_img.jpg");
 }
 .c3{
-  background-image: url("images/sp2_img.jpeg");
-  color: black;
+  background-image: url("../images/sp2_img.jpeg");
+
 }
 .c4{
-  background-image: url("images/craft_img.jpg");
+  background-image: url("../images/craft2_img.jpeg");
 }
 .c5{
-  background-image: url("images/studies_img.jpeg");
+  background-image: url("../images/studies_img.jpeg");
 }
 .c6{
-  background-image: url("images/Technology and Digital skills.jpeg");
+  background-image: url("../images/Technology and Digital skills.jpeg");
 }
 .c7{
-  background-image: url("images/Life skills and Personal development.jpeg");
+  background-image: url("../images/Life skills and Personal development.jpeg");
   color: black;
 }
 .c8{
-  background-image: url("images/Enterpreneur and Business Idea.jpeg");
+  background-image: url("../images/Enterpreneur and Business Idea.jpeg");
 }
 .c1:hover, .c2:hover, .c3:hover, .c4:hover, .c5:hover, .c6:hover, .c7:hover, .c8:hover{
   border: 2px solid purple;
@@ -378,31 +378,32 @@ a{
   color: white;
   text-decoration: underline;
 }
+
 .c1:hover{
-  background-image: url("images/music1_img.jpeg");
+  background-image: url("../images/musicandinstru2.jpg");
 }
 .c2:hover{
-  background-image: url("images/performanceart2_img.jpg");
+  background-image: url("../images/performanceart2_img.jpg");
 }
 .c3:hover{
-  background-image: url("images/sp2_img.jpeg");
-  color: black;
+  background-image: url("../images/sp2_img.jpeg");
+
 }
 .c4:hover{
-  background-image: url("images/craft_img.jpg");
+  background-image: url("../images/craft2_img.jpeg");
 }
 .c5:hover{
-  background-image: url("images/studies_img.jpeg")
+  background-image: url("../images/studies_img.jpeg");
 }
 .c6:hover{
-  background-image: url("images/Technology and Digital skills.jpeg");
+  background-image: url("../images/Technology and Digital skills.jpeg");
 }
 .c7:hover{
-  background-image: url("images/Life skills and Personal development.jpeg");
+  background-image: url("../images/Life skills and Personal development.jpeg");
   color: black;
 }
 .c8:hover{
-  background-image: url("images/Enterpreneur and Business Idea.jpeg");
+  background-image: url("../images/Enterpreneur and Business Idea.jpeg");
 }
 .entertainment_section {
   display: grid;

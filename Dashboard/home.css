@@ -269,48 +269,48 @@ a{
   background: rgba(255,255,255,0.1);
   color: #B197FC;
 }
-
-.recommended_courses{
-  display: flex;
-  text-align: center;
-  text-decoration:underline #B197FC; 
-  height: 60px;
-  width: 200px;
+.recommended_courses {   
+  top: 20px;
+  left: 50px;
   background-color: #B197FC; 
-  justify-content: center;
+  padding: 15px;
+  border-radius: 12px;
+  color: white;
+  width: 200px;           
+  height: 50px;          
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-top: 15px;
-  border: 5px solid purple;
-  border-radius: 10px; 
-  transition: all 0.4s ease-in-out;
-  cursor: pointer;
-  margin-left: 30px;
+  overflow: hidden;
+  border: 2px solid plum;
 }
 .recommended_courses:hover{
-  border: 5px solid purple;
+  border: 3px solid purple;
   background: #B197FC;
   color: white;
   text-decoration: underline white;
   transform: translateY(-3px);
   box-shadow: 0 0 10px black;
+}
+.courses_list {
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
 } 
-.all_courses{
+.all_courses1{
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
   gap: 20px;
-  /* justify-content: space-evenly; */
   align-items: center;
   text-align: center;
-  /* overflow: visible; */
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  scrollbar-width: none;;
+  overflow-y: auto;
   height: 250px;
   width: 100%;
-  /* row-gap: 20px; */
   padding-left: 10px;
+  padding-top: 10px;
   flex-wrap: wrap; 
-  /*width: 1314.4px; */ 
   color: black;
 }
 .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8{
@@ -321,7 +321,7 @@ a{
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  padding: 10px;
+  padding: 10px 10px 10px;
   border: 2px solid #B197FC;
   border-radius: 12px;
   font-size: auto;
@@ -340,7 +340,7 @@ a{
   color: white;
 }
 .c1{
-  background-image: url("images/music1_img.jpeg");
+  background-image: url("images/musicandinstru2.jpg");
 }
 .c2{
   background-image: url("images/performanceart2_img.jpg");

@@ -229,26 +229,23 @@ a{
     justify-content: start;
   }
 }
-.note{
-  text-align: center; 
-}
 .content{
   color: black;
   text-align: center;
 }
 .container{
   height: 60px;
-  background-color: #90E0EF;  
+  background-color: #0f1111;  
   display: flex;
   justify-content: space-evenly;
   align-items: center;        
-  border-top: 5px solid #023e8a; 
-  margin: 5px;
+  border-top: 1px solid #023e8a; 
+  /* margin: 5px; */
   flex-wrap: wrap;
   transition: all 0.3s ease;
   cursor: pointer;
   text-decoration: underline;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   text-decoration-color: black;
   box-shadow: 0 0 10px black;
   color: black;      
@@ -269,7 +266,7 @@ a{
   background: rgba(255,255,255,0.1);
   color: #B197FC;
 }
-.recommended_courses {   
+/* .recommended_courses {   
   top: 20px;
   left: 50px;
   background-color: #B197FC; 
@@ -284,15 +281,15 @@ a{
   align-items: center;
   overflow: hidden;
   border: 2px solid plum;
-}
-.recommended_courses:hover{
+} */
+/* .recommended_courses:hover{
   border: 3px solid purple;
   background: #B197FC;
   color: white;
   text-decoration: underline white;
   transform: translateY(-3px);
   box-shadow: 0 0 10px black;
-}
+} */
 .courses_list {
   margin-top: 10px;
   width: 100%;
@@ -306,12 +303,13 @@ a{
   align-items: center;
   text-align: center;
   overflow-y: auto;
-  height: 250px;
+  height: 150px;
   width: 100%;
   padding-left: 10px;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   flex-wrap: wrap; 
   color: black;
+  overflow-x: scroll;
 }
 .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8{
   width: 250px;
@@ -332,8 +330,8 @@ a{
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   flex-shrink: 0;
-  row-gap: 15px ;
-  text-decoration: underline;
+  /* row-gap: 15px ; */
+  /* text-decoration: underline; */
    background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

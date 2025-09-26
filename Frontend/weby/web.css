@@ -183,6 +183,7 @@ section {
 /* Courses */
 .courses {
   padding: 80px 20px;
+  margin: 15px,0;
   background: linear-gradient(135deg, #fff6f9, #ffe6f0);
   font-family: 'Poppins', sans-serif;
   text-align: center;
@@ -287,6 +288,7 @@ section {
   animation-duration: 0.8s
   animation-timing-function: ease-out
   animation-fill-mode: forwards
+
 }
 .learn li:nth-child(1) { animation-delay: 0.2s }
 .learn li:nth-child(2) { animation-delay: 0.4s }
@@ -307,7 +309,7 @@ section {
   list-style: none;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 25px;
   max-width: 1000px;
@@ -317,7 +319,8 @@ section {
   background: #fff;
   border-radius: 15px;
   padding: 25px 30px;
-  width: 250px;
+  width: 300px;
+  height: 200px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   text-align: left;
   font-size: 1.1rem;

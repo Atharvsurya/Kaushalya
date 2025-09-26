@@ -1,4 +1,4 @@
-/* Global Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -94,6 +94,10 @@ a {
 }
 section {
   padding: 80px 20px;
+   margin-bottom: 60px;  
+  border-radius: 20px;   
+  overflow: hidden;    
+  
 }
 
 /* Hero */
@@ -108,10 +112,10 @@ section {
   animation: fadeIn 1.5s ease-in-out;
 }
 .hero {
-  animation-name: fadeInHero
-  animation-duration: 1.5s
-  animation-timing-function: ease-in-out
-  animation-fill-mode: forwards
+  animation-name: fadeInHero;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadeInHero {
@@ -188,25 +192,24 @@ section {
   text-align: center;
 }
 .course-card {
-  opacity: 0
-  transform: translateY(20px)
-  animation-name: fadeInCourse
-  animation-duration: 1s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateY(20px);
+  animation-name: fadeInCourse;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 .course-card:nth-child(1) { animation-delay: 0.2s }
 .course-card:nth-child(2) { animation-delay: 0.4s }
 .course-card:nth-child(3) { animation-delay: 0.6s }
-
 @keyframes fadeInCourse {
   from {
-    opacity: 0
-    transform: translateY(20px)
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    opacity: 1
-    transform: translateY(0)
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -265,92 +268,74 @@ section {
     width: 80%;
   }
 }
-
-/* Learn */
+/* Learn Section */
 .learn {
   padding: 80px 20px;
-  background: linear-gradient(135deg, #fef9ff, #ffe6f0);
+  background: linear-gradient(135deg, #d8c7ff, #ffb3d9);
   text-align: center;
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
+
 .learn h2 {
   font-size: 2.5rem;
-  color: #ff4d6d;
-  margin-bottom: 50px;
+  color: #B197FC;
+  margin-bottom: 60px;
   font-weight: 700;
-  letter-spacing: 1px;
-}
-.learn li {
-  opacity: 0
-  transform: scale(0.9)
-  animation-name: popInLearn
-  animation-duration: 0.8s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
-}
-.learn li:nth-child(1) { animation-delay: 0.2s }
-.learn li:nth-child(2) { animation-delay: 0.4s }
-.learn li:nth-child(3) { animation-delay: 0.6s }
-
-@keyframes popInLearn {
-  from {
-    opacity: 0
-    transform: scale(0.9)
-  }
-  to {
-    opacity: 1
-    transform: scale(1)
-  }
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeSlideDown 1s ease;
 }
 
+/* List Row */
 .learn ul {
   list-style: none;
-  padding: 0;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 25px;
-  max-width: 1000px;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 0;
   margin: 0 auto;
+  max-width: 1100px;
 }
+
+/* List Items */
 .learn li {
-  background: #fff;
-  border-radius: 15px;
-  padding: 25px 30px;
-  width: 250px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  text-align: left;
+  background: linear-gradient(135deg, #b8a8eb, #9c7cfc);
+  border-radius: 18px;
+  padding: 25px 35px;
+  min-width: 220px;
   font-size: 1.1rem;
-  color: #333;
-  position: relative;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: popIn 0.8s forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.learn li::before {
-  content: "♪";
-  font-size: 1.5rem;
-  font-weight: bold;
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: linear-gradient(45deg, #ff6b6b, #ffb347);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
+.learn li:nth-child(1) { animation-delay: 0.2s; }
+.learn li:nth-child(2) { animation-delay: 0.4s; }
+.learn li:nth-child(3) { animation-delay: 0.6s; }
+.learn li:nth-child(4) { animation-delay: 0.8s; }
 .learn li:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-  background: #fff0f5;
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 15px 35px rgba(177,151,252,0.6);
 }
-@media (max-width: 900px) {
-  .learn ul {
-    flex-direction: column;
-    align-items: center;
-  }
-  .learn li {
-    width: 80%;
-  }
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.5) translateY(30px); }
+  70% { opacity: 1; transform: scale(1.1) translateY(-5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 
 /* Pricing */
 .pricing {
@@ -359,12 +344,12 @@ section {
   background: #fdf3e7;
 }
 .price-card {
-  opacity: 0
-  transform: translateY(30px)
-  animation-name: slideUpPrice
-  animation-duration: 1s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateY(30px);
+  animation-name: slideUpPrice;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 .price-card:nth-child(1) { animation-delay: 0.2s }
 .price-card:nth-child(2) { animation-delay: 0.4s }
@@ -372,15 +357,14 @@ section {
 
 @keyframes slideUpPrice {
   from {
-    opacity: 0
-    transform: translateY(30px)
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    opacity: 1
-    transform: translateY(0)
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-
 .pricing h2 {
   font-size: 32px;
   font-weight: 700;
@@ -427,12 +411,12 @@ section {
   text-align: center;
 }
 .review-card {
-  opacity: 0
-  transform: translateY(30px) scale(0.95)
-  animation-name: fadeInReview
-  animation-duration: 1s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation-name: fadeInReview;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 .review-card:nth-child(1) { animation-delay: 0.2s }
 .review-card:nth-child(2) { animation-delay: 0.4s }
@@ -440,12 +424,12 @@ section {
 
 @keyframes fadeInReview {
   from {
-    opacity: 0
-    transform: translateY(30px) scale(0.95)
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
   }
   to {
-    opacity: 1
-    transform: translateY(0) scale(1)
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -462,20 +446,23 @@ section {
 .review-cards1 {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 30px;
   max-width: 1100px;
   margin: 0 auto;
+  overflow-x: auto;
+  padding-bottom: 10px;
 }
 .review-card {
-  flex: 1 1 350px;
-  max-width: 380px;
+  flex: 1 1 300px;
+  max-width: 300px;
   background: #fff;
   padding: 35px 25px;
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 .review-card:hover {
   transform: translateY(-8px) scale(1.03);
@@ -502,12 +489,12 @@ section {
   text-align: center;
 }
 .faq-item {
-  opacity: 0
-  transform: translateX(-30px)
-  animation-name: slideInFAQ
-  animation-duration: 0.8s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateX(-30px);
+  animation-name: slideInFAQ;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 .faq-item:nth-child(1) { animation-delay: 0.2s }
 .faq-item:nth-child(2) { animation-delay: 0.4s }
@@ -515,12 +502,12 @@ section {
 
 @keyframes slideInFAQ {
   from {
-    opacity: 0
-    transform: translateX(-30px)
+    opacity: 0;
+    transform: translateX(-30px);
   }
   to {
-    opacity: 1
-    transform: translateX(0)
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 .faq h2 {
@@ -582,7 +569,7 @@ footer {
   flex: 1 1 280px;
   max-width: 350px;
 }
-.about-us h3,
+.about-us h3
 .footer-section h3 {
   color: #B197FC;
 }
@@ -594,6 +581,10 @@ footer {
 .footer-section a:hover {
   color: #fff;
   transform: translateX(5px);
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: underline #B197FC;
+  background: rgba(255, 255, 255, 0.1);
 }
 .footer-last {
   text-align: center;
@@ -613,12 +604,12 @@ footer {
 }
 .footer-panel1,
 .footer-section a {
-  opacity: 0
-  transform: translateY(20px)
-  animation-name: fadeInFooter
-  animation-duration: 0.8s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateY(20px);
+  animation-name: fadeInFooter;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 .footer-panel1 { animation-delay: 0.2s }
 .footer-section a:nth-child(1) { animation-delay: 0.4s }
@@ -627,11 +618,11 @@ footer {
 
 @keyframes fadeInFooter {
   from {
-    opacity: 0
-    transform: translateY(20px)
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    opacity: 1
-    transform: translateY(0)
+    opacity: 1;
+    transform: translateY(0);
   }
 }

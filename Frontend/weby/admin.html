@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kaushalaya — Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Kaushalaya</h1>
+      </div>
+      <nav class="nav">
+        <div class="nav-item active"><i class="fa-solid fa-gauge-high"></i> Overview</div>
+        <div class="nav-item"><i class="fa-solid fa-users"></i> User Management</div>
+        <div class="nav-item"><i class="fa-solid fa-book-open"></i> Course Management</div>
+        <div class="nav-item"><i class="fa-solid fa-credit-card"></i> Payments</div>
+        <div class="nav-item"><i class="fa-solid fa-shield-halved"></i> Moderation</div>
+        <div class="nav-item"><i class="fa-solid fa-chart-line"></i> Analytics</div>
+        <div class="nav-item"><i class="fa-solid fa-comments"></i> Communication</div>
+        <div class="nav-item"><i class="fa-solid fa-gear"></i> Settings</div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small>Admin • Kaushalaya</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <input type="search" placeholder="Search users, courses..." aria-label="Search" />
+        </div>
+        <div class="top-actions">
+          <button class="btn ghost">Notifications <span class="badge">3</span></button>
+          <div class="profile">
+            <div class="profile-info">
+                <i class="fa-solid fa-user" style="color: #B197FC;"></i>
+                <strong>Atharv Don</strong>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section id="overview" class="panel-overview">
+        <h2>Dashboard / Overview</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Total Users</h3>
+            <p class="big">3,412</p>
+            <small>Mentors: 241 • Students: 3,171</small>
+          </article>
+
+          <article class="card">
+            <h3>Total Courses</h3>
+            <p class="big">128</p>
+            <small>Active: 112 • Pending: 6</small>
+          </article>
+
+          <article class="card">
+            <h3>Active Sessions</h3>
+            <p class="big">4</p>
+            <small>Live webinars & classes</small>
+          </article>
+
+          <article class="card">
+            <h3>Revenue Summary</h3>
+            <p class="big">₹1,24,500</p>
+            <small>Monthly recurring + one-time</small>
+          </article>
+
+          <article class="card alert">
+            <h3>Pending Approvals</h3>
+            <p class="big">9</p>
+            <small>Courses / Mentors / Reports</small>
+          </article>
+
+          <article class="card muted">
+            <h3>System Notifications</h3>
+            <p class="big">5</p>
+            <small>Errors / Feedback</small>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <small>© Kaushalaya • Admin Dashboard</small>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

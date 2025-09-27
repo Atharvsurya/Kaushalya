@@ -21,7 +21,7 @@
     </div>
 
     <div class="navbar-item1">
-        <i class="fa-solid fa-graduation-cap" style="color: #B197FC;"></i>
+      <i class="fa-solid fa-graduation-cap" style="color: #B197FC;"></i>
       <p>Courses</p>
     </div>
 
@@ -52,6 +52,7 @@
     <div class="box"><i class="fa-solid fa-calendar-days"></i> Schedule/Calendar</div>
     <div class="box"><i class="fa-solid fa-message"></i> Messages/Notifications</div>
   </div>
+
   <div class="bg-img"></div>
 
   <div class="courses_list">
@@ -100,7 +101,8 @@
     <div class="e5"><h2>Feedback and Ratings</h2></div>
     <div class="e6"><h2>Certificates and Achievements</h2></div>
   </div>
-    <!-- Tie-ups Section -->
+
+  <!-- Tie-ups Section -->
   <div class="tie_ups">
     <h2>Our Tie-ups</h2>
     <div class="head123">
@@ -113,10 +115,16 @@
   </div>
 </main>
 
+<!-- Back to Top Button -->
+<div class="back-to-top-container">
+  <div class="back-to-top" id="backToTop">
+    <span>Back to Top</span>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer class="footer">
   <div class="footer-container">
-
     <div class="footer-column about">
       <h3>About Us</h3>
       <p>
@@ -162,10 +170,19 @@
       <p><strong>Email:</strong> kaushalayam2025@gmail.com</p>
       <p><strong>Address:</strong> OM ka hostel</p>
     </div>
+  </div>
 </footer>
-  </div>
-  <div class="Copyright">
-    <p>&copy; 2024 Kaushalaya. All rights reserved.</p>
-  </div>
+
+<div class="Copyright">
+  <p>&copy; 2024 Kaushalaya. All rights reserved.</p>
+</div>
+
+<!-- Back to Top Script -->
+<script>
+  const backToTop = document.getElementById("backToTop");
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
 </body>
 </html>

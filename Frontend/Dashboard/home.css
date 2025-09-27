@@ -102,6 +102,31 @@ a{
 .content{
     height: auto;
 }
+.back-to-top {
+  display: inline-block;
+  justify-content: center;
+  margin: 0 auto 20px; 
+  background-color: #b197fc;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 50px; 
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px black;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.back-to-top:hover {
+  background-color: purple;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px black;
+}
+.back-to-top-container {
+  display: flex;
+  justify-content: center;
+}
+
 /* Footer Base */
 .footer {
   background: #0f1111;
@@ -111,7 +136,7 @@ a{
 
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: 30px;
   max-width: 1400px;
   margin: auto;
@@ -179,6 +204,7 @@ a{
 @media (max-width: 1100px) {
   .footer-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 

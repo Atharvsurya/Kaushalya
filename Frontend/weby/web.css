@@ -108,20 +108,20 @@ section {
   animation: fadeIn 1.5s ease-in-out;
 }
 .hero {
-  animation-name: fadeInHero
-  animation-duration: 1.5s
-  animation-timing-function: ease-in-out
-  animation-fill-mode: forwards
+  animation-name: fadeInHero;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadeInHero {
   from {
-    opacity: 0
-    transform: translateY(-50px)
+    opacity: 0;
+    transform: translateY(-50px);
   }
   to {
-    opacity: 1
-    transform: translateY(0)
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 .hero-content {
@@ -189,12 +189,12 @@ section {
   text-align: center;
 }
 .course-card {
-  opacity: 0
-  transform: translateY(20px)
-  animation-name: fadeInCourse
-  animation-duration: 1s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateY(20px);
+  animation-name: fadeInCourse;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 .course-card:nth-child(1) { animation-delay: 0.2s }
 .course-card:nth-child(2) { animation-delay: 0.4s }
@@ -202,12 +202,12 @@ section {
 
 @keyframes fadeInCourse {
   from {
-    opacity: 0
-    transform: translateY(20px)
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    opacity: 1
-    transform: translateY(0)
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -282,26 +282,26 @@ section {
   letter-spacing: 1px;
 }
 .learn li {
-  opacity: 0
-  transform: scale(0.9)
-  animation-name: popInLearn
-  animation-duration: 0.8s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: scale(0.9);
+  animation-name: popInLearn;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 
 }
-.learn li:nth-child(1) { animation-delay: 0.2s }
-.learn li:nth-child(2) { animation-delay: 0.4s }
-.learn li:nth-child(3) { animation-delay: 0.6s }
+.learn li:nth-child(1) { animation-delay: 0.2s; }
+.learn li:nth-child(2) { animation-delay: 0.4s; }
+.learn li:nth-child(3) { animation-delay: 0.6s; }
 
 @keyframes popInLearn {
   from {
-    opacity: 0
-    transform: scale(0.9)
+    opacity: 0;
+    transform: scale(0.9);
   }
   to {
-    opacity: 1
-    transform: scale(1)
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -362,25 +362,25 @@ section {
   background: #fdf3e7;
 }
 .price-card {
-  opacity: 0
-  transform: translateY(30px)
-  animation-name: slideUpPrice
-  animation-duration: 1s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateY(30px);
+  animation-name: slideUpPrice;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
-.price-card:nth-child(1) { animation-delay: 0.2s }
-.price-card:nth-child(2) { animation-delay: 0.4s }
-.price-card:nth-child(3) { animation-delay: 0.6s }
+.price-card:nth-child(1) { animation-delay: 0.2s; }
+.price-card:nth-child(2) { animation-delay: 0.4s; }
+.price-card:nth-child(3) { animation-delay: 0.6s; }
 
 @keyframes slideUpPrice {
   from {
-    opacity: 0
-    transform: translateY(30px)
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    opacity: 1
-    transform: translateY(0)
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -430,25 +430,25 @@ section {
   text-align: center;
 }
 .review-card {
-  opacity: 0
-  transform: translateY(30px) scale(0.95)
-  animation-name: fadeInReview
-  animation-duration: 1s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation-name: fadeInReview;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
-.review-card:nth-child(1) { animation-delay: 0.2s }
-.review-card:nth-child(2) { animation-delay: 0.4s }
-.review-card:nth-child(3) { animation-delay: 0.6s }
+.review-card:nth-child(1) { animation-delay: 0.2s; }
+.review-card:nth-child(2) { animation-delay: 0.4s; }
+.review-card:nth-child(3) { animation-delay: 0.6s; }
 
 @keyframes fadeInReview {
   from {
-    opacity: 0
-    transform: translateY(30px) scale(0.95)
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
   }
   to {
-    opacity: 1
-    transform: translateY(0) scale(1)
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -505,25 +505,25 @@ section {
   text-align: center;
 }
 .faq-item {
-  opacity: 0
-  transform: translateX(-30px)
-  animation-name: slideInFAQ
-  animation-duration: 0.8s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateX(-30px);
+  animation-name: slideInFAQ;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
-.faq-item:nth-child(1) { animation-delay: 0.2s }
-.faq-item:nth-child(2) { animation-delay: 0.4s }
-.faq-item:nth-child(3) { animation-delay: 0.6s }
+.faq-item:nth-child(1) { animation-delay: 0.2s; }
+.faq-item:nth-child(2) { animation-delay: 0.4s; }
+.faq-item:nth-child(3) { animation-delay: 0.6s; }
 
 @keyframes slideInFAQ {
   from {
-    opacity: 0
-    transform: translateX(-30px)
+    opacity: 0;
+    transform: translateX(-30px);
   }
   to {
-    opacity: 1
-    transform: translateX(0)
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 .faq h2 {
@@ -616,25 +616,25 @@ footer {
 }
 .footer-panel1,
 .footer-section a {
-  opacity: 0
-  transform: translateY(20px)
-  animation-name: fadeInFooter
-  animation-duration: 0.8s
-  animation-timing-function: ease-out
-  animation-fill-mode: forwards
+  opacity: 0;
+  transform: translateY(20px);
+  animation-name: fadeInFooter;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 .footer-panel1 { animation-delay: 0.2s }
-.footer-section a:nth-child(1) { animation-delay: 0.4s }
-.footer-section a:nth-child(2) { animation-delay: 0.5s }
-.footer-section a:nth-child(3) { animation-delay: 0.6s }
+.footer-section a:nth-child(1) { animation-delay: 0.4s; }
+.footer-section a:nth-child(2) { animation-delay: 0.5s; }
+.footer-section a:nth-child(3) { animation-delay: 0.6s; }
 
 @keyframes fadeInFooter {
   from {
-    opacity: 0
-    transform: translateY(20px)
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    opacity: 1
-    transform: translateY(0)
+    opacity: 1;
+    transform: translateY(0);
   }
 }

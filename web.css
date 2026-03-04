@@ -120,11 +120,11 @@ section {
 
 @keyframes fadeInHero {
   from {
-    opacity: 0
+    opacity: 0;
     transform: translateY(-50px)
   }
   to {
-    opacity: 1
+    opacity: 1;
     transform: translateY(0)
   }
 }
@@ -370,7 +370,7 @@ section {
   font-weight: 700;
   margin-bottom: 40px;
   background: linear-gradient(90deg, #1976d2, #4a90e2);
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
   display: inline-block;
   letter-spacing: 1px;
@@ -438,7 +438,7 @@ section {
   font-weight: 700;
   margin-bottom: 40px;
   background: linear-gradient(90deg, #4a90e2, #1976d2);
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
   display: inline-block;
   letter-spacing: 1px;

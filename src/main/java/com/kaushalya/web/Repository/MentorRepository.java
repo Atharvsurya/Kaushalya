@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MentorRepository extends JpaRepository<MentorEntity, Long> {
+    MentorEntity findByEmail(String email);
 }

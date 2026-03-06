@@ -8,4 +8,5 @@ public interface MentorService {
     String createMentor(Mentor mentor);
     List<Mentor> readMentors();
     boolean deleteMentor(Long id);
+    Mentor findByEmail(String email);
 }

@@ -35,10 +35,12 @@
         </div>
 
         <div class="nav-profile">
-            <i class="fa-solid fa-user" style="color: #B197FC;"></i>
-            <a href="../Login_Page/sign_in.html">
-                <p>Profile</p>
-            </a>
+        <i class="fa-solid fa-user" id="user-icon" style="color: #B197FC;"></i>
+        <div class="profile-container">
+            <span id="profile">Sign In</span>
+            <div id="logoutMenu" class="dropdown-content">
+                <a href="javascript:void(0)" onclick="logout(event)" class="logout-link">Logout</a>
+            </div>
         </div>
     </div>
   </header>

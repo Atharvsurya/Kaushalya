@@ -46,4 +46,20 @@ public class MentorServiceImpl implements MentorService{
             return false;
         }
     }
+
+    public Mentor findByEmail(String email) {
+        // 1. Get the Entity from the DB
+        MentorEntity entity = mentorRepository.findByEmail(email);
+
+        if (entity == null) return null;
+
+        // 2. Map Entity to DTO (Mentor)
+        Mentor mentor = new Mentor();
+        mentor.setEmail(entity.getEmail());
+        mentor.setPass(entity.getPass()); // This is where getPass() is called
+        mentor.setName(entity.getName());
+        // ... map other fields
+
+        return mentor;
+    }
 }

@@ -17,7 +17,7 @@ async function login(event){
 
     try{
         console.log("2. Sending fetch request...");
-        const response = await fetch('http://localhost:8080/api/login',
+        const response = await fetch('http://localhost:8080/api/userlogin',
            { method : 'POST',
             headers : { 'Content-Type': 'application/json' },
             body : JSON.stringify({ email: email, pass: password })
@@ -26,7 +26,7 @@ async function login(event){
 
         console.log("3. Response received, status:", response.status);
         const result = await response.json();
-        if (result.email==email&&result.pass==password) {
+        if (response.ok) {
             alert("Login Successful");
             localStorage.setItem("userFName", result.name.split(" ")[0]);
             window.location.href = "../Dashboard/home.html";

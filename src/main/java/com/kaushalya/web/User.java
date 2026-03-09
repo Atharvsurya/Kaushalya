@@ -1,21 +1,22 @@
-package com.kaushalya.web.Mentor;
+package com.kaushalya.web;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Mentor {
+public class User {
     private Long id;
     private String name;
     private String email;
-    private String dob;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String pass;
-    private String skill;
-    private String location;
-    private String phone;
+    private String role;
+    private String skills;
 
     public Long getId() {
         return id;
@@ -41,14 +42,6 @@ public class Mentor {
         this.email = email;
     }
 
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-
     public String getPass() {
         return pass;
     }
@@ -57,27 +50,19 @@ public class Mentor {
         this.pass = pass;
     }
 
-    public String getSkill() {
-        return skill;
+    public String getRole() {
+        return role;
     }
 
-    public void setSkill(String skill) {
-        this.skill = skill;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public String getLocation() {
-        return location;
+    public String getSkills() {
+        return skills;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 }

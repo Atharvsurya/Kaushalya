@@ -346,3 +346,44 @@ object-fit:cover;
 transform:scale(1.05);
 
 }
+
+/* FOOTER */
+
+.footer{
+background:black;
+padding:40px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+}
+
+.footer-section h3{
+border-bottom:2px solid #b388ff;
+display:inline-block;
+padding-bottom:5px;
+margin-bottom:10px;
+}
+
+.footer-section ul{
+list-style:none;
+}
+
+.footer-section li{
+margin:8px 0;
+}
+
+.footer-section li:hover{
+color:#9c7bff;
+transform:translateX(5px);
+}
+
+.copyright{
+text-align:center;
+margin-top:20px;
+color:#aaa;
+}
+
+

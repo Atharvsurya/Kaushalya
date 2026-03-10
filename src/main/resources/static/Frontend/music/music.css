@@ -12,7 +12,7 @@ background-image:url("../images/bg8.jpeg");
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
-background-attachment:scroll;
+min-height:100vh;
 color:white;
 }
 
@@ -23,20 +23,31 @@ color:white;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 40px;
+padding:18px 60px;
 background:#000;
 flex-wrap:wrap;
+gap:15px;
+}
+
+.logo h2{
+letter-spacing:1px;
 }
 
 .logo p{
 font-size:12px;
+color:#ccc;
+}
+
+.nav-links{
+display:flex;
+gap:25px;
 }
 
 .nav-links a{
-margin:0 15px;
 color:white;
 text-decoration:none;
 font-size:15px;
+transition:0.3s;
 }
 
 .nav-links a:hover{
@@ -48,6 +59,7 @@ padding:8px 15px;
 border-radius:20px;
 border:none;
 width:220px;
+outline:none;
 }
 
 
@@ -60,18 +72,24 @@ position:relative;
 .profile-icon{
 font-size:28px;
 cursor:pointer;
+transition:0.3s;
+}
+
+.profile-icon:hover{
+color:#a084ff;
 }
 
 .profile-menu{
 display:none;
 position:absolute;
 right:0;
-top:35px;
+top:40px;
 background:white;
 color:black;
 border-radius:10px;
-width:150px;
+width:160px;
 overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
 .profile-menu a{
@@ -79,6 +97,7 @@ display:block;
 padding:10px;
 text-decoration:none;
 color:black;
+transition:0.2s;
 }
 
 .profile-menu a:hover{
@@ -91,8 +110,8 @@ background:#eee;
 .top-menu{
 display:flex;
 justify-content:center;
-gap:40px;
-padding:12px;
+gap:35px;
+padding:14px;
 background:#111;
 flex-wrap:wrap;
 }
@@ -101,6 +120,11 @@ flex-wrap:wrap;
 color:white;
 text-decoration:none;
 font-size:14px;
+transition:0.3s;
+}
+
+.top-menu a:hover{
+color:#a084ff;
 }
 
 
@@ -109,7 +133,7 @@ font-size:14px;
 .hero{
 display:flex;
 justify-content:center;
-padding:60px 20px;
+padding:70px 20px;
 }
 
 .hero-box{
@@ -117,10 +141,10 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 gap:40px;
-background:rgba(0,0,0,0.6);
-padding:40px;
+background:rgba(0,0,0,0.75);
+padding:45px;
 border-radius:15px;
-max-width:1000px;
+max-width:1100px;
 width:100%;
 }
 
@@ -129,12 +153,13 @@ max-width:500px;
 }
 
 .hero-content h2{
-font-size:32px;
+font-size:34px;
 margin-bottom:15px;
 }
 
 .hero-content p{
 line-height:1.6;
+color:#ddd;
 }
 
 
@@ -142,11 +167,16 @@ line-height:1.6;
 
 .image-placeholder{
 height:260px;
-width:360px;
+width:380px;
 border-radius:12px;
 background-image:url("../images/guitar.jpeg");
 background-size:cover;
 background-position:center;
+transition:0.4s;
+}
+
+.image-placeholder:hover{
+transform:scale(1.05);
 }
 
 
@@ -154,11 +184,12 @@ background-position:center;
 
 .choice{
 text-align:center;
-padding:50px 20px;
+padding:60px 20px;
 }
 
 .choice h2{
-color:black;
+color:white;
+margin-bottom:20px;
 }
 
 .choice-buttons{
@@ -176,6 +207,7 @@ text-decoration:none;
 font-weight:bold;
 display:inline-block;
 cursor:pointer;
+transition:0.3s;
 }
 
 .purple{
@@ -189,7 +221,8 @@ color:black;
 }
 
 .btn:hover{
-transform:scale(1.05);
+transform:scale(1.08);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
 
@@ -199,7 +232,7 @@ transform:scale(1.05);
 display:flex;
 justify-content:center;
 gap:30px;
-padding:40px;
+padding:50px 20px;
 flex-wrap:wrap;
 }
 
@@ -207,7 +240,10 @@ flex-wrap:wrap;
 width:280px;
 text-align:center;
 text-decoration:none;
-transition:0.3s;
+transition:0.35s;
+background:white;
+border-radius:15px;
+padding:15px;
 }
 
 .music-card h3{
@@ -216,17 +252,19 @@ margin-top:10px;
 }
 
 .music-card:hover{
-transform:translateY(-10px);
+transform:translateY(-12px);
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
 .card-image{
 height:200px;
-border-radius:15px;
+border-radius:12px;
 margin-bottom:10px;
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
 }
+
 
 /* MUSIC IMAGES */
 
@@ -247,31 +285,39 @@ background-image:url("../images/jazz.jpeg");
 
 .entertainment{
 text-align:center;
-padding:50px 20px;
+padding:80px 30px;
+}
+
+.entertainment h2{
+margin-bottom:25px;
 }
 
 .ent-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
 margin-top:30px;
-padding:20px;
 }
 
 .ent-card{
+background:white;
+padding:18px;
+border-radius:15px;
 text-decoration:none;
 color:black;
 text-align:center;
-transition:0.3s;
+transition:0.35s;
+cursor:pointer;
 }
 
 .ent-card:hover{
-transform:scale(1.05);
+transform:scale(1.07);
+box-shadow:0 12px 30px rgba(0,0,0,0.25);
 }
 
 .ent-image{
 width:100%;
-height:180px;
+height:200px;
 border-radius:12px;
 background-size:cover;
 background-position:center;
@@ -311,20 +357,39 @@ background-image:url("../images/certificates.jpeg");
 
 footer{
 background:#000;
-padding:40px;
-margin-top:40px;
+padding:60px 50px 30px;
+margin-top:50px;
 }
 
 .footer-container{
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:40px;
+}
+
+.footer-container h4{
+margin-bottom:10px;
 }
 
 .footer-container p{
 color:#bbb;
 font-size:14px;
+line-height:1.6;
+transition:0.3s;
+}
+
+.footer-container p:hover{
+color:#a084ff;
+cursor:pointer;
+}
+
+footer .copyright{
+text-align:center;
+margin-top:30px;
+font-size:14px;
+color:#aaa;
+border-top:1px solid #222;
+padding-top:20px;
 }
 
 
@@ -337,28 +402,32 @@ flex-direction:column;
 text-align:center;
 }
 
-.ent-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-gap:25px;
-margin-top:30px;
-padding:20px;
+.image-placeholder{
+width:100%;
+max-width:350px;
 }
+
 }
 
 @media(max-width:600px){
 
 .navbar{
 flex-direction:column;
-gap:10px;
+gap:12px;
+text-align:center;
+}
+
+.nav-links{
+justify-content:center;
 }
 
 .search-bar input{
 width:100%;
+max-width:260px;
 }
 
-.ent-grid{
-grid-template-columns:1fr;
+.top-menu{
+gap:20px;
 }
 
 }

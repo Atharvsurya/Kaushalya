@@ -1,8 +1,22 @@
-package com.kaushalya.web.Repository;
+package com.kaushalya.web.repository;
 
-import com.kaushalya.web.Entity.UserEntity;
+import com.kaushalya.web.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    public UserEntity findByEmail(String email);
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    Optional<User> findByEmail(String email);
+
+    boolean existsByEmail(String email);
+
+    Optional<User> findByResetToken(String resetToken);
+
+    List<User> findAllByRole(String role);
+
+    long countByRole(String role);
 }

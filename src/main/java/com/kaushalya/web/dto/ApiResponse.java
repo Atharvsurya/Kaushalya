@@ -1,0 +1,21 @@
+package com.kaushalya.web.dto;
+
+import lombok.Data;
+import lombok.AllArgsConstructor;
+
+/** Generic { success, message, data } wrapper for all API responses */
+@Data
+@AllArgsConstructor
+public class ApiResponse<T> {
+    private boolean success;
+    private String message;
+    private T data;
+
+    public static <T> ApiResponse<T> ok(String message, T data) {
+        return new ApiResponse<>(true, message, data);
+    }
+
+    public static <T> ApiResponse<T> fail(String message) {
+        return new ApiResponse<>(false, message, null);
+    }
+}

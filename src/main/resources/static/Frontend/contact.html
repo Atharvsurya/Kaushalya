@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us — Kaushalya</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>"/>
+  <link rel="stylesheet" href="./style.css"/>
+  <style>
+    .contact-hero { background:var(--ink-soft); padding:72px 0; text-align:center; position:relative; overflow:hidden; }
+    .contact-hero::before { content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:480px; height:480px; background:radial-gradient(circle,rgba(212,135,10,0.15),transparent 65%); border-radius:50%; }
+    .contact-hero h1 { font-family:var(--ff-display); font-size:clamp(1.8rem,3.5vw,2.8rem); color:var(--white); font-weight:700; position:relative; }
+    .contact-hero p  { color:rgba(255,255,255,0.55); max-width:480px; margin:12px auto 0; position:relative; }
+    .contact-grid { display:grid; grid-template-columns:1fr 400px; gap:36px; align-items:start; }
+    .info-item { display:flex; align-items:flex-start; gap:16px; padding:20px 0; border-bottom:1px solid var(--cream-dark); }
+    .info-item:last-child { border-bottom:none; }
+    .info-icon { width:44px; height:44px; border-radius:10px; background:rgba(212,135,10,0.1); border:1px solid rgba(212,135,10,0.2); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .info-text strong { display:block; font-weight:700; font-size:0.9rem; color:var(--ink); }
+    .info-text span   { font-size:0.84rem; color:var(--muted); line-height:1.6; }
+    .success-state { display:none; text-align:center; padding:40px 20px; }
+    .success-state .icon { font-size:3.5rem; margin-bottom:16px; animation:bounceIn 0.5s ease; }
+    @keyframes bounceIn { 0%{transform:scale(0.5);opacity:0;} 80%{transform:scale(1.1);} 100%{transform:scale(1);opacity:1;} }
+    @media(max-width:900px){ .contact-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<script src="./navbar.js"></script>
+<script>injectNavbar('contact');</script>
+
+<div class="page-content">
+  <!-- Hero -->
+  <div class="contact-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,135,10,0.15);border:1px solid rgba(212,135,10,0.3);border-radius:20px;padding:5px 14px;margin-bottom:16px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);">
+        ✉️ Get in Touch
+      </div>
+      <h1>We'd love to hear from you</h1>
+      <p>Have a question, suggestion, or want to partner with us? Send us a message and we'll get back to you.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Form -->
+        <div class="card">
+          <div id="form-view">
+            <h2 style="font-family:var(--ff-display);font-size:1.4rem;font-weight:700;margin-bottom:6px;">Send a message</h2>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:24px;">All fields marked * are required.</p>
+
+            <div id="form-alert"></div>
+
+            <form id="contact-form" novalidate style="display:flex;flex-direction:column;gap:16px;">
+              <div class="grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="c-name">Full Name *</label>
+                  <input type="text" id="c-name" class="form-input" placeholder="Arjun Sharma" autocomplete="name"/>
+                  <span class="field-error"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="c-email">Email Address *</label>
+                  <input type="email" id="c-email" class="form-input" placeholder="you@example.com" autocomplete="email"/>
+                  <span class="field-error"></span>
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="c-phone">Phone <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+                  <input type="tel" id="c-phone" class="form-input" placeholder="+91 98765 43210"/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="c-subject">Subject *</label>
+                  <select id="c-subject" class="form-input form-select">
+                    <option value="">Select a topic…</option>
+                    <option>General Enquiry</option>
+                    <option>Becoming a Mentor</option>
+                    <option>Technical Support</option>
+                    <option>Report an Issue</option>
+                    <option>Partnership Opportunity</option>
+                    <option>Other</option>
+                  </select>
+                  <span class="field-error"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="c-message">Message *</label>
+                <textarea id="c-message" class="form-input form-textarea" placeholder="Write your message here…" style="min-height:130px;"></textarea>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+                  <span class="field-error"></span>
+                  <span id="char-count" style="font-size:0.75rem;color:var(--muted);">0 / 2000</span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-full btn-lg" id="submit-btn">Send Message →</button>
+            </form>
+          </div>
+
+          <!-- Success state -->
+          <div class="success-state" id="success-view">
+            <div class="icon">✅</div>
+            <h3 style="font-family:var(--ff-display);font-size:1.5rem;font-weight:700;margin-bottom:10px;">Message sent!</h3>
+            <p style="color:var(--muted);margin-bottom:28px;">Thank you for reaching out. We'll get back to you as soon as possible.</p>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+              <a href="../index.html" class="btn btn-primary">Go Home</a>
+              <button class="btn btn-outline" onclick="resetForm()">Send Another</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info panel -->
+        <div>
+          <div class="card" style="margin-bottom:20px;">
+            <h3 style="font-weight:700;font-size:1rem;margin-bottom:4px;">Contact Information</h3>
+            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:16px;">Reach out through any channel.</p>
+            <div class="info-item">
+              <div class="info-icon">✉️</div>
+              <div class="info-text"><strong>Email</strong><span>kaushalyam2025@gmail.com</span></div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div class="info-text"><strong>Location</strong><span>Navi Mumbai, Maharashtra, India</span></div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">⏰</div>
+              <div class="info-text"><strong>Response Time</strong><span>Typically within 24–48 hours on weekdays</span></div>
+            </div>
+          </div>
+
+          <div class="card" style="background:rgba(212,135,10,0.05);border-color:rgba(212,135,10,0.2);">
+            <h3 style="font-weight:700;font-size:1rem;margin-bottom:16px;color:var(--amber-dim);">Quick Links</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <a href="./become-mentor.html" class="btn btn-outline w-full">🧑‍🏫 Become a Mentor</a>
+              <a href="./mentors.html"       class="btn btn-outline w-full">👥 Browse Mentors</a>
+              <a href="./signup.html"        class="btn btn-outline w-full">📝 Create Account</a>
+              <a href="./about.html"         class="btn btn-outline w-full">ℹ️ About Kaushalya</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Pre-fill if logged in
+  const user = Auth.get();
+  if (user) {
+    document.getElementById('c-name').value  = user.name  || '';
+    document.getElementById('c-email').value = user.email || '';
+    if (user.phone) document.getElementById('c-phone').value = user.phone;
+  }
+
+  // Char counter
+  const msgEl = document.getElementById('c-message');
+  msgEl.addEventListener('input', () => {
+    document.getElementById('char-count').textContent = `${msgEl.value.length} / 2000`;
+  });
+
+  // Inline validation
+  const nameEl    = document.getElementById('c-name');
+  const emailEl   = document.getElementById('c-email');
+  const subjectEl = document.getElementById('c-subject');
+
+  nameEl.addEventListener('blur',    () => validateField(nameEl,    { required: true, requiredMsg: 'Name is required.' }));
+  emailEl.addEventListener('blur',   () => validateField(emailEl,   { required: true, email: true }));
+  subjectEl.addEventListener('blur', () => validateField(subjectEl, { required: true, requiredMsg: 'Please select a subject.' }));
+  msgEl.addEventListener('blur',     () => validateField(msgEl,     { required: true, minLength: 10, minLengthMsg: 'Message must be at least 10 characters.' }));
+
+  document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const alertEl = document.getElementById('form-alert');
+    alertEl.innerHTML = '';
+
+    const name    = nameEl.value.trim();
+    const email   = emailEl.value.trim();
+    const phone   = document.getElementById('c-phone').value.trim();
+    const subject = subjectEl.value;
+    const message = msgEl.value.trim();
+
+    // Validate all
+    const v1 = validateField(nameEl,    { required: true, requiredMsg: 'Name is required.' });
+    const v2 = validateField(emailEl,   { required: true, email: true });
+    const v3 = validateField(subjectEl, { required: true, requiredMsg: 'Please select a subject.' });
+    const v4 = validateField(msgEl,     { required: true, minLength: 10, minLengthMsg: 'Message must be at least 10 characters.' });
+    if (!v1 || !v2 || !v3 || !v4) return;
+
+    const btn = document.getElementById('submit-btn');
+    setLoading(btn, true);
+
+    const { ok, data } = await apiFetch('/contact', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, phone: phone || null, subject, message })
+    });
+
+    setLoading(btn, false, 'Send Message →');
+
+    if (ok && data.success) {
+      document.getElementById('form-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+      Toast.success('Message sent successfully!');
+    } else {
+      alertEl.innerHTML = `<div class="alert alert-error mb-16">⚠ ${data.message || 'Submission failed. Please try again.'}</div>`;
+    }
+  });
+});
+
+function resetForm() {
+  document.getElementById('contact-form').reset();
+  document.getElementById('char-count').textContent = '0 / 2000';
+  document.getElementById('form-view').style.display = 'block';
+  document.getElementById('success-view').style.display = 'none';
+}
+</script>
+</body>
+</html>

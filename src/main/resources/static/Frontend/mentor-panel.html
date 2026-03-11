@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentor Panel — Kaushalya</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .mp-layout { display:grid; grid-template-columns:240px 1fr; min-height:calc(100vh - 70px); }
+    .mp-sidebar {
+      background: var(--ink-soft);
+      padding: 28px 0;
+      position: sticky; top: 70px; height: calc(100vh - 70px); overflow-y:auto;
+    }
+    .mp-sidebar-user { padding: 0 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom:16px; }
+    .mp-sidebar-user strong { display:block; font-weight:700; font-size:0.95rem; color:var(--white); }
+    .mp-sidebar-user span { font-size:0.78rem; color:rgba(255,255,255,0.4); }
+    .mp-nav { padding: 0 12px; }
+    .mp-nav a {
+      display:flex; align-items:center; gap:10px;
+      padding:9px 12px; border-radius:8px;
+      font-size:0.875rem; font-weight:500; color:rgba(255,255,255,0.6);
+      margin-bottom:2px; transition:all 0.18s;
+    }
+    .mp-nav a:hover { background:rgba(255,255,255,0.08); color:var(--white); }
+    .mp-nav a.active { background:rgba(212,135,10,0.2); color:var(--gold); }
+    .mp-section { font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.3); padding:16px 24px 8px; }
+    .mp-main { padding:32px; background:var(--cream); }
+    .mp-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:28px; }
+    .mp-header h1 { font-family:var(--ff-display); font-size:1.7rem; font-weight:700; color:var(--ink); }
+    .search-bar { display:flex; align-items:center; gap:10px; }
+    .search-bar input { width:240px; }
+    @media(max-width:900px){ .mp-layout{grid-template-columns:1fr;} .mp-sidebar{display:none;} }
+  </style>
+</head>
+<body>
+<script src="./navbar.js"></script>
+<script>injectNavbar('');</script>
+
+<div class="page-content">
+  <div class="mp-layout">
+    <!-- Sidebar -->
+    <aside class="mp-sidebar">
+      <div class="mp-sidebar-user">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+          <div class="avatar" id="mp-avatar" style="background:var(--amber);">?</div>
+          <div>
+            <strong id="mp-name">Loading…</strong>
+            <span>Mentor</span>
+          </div>
+        </div>
+        <a href="./profile.html" class="btn btn-outline btn-sm w-full" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);">My Profile</a>
+      </div>
+      <div class="mp-nav">
+        <div class="mp-section">Panel</div>
+        <a href="./mentor-panel.html" class="active"><span>📊</span> Students Panel</a>
+        <a href="./mentors.html"><span>👥</span> All Mentors</a>
+        <a href="./skills.html"><span>⚡</span> Browse Skills</a>
+        <div class="mp-section">Account</div>
+        <a href="./profile.html"><span>👤</span> My Profile</a>
+        <a href="#" id="mp-logout"><span>🚪</span> Log Out</a>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="mp-main">
+      <div class="mp-header">
+        <div>
+          <h1>Students Panel</h1>
+          <p style="color:var(--muted);font-size:0.875rem;margin-top:4px;">All enrolled students on the platform</p>
+        </div>
+        <div class="search-bar">
+          <div style="position:relative;">
+            <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);">🔍</span>
+            <input type="text" id="mp-search" class="form-input" placeholder="Search students…" style="padding-left:36px;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid-3 mb-24" style="margin-bottom:24px;">
+        <div class="stat-card">
+          <div class="stat-label">Total Students</div>
+          <div class="stat-value" id="mp-total">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Your Skills Listed</div>
+          <div class="stat-value" id="mp-skills">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Platform Mentors</div>
+          <div class="stat-value" id="mp-mentors">—</div>
+        </div>
+      </div>
+
+      <!-- Students table -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="padding:16px 20px;border-bottom:1px solid var(--cream-dark);display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-weight:700;font-size:0.95rem;">Enrolled Students</span>
+          <span id="mp-count" class="badge badge-amber">0 students</span>
+        </div>
+        <div class="table-wrap" style="border:none;border-radius:0;">
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Email</th>
+                <th>Skills / Interests</th>
+                <th>Location</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="students-tbody">
+              <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px;">Loading students…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+<script>
+let allStudents = [];
+
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!requireRole('MENTOR')) {
+    // Also allow ADMIN
+    const user = Auth.get();
+    if (!user || (user.role !== 'MENTOR' && user.role !== 'ADMIN')) {
+      window.location.href = './login.html'; return;
+    }
+  }
+
+  const user = Auth.get();
+  document.getElementById('mp-avatar').textContent = initials(user.name);
+  document.getElementById('mp-name').textContent = user.name;
+
+  const skills = (user.skills || '').split(',').filter(s => s.trim());
+  document.getElementById('mp-skills').textContent = skills.length;
+
+  // Load students
+  const { data: sData } = await apiFetch('/mentor/students');
+  allStudents = sData?.data || [];
+  document.getElementById('mp-total').textContent = allStudents.length;
+  document.getElementById('mp-count').textContent = `${allStudents.length} student${allStudents.length !== 1 ? 's' : ''}`;
+  renderStudents(allStudents);
+
+  // Load mentor count
+  const { data: mData } = await apiFetch('/mentor/all');
+  document.getElementById('mp-mentors').textContent = mData?.data?.length ?? '—';
+
+  // Search
+  document.getElementById('mp-search').addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase();
+    const filtered = allStudents.filter(s =>
+      s.name.toLowerCase().includes(q) ||
+      s.email.toLowerCase().includes(q) ||
+      (s.skills || '').toLowerCase().includes(q) ||
+      (s.location || '').toLowerCase().includes(q)
+    );
+    renderStudents(filtered);
+  });
+
+  // Logout
+  document.getElementById('mp-logout').addEventListener('click', () => {
+    Auth.clear(); Toast.info('Logged out');
+    setTimeout(() => window.location.href = '../index.html', 800);
+  });
+});
+
+function renderStudents(list) {
+  const tbody = document.getElementById('students-tbody');
+  if (list.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px;">No students found.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = list.map(s => `
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="avatar avatar-sm">${initials(s.name)}</div>
+          <span style="font-weight:600;">${s.name}</span>
+        </div>
+      </td>
+      <td style="color:var(--muted);">${s.email}</td>
+      <td>
+        ${s.skills
+          ? s.skills.split(',').slice(0,3).map(sk => `<span class="skill-chip" style="font-size:0.7rem;padding:2px 8px;">${sk.trim()}</span>`).join('')
+          : '<span style="color:var(--muted);font-size:0.8rem;">—</span>'}
+      </td>
+      <td style="color:var(--muted);">${s.location || '—'}</td>
+      <td style="color:var(--muted);">${s.dob ? fmtDate(s.dob) : '—'}</td>
+    </tr>`).join('');
+}
+</script>
+</body>
+</html>

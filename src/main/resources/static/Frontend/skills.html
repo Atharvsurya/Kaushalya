@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Skills — Kaushalya</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .skills-hero { background:var(--ink-soft); padding:60px 0; text-align:center; position:relative; overflow:hidden; }
+    .skills-hero::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:400px; height:400px; background:radial-gradient(circle,rgba(212,135,10,0.15),transparent 65%); border-radius:50%; }
+    .skills-hero h1 { font-family:var(--ff-display); font-size:clamp(1.8rem,3.5vw,2.6rem); color:var(--white); font-weight:700; position:relative; }
+    .skills-hero p { color:rgba(255,255,255,0.55); max-width:480px; margin:12px auto 0; position:relative; }
+    .skill-cat-section { margin-bottom:44px; }
+    .skill-cat-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(--border); }
+    .skill-cat-header h3 { font-weight:700; font-size:1.05rem; color:var(--ink); }
+    .skill-cat-header .count { font-size:0.75rem; color:var(--muted); font-weight:600; }
+    .skill-tile {
+      display:flex; flex-direction:column; align-items:flex-start; gap:6px;
+      background:var(--white); border:1.5px solid var(--border);
+      border-radius:var(--radius-sm); padding:14px 16px;
+      cursor:pointer; transition:all 0.18s;
+    }
+    .skill-tile:hover { border-color:var(--amber); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
+    .skill-tile strong { font-size:0.875rem; font-weight:700; color:var(--ink); }
+    .skill-tile span { font-size:0.75rem; color:var(--muted); }
+    .skill-tiles { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; }
+  </style>
+</head>
+<body>
+<script src="./navbar.js"></script>
+<script>injectNavbar('skills');</script>
+
+<div class="page-content">
+  <div class="skills-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <h1>Explore Skills</h1>
+      <p>Discover all the skills you can learn through Kaushalya's mentors</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <!-- Search -->
+      <div style="max-width:480px;margin:0 auto 40px;position:relative;">
+        <span style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);">🔍</span>
+        <input type="text" id="skill-search" class="form-input" placeholder="Search skills…" style="padding-left:44px;font-size:1rem;" />
+      </div>
+
+      <!-- Platform skills from mentors -->
+      <div class="mb-24" style="margin-bottom:32px;">
+        <div class="section-label">Live on platform</div>
+        <h2 class="section-title" style="margin-bottom:20px;">Skills taught by our mentors</h2>
+        <div id="live-skills" class="skills-list">
+          <span style="color:var(--muted);">Loading…</span>
+        </div>
+      </div>
+
+      <!-- All categories -->
+      <div id="skill-categories"></div>
+
+      <!-- CTA -->
+      <div class="card text-center" style="background:var(--ink-soft);border-color:transparent;padding:48px;margin-top:40px;">
+        <h3 style="font-family:var(--ff-display);font-size:1.5rem;color:var(--white);margin-bottom:10px;">Don't see your skill?</h3>
+        <p style="color:rgba(255,255,255,0.5);margin-bottom:24px;">Register as a mentor and add any skill you're an expert in!</p>
+        <a href="./become-mentor.html" class="btn btn-primary btn-lg">Become a Mentor →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+<script>
+const SKILL_CATEGORIES = {
+  'Web Development':   { icon:'🌐', skills:['HTML/CSS','JavaScript','TypeScript','React','Vue.js','Angular','Next.js','Svelte','Tailwind CSS','Bootstrap'] },
+  'Backend & APIs':    { icon:'⚙️', skills:['Java','Spring Boot','Node.js','Python','Django','Flask','FastAPI','REST APIs','GraphQL','Microservices'] },
+  'Database':          { icon:'🗄️', skills:['MySQL','PostgreSQL','MongoDB','Redis','Firebase','SQLite','Oracle','Hibernate','Prisma'] },
+  'Mobile Dev':        { icon:'📱', skills:['Android','iOS','Flutter','React Native','Kotlin','Swift','Dart'] },
+  'Data Science & AI': { icon:'🤖', skills:['Python','Pandas','NumPy','Scikit-learn','TensorFlow','PyTorch','ML','Deep Learning','NLP','Computer Vision'] },
+  'DevOps & Cloud':    { icon:'☁️', skills:['AWS','Azure','GCP','Docker','Kubernetes','CI/CD','Jenkins','Terraform','Linux','Git'] },
+  'Design & UX':       { icon:'🎨', skills:['UI Design','UX Research','Figma','Adobe XD','Sketch','Illustrator','Prototyping','User Testing'] },
+  'Cybersecurity':     { icon:'🔐', skills:['Ethical Hacking','Network Security','Penetration Testing','OWASP','Cryptography'] },
+  'Soft Skills':       { icon:'🧠', skills:['Communication','Leadership','Agile/Scrum','Project Management','Public Speaking','Problem Solving'] },
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
+  // Load live skills from mentors
+  const { data } = await apiFetch('/mentor/all');
+  const mentors = data?.data || [];
+  const liveSkills = new Set();
+  mentors.forEach(m => (m.skills||'').split(',').forEach(s => { if(s.trim()) liveSkills.add(s.trim()); }));
+
+  const liveEl = document.getElementById('live-skills');
+  if (liveSkills.size === 0) {
+    liveEl.innerHTML = `<span style="color:var(--muted);font-size:0.875rem;">No mentors yet. <a href="./become-mentor.html" style="color:var(--amber);">Be the first!</a></span>`;
+  } else {
+    liveEl.innerHTML = [...liveSkills].map(s =>
+      `<a href="./mentors.html" class="skill-chip" style="cursor:pointer;">${s}</a>`
+    ).join('');
+  }
+
+  // Render categories
+  const container = document.getElementById('skill-categories');
+  Object.entries(SKILL_CATEGORIES).forEach(([cat, info]) => {
+    const mentorCount = {};
+    info.skills.forEach(sk => {
+      const c = mentors.filter(m => (m.skills||'').toLowerCase().includes(sk.toLowerCase())).length;
+      mentorCount[sk] = c;
+    });
+
+    container.innerHTML += `
+      <div class="skill-cat-section" data-cat="${cat.toLowerCase()}">
+        <div class="skill-cat-header">
+          <span style="font-size:1.4rem;">${info.icon}</span>
+          <h3>${cat}</h3>
+          <span class="count">${info.skills.length} skills</span>
+        </div>
+        <div class="skill-tiles">
+          ${info.skills.map(sk => `
+            <a href="./mentors.html" class="skill-tile" data-skill="${sk.toLowerCase()}">
+              <strong>${sk}</strong>
+              <span>${mentorCount[sk] > 0 ? `${mentorCount[sk]} mentor${mentorCount[sk]>1?'s':''}` : 'No mentors yet'}</span>
+            </a>`).join('')}
+        </div>
+      </div>`;
+  });
+
+  // Search
+  document.getElementById('skill-search').addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase();
+    document.querySelectorAll('.skill-tile').forEach(tile => {
+      const match = tile.dataset.skill.includes(q);
+      tile.style.display = match || !q ? '' : 'none';
+    });
+    document.querySelectorAll('.skill-cat-section').forEach(sec => {
+      const vis = [...sec.querySelectorAll('.skill-tile')].some(t => t.style.display !== 'none');
+      sec.style.display = vis || !q ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

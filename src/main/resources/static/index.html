@@ -1,128 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Kaushalya Splash</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaushalya — Find Your Mentor</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="stylesheet" href="Frontend/style.css" />
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      background: var(--ink-soft);
+      padding-top: 70px;
+    }
+    .hero-bg-shape {
+      position: absolute; top: -120px; right: -120px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle at center, rgba(212,135,10,0.18) 0%, transparent 65%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero-bg-shape2 {
+      position: absolute; bottom: -80px; left: -80px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle at center, rgba(232,196,106,0.10) 0%, transparent 65%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 480px;
+      align-items: center; gap: 60px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(212,135,10,0.15);
+      border: 1px solid rgba(212,135,10,0.3);
+      border-radius: 20px;
+      padding: 5px 14px; margin-bottom: 20px;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700; line-height: 1.12;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.6);
+      line-height: 1.75; max-width: 520px; margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 36px; margin-top: 48px; }
+    .hero-stat strong { display: block; font-family: var(--ff-display); font-size: 1.8rem; color: var(--white); }
+    .hero-stat span { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+    .hero-card-wrap {
+      position: relative;
+      animation: floatCard 4s ease-in-out infinite alternate;
+    }
+    @keyframes floatCard {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-14px); }
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px; padding: 28px;
+      backdrop-filter: blur(20px);
+    }
+    .hero-card-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .hero-card-title { font-family: var(--ff-display); font-size: 1.1rem; color: var(--white); font-weight: 700; }
+    .hero-mentor-list { display: flex; flex-direction: column; gap: 14px; }
+    .hero-mentor-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px; border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.2s;
+    }
+    .hero-mentor-row:hover { background: rgba(255,255,255,0.08); }
+    .hero-mentor-info strong { display: block; font-size: 0.875rem; color: var(--white); font-weight: 600; }
+    .hero-mentor-info span  { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+    .hero-mentor-skills { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+    .hero-skill-tag {
+      font-size: 0.68rem; padding: 2px 8px; border-radius: 10px;
+      background: rgba(212,135,10,0.2); color: var(--gold);
+      font-weight: 600; letter-spacing: 0.04em;
+    }
 
-<style>
+    /* ── How it works ── */
+    .how-step {
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .how-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display); font-weight: 700; font-size: 1.1rem;
+      color: var(--amber); background: rgba(212,135,10,0.1);
+      border: 2px solid rgba(212,135,10,0.25); flex-shrink: 0;
+    }
+    .how-text h3 { font-weight: 600; font-size: 1rem; color: var(--ink); margin-bottom: 4px; }
+    .how-text p  { font-size: 0.875rem; color: var(--slate-lt); line-height: 1.6; }
 
-/* Reset */
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:Georgia, serif;
-    background-color:black;
-}
+    /* ── Features ── */
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all 0.22s;
+    }
+    .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: rgba(212,135,10,0.3); }
+    .feature-icon {
+      width: 52px; height: 52px;
+      background: rgba(212,135,10,0.1);
+      border-radius: 14px; border: 1px solid rgba(212,135,10,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 18px;
+    }
+    .feature-card h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; }
+    .feature-card p  { font-size: 0.875rem; color: var(--slate-lt); line-height: 1.65; }
 
-/* Background Image */
-.bg-container{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-image:url("Frontend/images/BG-kaus.png");
-    background-size:cover;        /* cover full screen */
-    background-position:center;
-    background-repeat:no-repeat;
-    opacity:0.75;                 /* 75% opacity */
-    z-index:-1;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-}
+    /* ── CTA section ── */
+    .cta-section {
+      background: var(--ink-soft);
+      border-radius: 24px;
+      padding: 64px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,135,10,0.15), transparent 65%);
+      border-radius: 50%;
+    }
+    .cta-section h2 { font-family: var(--ff-display); font-size: 2.4rem; color: var(--white); position: relative; }
+    .cta-section p { color: rgba(255,255,255,0.55); margin: 14px auto 32px; max-width: 480px; position: relative; }
 
-/* Splash container */
-.splash{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    gap:25px;
-}
-
-/* Logo */
-.logo-box img{
-    width:300px;
-    height: 300px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-}
-
-/* Typing text */
-.typing{
-    font-size:clamp(32px,7vw,65px);
-    font-weight:bold;
-    color:white;
-    letter-spacing:6px;
-    border-right:3px solid white;
-    white-space:nowrap;
-    overflow:hidden;
-    text-shadow:0 0 15px rgba(0,0,0,0.9);
-}
-
-/* Fade animation */
-.splash.fade-out{
-    opacity:0;
-    transition:opacity 2s ease;
-}
-
-</style>
-
+    /* ── Footer ── */
+    .footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      padding: 48px 0 28px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand { font-family: var(--ff-display); font-size: 1.4rem; color: var(--white); margin-bottom: 10px; }
+    .footer-brand span { color: var(--gold); }
+    .footer-desc { font-size: 0.85rem; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; justify-content: space-between; font-size: 0.8rem; }
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card-wrap { display: none; }
+      .cta-section { padding: 40px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
 <body>
+<script src="js/navbar.js"></script>
+<script>injectNavbar('home');</script>
 
-<!-- Background -->
-<div class="bg-container"></div>
-
-<!-- Splash Content -->
-<div class="splash" id="splash">
-
-    <div class="logo-box">
-        <img src="Frontend/images/Kaus-logo.png" alt="Kaushalya Logo">
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-bg-shape2"></div>
+  <div class="container" style="position:relative;z-index:1;padding-top:40px;padding-bottom:60px;">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#d4870a"/></svg>
+          India's Mentor Platform
+        </div>
+        <h1 class="hero-title">
+          Learn from the<br>
+          <em>best mentors</em><br>
+          in your field
+        </h1>
+        <p class="hero-sub">
+          Kaushalya connects ambitious learners with expert mentors. 
+          Get personalised guidance, build real skills, and accelerate your career.
+        </p>
+        <div class="hero-actions">
+          <a href="Frontend/signup.html" class="btn btn-primary btn-lg">Start Learning →</a>
+          <a href="Frontend/mentors.html" class="btn btn-lg" style="background:rgba(255,255,255,0.1);color:var(--white);border:1px solid rgba(255,255,255,0.2);">Browse Mentors</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong id="stat-mentors">—</strong>
+            <span>Expert Mentors</span>
+          </div>
+          <div class="hero-stat">
+            <strong id="stat-students">—</strong>
+            <span>Students Enrolled</span>
+          </div>
+          <div class="hero-stat">
+            <strong>50+</strong>
+            <span>Skills Available</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card-wrap">
+        <div class="hero-card">
+          <div class="hero-card-head">
+            <div class="hero-card-title">Featured Mentors</div>
+            <span class="badge badge-amber">Live</span>
+          </div>
+          <div class="hero-mentor-list" id="hero-mentor-list">
+            <!-- filled by JS -->
+            <div style="color:rgba(255,255,255,0.3);font-size:0.85rem;text-align:center;padding:20px 0;">Loading mentors…</div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="typing" id="typing-text"></div>
+<!-- ── HOW IT WORKS ── -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="text-center mb-24">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Your journey in 3 steps</h2>
+    </div>
+    <div class="grid-3" style="max-width:860px;margin:0 auto;gap:40px;">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-text">
+          <h3>Create your account</h3>
+          <p>Sign up as a student or mentor. Fill in your profile with skills, location, and goals.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-text">
+          <h3>Find your mentor</h3>
+          <p>Browse experts by skill. Read profiles, see what they teach, and choose your guide.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-text">
+          <h3>Grow your skills</h3>
+          <p>Learn directly under an industry professional. Build skills that matter in the real world.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- ── FEATURES ── -->
+<section class="section">
+  <div class="container">
+    <div class="flex-between mb-24" style="flex-wrap:wrap;gap:16px;">
+      <div>
+        <div class="section-label">Why Kaushalya</div>
+        <h2 class="section-title">Everything you need to grow</h2>
+      </div>
+      <a href="Frontend/signup.html" class="btn btn-primary">Get started free</a>
+    </div>
+    <div class="grid-3">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Skill-Matched Mentors</h3>
+        <p>Every mentor lists their expertise. Find someone teaching exactly what you want to learn — from Java to UI design.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👤</div>
+        <h3>Rich Mentor Profiles</h3>
+        <p>Know your mentor before you start. See their skills, location, and background — full transparency.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure & Private</h3>
+        <p>Your data is protected with BCrypt-hashed passwords and secure reset flows. You're in safe hands.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>Local & Remote</h3>
+        <p>Connect with mentors in your city or learn remotely. Mentors list their location for maximum flexibility.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Become a Mentor</h3>
+        <p>Share your expertise and earn while teaching. Register as a mentor and build your student community.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Admin Dashboard</h3>
+        <p>Platform admins get a full view of students, mentors, and analytics to keep the community thriving.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ── MENTORS PREVIEW ── -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="flex-between mb-24" style="flex-wrap:wrap;gap:16px;">
+      <div>
+        <div class="section-label">Our Community</div>
+        <h2 class="section-title">Meet our mentors</h2>
+      </div>
+      <a href="Frontend/mentors.html" class="btn btn-outline">View all mentors</a>
+    </div>
+    <div class="grid-3" id="home-mentors">
+      <div class="card" style="text-align:center;color:var(--muted);">Loading…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="section">
+  <div class="container">
+    <div class="cta-section">
+      <h2>Ready to level up your skills?</h2>
+      <p>Join thousands of learners who found their perfect mentor on Kaushalya. It's free to get started.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;">
+        <a href="Frontend/signup.html" class="btn btn-primary btn-lg">Create free account</a>
+        <a href="Frontend/become-mentor.html" class="btn btn-lg" style="background:rgba(255,255,255,0.1);color:var(--white);border:1px solid rgba(255,255,255,0.25);">Become a Mentor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Kaushal<span>ya</span></div>
+        <p class="footer-desc">India's premier mentorship platform connecting passionate learners with expert guides across every field.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="Frontend/mentors.html">Browse Mentors</a>
+        <a href="Frontend/skills.html">Skills</a>
+        <a href="Frontend/become-mentor.html">Become a Mentor</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="Frontend/login.html">Log In</a>
+        <a href="Frontend/signup.html">Sign Up</a>
+        <a href="Frontend/profile.html">My Profile</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="#">Web Development</a>
+        <a href="#">Data Science</a>
+        <a href="#">Design</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Kaushalya. All rights reserved.</span>
+      <span style="color:rgba(255,255,255,0.25);">Built with ❤ for learners</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
 <script>
-
-const text = "KAUSHALYA";
-let i = 0;
-const speed = 170;
-const typingElement = document.getElementById("typing-text");
-
-function typeWriter(){
-
-    if(i < text.length){
-        typingElement.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, speed);
+document.addEventListener('DOMContentLoaded', async () => {
+  // Load stats
+  try {
+    const { data } = await apiFetch('/admin/stats');
+    if (data?.data) {
+      const s = data.data;
+      document.getElementById('stat-mentors').textContent = s.totalMentors ?? '—';
+      document.getElementById('stat-students').textContent = s.totalStudents ?? '—';
     }
+  } catch {}
 
-    else{
+  // Load mentors preview
+  const { data: mData } = await apiFetch('/mentor/all');
+  const mentors = mData?.data || [];
 
-        setTimeout(()=>{
+  // Hero mentor list (first 3)
+  const heroList = document.getElementById('hero-mentor-list');
+  const preview = mentors.slice(0, 3);
+  if (preview.length === 0) {
+    heroList.innerHTML = `<div style="color:rgba(255,255,255,0.3);font-size:0.85rem;text-align:center;padding:20px 0;">No mentors yet — <a href="Frontend/signup.html" style="color:var(--gold)">be the first!</a></div>`;
+  } else {
+    heroList.innerHTML = preview.map(m => `
+      <div class="hero-mentor-row">
+        <div class="avatar avatar-sm" style="font-size:0.7rem;">${initials(m.name)}</div>
+        <div class="hero-mentor-info">
+          <strong>${m.name}</strong>
+          <span>${m.location || 'India'}</span>
+          <div class="hero-mentor-skills">
+            ${(m.skills || '').split(',').slice(0,3).map(s => `<span class="hero-skill-tag">${s.trim()}</span>`).join('')}
+          </div>
+        </div>
+      </div>`).join('');
+  }
 
-            document.getElementById("splash").classList.add("fade-out");
-
-            setTimeout(()=>{
-                window.location.replace("/Frontend/homepage/home.html");
-            },1000);
-
-        },1000);
-
-    }
-
-}
-
-window.addEventListener("load", typeWriter);
-
+  // Home mentors grid (first 6)
+  const grid = document.getElementById('home-mentors');
+  if (mentors.length === 0) {
+    grid.innerHTML = `<div class="card text-center" style="grid-column:1/-1;color:var(--muted);">No mentors yet. <a href="Frontend/become-mentor.html" style="color:var(--amber);">Be the first mentor!</a></div>`;
+  } else {
+    grid.innerHTML = mentors.slice(0,6).map(m => `
+      <div class="mentor-card">
+        <div class="mentor-info">
+          <div class="avatar">${initials(m.name)}</div>
+          <div class="mentor-meta">
+            <strong>${m.name}</strong>
+            <span>${m.location || 'India'}</span>
+          </div>
+        </div>
+        <div class="skills-list">
+          ${(m.skills || 'No skills listed').split(',').map(s => `<span class="skill-chip">${s.trim()}</span>`).join('')}
+        </div>
+        <a href="Frontend/mentors.html" class="btn btn-outline btn-sm w-full">View Profile</a>
+      </div>`).join('');
+  }
+});
 </script>
-
 </body>
 </html>

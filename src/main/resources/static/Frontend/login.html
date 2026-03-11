@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In — Kaushalya</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<div class="auth-page">
+  <!-- Left panel -->
+  <div class="auth-left">
+    <div class="auth-left-content">
+      <a href="./index.html" class="auth-brand">Kaushal<span>ya</span></a>
+      <p class="auth-tagline">Your gateway to expert mentorship</p>
+      <div class="auth-feature-list">
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🎯</div>
+          <div class="auth-feature-text">
+            <strong>Skill-matched mentors</strong>
+            <span>Find experts in exactly what you need</span>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🚀</div>
+          <div class="auth-feature-text">
+            <strong>Accelerate your growth</strong>
+            <span>Learn faster with personal guidance</span>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🔒</div>
+          <div class="auth-feature-text">
+            <strong>Safe & secure</strong>
+            <span>Your data is always protected</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="auth-right">
+    <div class="auth-box">
+      <h1>Welcome back</h1>
+      <p class="sub">Log in to continue your learning journey</p>
+
+      <div id="alert-area"></div>
+
+      <form class="auth-form" id="login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Email address</label>
+          <input type="email" id="email" class="form-input" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div style="position:relative;">
+            <input type="password" id="password" class="form-input" placeholder="••••••••" autocomplete="current-password" required style="padding-right:48px;" />
+            <button type="button" id="toggle-pass" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;">👁</button>
+          </div>
+        </div>
+        <div style="text-align:right;margin-top:-10px;">
+          <a href="./forgot-password.html" style="font-size:0.82rem;color:var(--amber);font-weight:500;">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary w-full btn-lg" id="submit-btn">Log In</button>
+      </form>
+
+      <div class="auth-footer mt-16">
+        Don't have an account? <a href="./signup.html">Sign up free</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Redirect if already logged in
+  if (Auth.isLoggedIn()) {
+    const role = Auth.role();
+    window.location.href = role === 'ADMIN' ? './admin.html' : role === 'MENTOR' ? './mentor-panel.html' : './dashboard.html';
+    return;
+  }
+
+  const form = document.getElementById('login-form');
+  const alertArea = document.getElementById('alert-area');
+  const submitBtn = document.getElementById('submit-btn');
+
+  document.getElementById('toggle-pass').addEventListener('click', () => {
+    const p = document.getElementById('password');
+    p.type = p.type === 'password' ? 'text' : 'password';
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    alertArea.innerHTML = '';
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+      alertArea.innerHTML = `<div class="alert alert-error mb-16">Please fill in all fields.</div>`;
+      return;
+    }
+
+    setLoading(submitBtn, true);
+
+    const { ok, data } = await apiFetch('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password })
+    });
+
+    setLoading(submitBtn, false, 'Log In');
+
+    if (ok && data.success) {
+      Auth.save(data.data);
+      Toast.success('Login successful! Redirecting…');
+      setTimeout(() => {
+        const role = data.data.role;
+        window.location.href = role === 'ADMIN' ? './admin.html' : role === 'MENTOR' ? './mentor-panel.html' : './dashboard.html';
+      }, 900);
+    } else {
+      alertArea.innerHTML = `<div class="alert alert-error mb-16">⚠ ${data.message || 'Login failed. Please try again.'}</div>`;
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Mentors — Kaushalya</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .mentor-filters { background:var(--white); border-bottom:1px solid var(--border); padding:16px 0; position:sticky;top:70px;z-index:100; }
+    .filter-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .search-box { position:relative; flex:1; min-width:220px; }
+    .search-box input { padding-left:40px !important; }
+    .search-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:0.9rem; }
+    .filter-chip {
+      padding:6px 16px; border-radius:20px; border:1.5px solid var(--border);
+      background:var(--white); color:var(--slate); font-size:0.8rem; font-weight:600;
+      cursor:pointer; transition:all 0.18s;
+    }
+    .filter-chip:hover, .filter-chip.active { background:var(--amber); color:var(--white); border-color:var(--amber); }
+    .mentor-count { font-size:0.8rem; color:var(--muted); white-space:nowrap; }
+    .mentor-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+    .mentor-detail-card {
+      background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+      padding:24px; transition:all 0.2s; position:relative; overflow:hidden;
+    }
+    .mentor-detail-card::before {
+      content:''; position:absolute; top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,var(--amber),var(--gold));
+      transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+    }
+    .mentor-detail-card:hover { transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(212,135,10,0.3); }
+    .mentor-detail-card:hover::before { transform:scaleX(1); }
+    .mentor-top { display:flex; align-items:flex-start; gap:14px; margin-bottom:14px; }
+    .mentor-body { flex:1; min-width:0; }
+    .mentor-body strong { display:block; font-weight:700; font-size:1rem; color:var(--ink); }
+    .mentor-body .sub { font-size:0.8rem; color:var(--muted); margin-top:2px; }
+    .mentor-bio { font-size:0.83rem; color:var(--slate-lt); line-height:1.6; margin:10px 0; }
+    .empty-state { text-align:center; padding:80px 24px; color:var(--muted); }
+    .empty-state .icon { font-size:3rem; margin-bottom:14px; }
+    .empty-state h3 { font-family:var(--ff-display); font-size:1.3rem; color:var(--ink); margin-bottom:8px; }
+  </style>
+</head>
+<body>
+<script src="./navbar.js"></script>
+<script>injectNavbar('mentors');</script>
+
+<div class="page-content">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Browse Mentors</h1>
+      <p>Find the perfect expert to guide your learning journey</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="mentor-filters">
+    <div class="container">
+      <div class="filter-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="form-input" placeholder="Search by name or skill…" />
+        </div>
+        <div id="skill-filters" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+        <span class="mentor-count" id="mentor-count">Loading…</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="section" style="padding-top:36px;">
+    <div class="container">
+      <div class="mentor-grid" id="mentor-grid">
+        <!-- Skeleton loaders -->
+        ${[...Array(6)].map(() => `<div class="mentor-detail-card" style="min-height:180px;background:var(--cream-dark);animation:pulse 1.5s infinite;"></div>`).join('')}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+<script>
+let allMentors = [];
+const ALL_SKILLS = new Set();
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const { data } = await apiFetch('/mentor/all');
+  allMentors = data?.data || [];
+
+  // Collect skills
+  allMentors.forEach(m => {
+    (m.skills || '').split(',').forEach(s => {
+      const t = s.trim();
+      if (t) ALL_SKILLS.add(t);
+    });
+  });
+
+  renderSkillFilters();
+  renderMentors(allMentors);
+  document.getElementById('mentor-count').textContent = `${allMentors.length} mentor${allMentors.length !== 1 ? 's' : ''}`;
+
+  // Search
+  document.getElementById('search-input').addEventListener('input', applyFilters);
+});
+
+function renderSkillFilters() {
+  const container = document.getElementById('skill-filters');
+  const top = [...ALL_SKILLS].slice(0, 8);
+  container.innerHTML = top.map(s =>
+    `<button class="filter-chip" data-skill="${s}">${s}</button>`
+  ).join('');
+  container.querySelectorAll('.filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      applyFilters();
+    });
+  });
+}
+
+function applyFilters() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const activeSkills = [...document.querySelectorAll('.filter-chip.active')].map(b => b.dataset.skill.toLowerCase());
+  let filtered = allMentors.filter(m => {
+    const matchSearch = !q || m.name.toLowerCase().includes(q) || (m.skills || '').toLowerCase().includes(q) || (m.location || '').toLowerCase().includes(q);
+    const matchSkill = !activeSkills.length || activeSkills.some(s => (m.skills || '').toLowerCase().includes(s));
+    return matchSearch && matchSkill;
+  });
+  renderMentors(filtered);
+  document.getElementById('mentor-count').textContent = `${filtered.length} mentor${filtered.length !== 1 ? 's' : ''}`;
+}
+
+function renderMentors(list) {
+  const grid = document.getElementById('mentor-grid');
+  if (list.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1;">
+        <div class="icon">🔍</div>
+        <h3>No mentors found</h3>
+        <p>Try adjusting your search or filters</p>
+        <a href="./become-mentor.html" class="btn btn-primary mt-16" style="margin-top:16px;">Be the first mentor!</a>
+      </div>`;
+    return;
+  }
+  grid.innerHTML = list.map(m => {
+    const skillList = (m.skills || '').split(',').filter(s => s.trim());
+    return `
+      <div class="mentor-detail-card">
+        <div class="mentor-top">
+          <div class="avatar avatar-lg">${initials(m.name)}</div>
+          <div class="mentor-body">
+            <strong>${m.name}</strong>
+            <div class="sub">${m.email || ''}</div>
+            ${m.location ? `<div class="sub" style="margin-top:4px;">📍 ${m.location}</div>` : ''}
+            ${m.phone ? `<div class="sub">📞 ${m.phone}</div>` : ''}
+          </div>
+        </div>
+        <div class="skills-list">
+          ${skillList.length ? skillList.map(s => `<span class="skill-chip">${s.trim()}</span>`).join('') : `<span style="font-size:0.8rem;color:var(--muted);">No skills listed</span>`}
+        </div>
+        <a href="./become-mentor.html" class="btn btn-outline btn-sm w-full" style="margin-top:14px;">View Details</a>
+      </div>`;
+  }).join('');
+}
+</script>
+<style>
+@keyframes pulse {
+  0%,100% { opacity:1; }
+  50% { opacity:0.6; }
+}
+</style>
+</body>
+</html>

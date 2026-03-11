@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentor Profile — Kaushalya</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>"/>
+  <link rel="stylesheet" href="./style.css"/>
+  <style>
+    .mentor-hero { background:var(--ink-soft); padding:60px 0; position:relative; overflow:hidden; }
+    .mentor-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:400px; height:400px; background:radial-gradient(circle,rgba(212,135,10,0.18),transparent 65%); border-radius:50%; }
+    .mentor-hero-inner { display:flex; align-items:center; gap:32px; flex-wrap:wrap; position:relative; z-index:1; }
+    .mentor-hero-avatar { width:110px; height:110px; border-radius:50%; background:var(--amber); color:var(--white); display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-size:2.5rem; font-weight:700; border:4px solid rgba(255,255,255,0.15); flex-shrink:0; }
+    .mentor-hero-info h1 { font-family:var(--ff-display); font-size:clamp(1.6rem,3vw,2.2rem); color:var(--white); font-weight:700; margin-bottom:8px; }
+    .mentor-hero-meta { display:flex; gap:16px; flex-wrap:wrap; margin-top:12px; }
+    .mentor-hero-meta span { font-size:0.85rem; color:rgba(255,255,255,0.55); display:flex; align-items:center; gap:6px; }
+    .detail-grid { display:grid; grid-template-columns:1fr 340px; gap:28px; align-items:start; }
+    .detail-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:28px; margin-bottom:20px; }
+    .detail-card h3 { font-weight:700; font-size:1rem; color:var(--ink); margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--cream-dark); }
+    .info-row { display:grid; grid-template-columns:130px 1fr; gap:8px; padding:9px 0; border-bottom:1px solid var(--cream-dark); }
+    .info-row:last-child { border-bottom:none; }
+    .info-row label { font-size:0.78rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; padding-top:2px; }
+    .info-row span  { font-size:0.9rem; color:var(--ink); }
+    .back-btn { display:inline-flex; align-items:center; gap:6px; font-size:0.875rem; color:rgba(255,255,255,0.6); margin-bottom:24px; transition:color 0.2s; }
+    .back-btn:hover { color:var(--gold); }
+    @media(max-width:900px){ .detail-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<script src="./navbar.js"></script>
+<script>injectNavbar('mentors');</script>
+
+<div class="page-content">
+  <!-- Loading state -->
+  <div id="loading-state" style="min-height:60vh;display:flex;align-items:center;justify-content:center;">
+    <div style="text-align:center;color:var(--muted);">
+      <div style="font-size:2rem;margin-bottom:12px;">⏳</div>
+      <p>Loading mentor profile…</p>
+    </div>
+  </div>
+
+  <!-- Error state -->
+  <div id="error-state" style="display:none;min-height:60vh;display:none;align-items:center;justify-content:center;text-align:center;padding:40px;">
+    <div>
+      <div style="font-size:3rem;margin-bottom:16px;">🔍</div>
+      <h2 style="font-family:var(--ff-display);font-size:1.6rem;margin-bottom:10px;color:var(--ink);">Mentor not found</h2>
+      <p style="color:var(--muted);margin-bottom:24px;">This mentor doesn't exist or their profile is unavailable.</p>
+      <a href="./mentors.html" class="btn btn-primary">Browse All Mentors</a>
+    </div>
+  </div>
+
+  <!-- Profile content -->
+  <div id="profile-content" style="display:none;">
+    <!-- Hero -->
+    <div class="mentor-hero">
+      <div class="container">
+        <a href="./mentors.html" class="back-btn">← Back to Mentors</a>
+        <div class="mentor-hero-inner">
+          <div class="mentor-hero-avatar" id="m-avatar">?</div>
+          <div class="mentor-hero-info">
+            <span class="badge badge-amber" style="margin-bottom:10px;">✓ Verified Mentor</span>
+            <h1 id="m-name">—</h1>
+            <p id="m-email" style="color:rgba(255,255,255,0.5);font-size:0.9rem;margin-top:4px;"></p>
+            <div class="mentor-hero-meta">
+              <span id="m-location-badge"></span>
+              <span id="m-phone-badge"></span>
+              <span id="m-skills-count"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail -->
+    <div class="section" style="padding-top:36px;">
+      <div class="container">
+        <div class="detail-grid">
+          <!-- Left -->
+          <div>
+            <div class="detail-card">
+              <h3>Skills & Expertise</h3>
+              <div id="m-skills" class="skills-list">
+                <span style="color:var(--muted);font-size:0.875rem;">No skills listed.</span>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <h3>About This Mentor</h3>
+              <p id="m-about" style="color:var(--slate-lt);font-size:0.9rem;line-height:1.75;">
+                This mentor is an expert in their field and is available to guide students on Kaushalya. Browse their skills above to see if they're the right fit for your learning goals.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right -->
+          <div>
+            <div class="detail-card">
+              <h3>Profile Details</h3>
+              <div class="info-row"><label>Name</label><span id="d-name">—</span></div>
+              <div class="info-row"><label>Email</label><span id="d-email">—</span></div>
+              <div class="info-row"><label>Location</label><span id="d-location">—</span></div>
+              <div class="info-row"><label>Phone</label><span id="d-phone">—</span></div>
+              <div class="info-row"><label>Member since</label><span id="d-dob">—</span></div>
+            </div>
+
+            <div class="detail-card">
+              <h3>Get Started</h3>
+              <p style="font-size:0.875rem;color:var(--muted);line-height:1.6;margin-bottom:16px;">
+                Interested in learning from this mentor? Create an account or log in to connect.
+              </p>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <a href="./signup.html" class="btn btn-primary w-full" id="cta-signup">Create Free Account →</a>
+                <a href="./login.html" class="btn btn-outline w-full" id="cta-login">Already a member? Log in</a>
+              </div>
+            </div>
+
+            <div class="detail-card" style="background:rgba(212,135,10,0.05);border-color:rgba(212,135,10,0.2);">
+              <h3 style="color:var(--amber-dim);">More Mentors</h3>
+              <div id="related-mentors" style="display:flex;flex-direction:column;gap:10px;"></div>
+              <a href="./mentors.html" style="font-size:0.8rem;color:var(--amber);font-weight:600;margin-top:12px;display:block;">View all mentors →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+
+  if (!id) { showError(); return; }
+
+  const { ok, data } = await apiFetch(`/mentor/${id}`);
+
+  document.getElementById('loading-state').style.display = 'none';
+
+  if (!ok || !data.success) { showError(); return; }
+
+  const m = data.data;
+  document.title = `${m.name} — Kaushalya Mentor`;
+
+  // Hero
+  document.getElementById('m-avatar').textContent = initials(m.name);
+  document.getElementById('m-name').textContent = m.name;
+  document.getElementById('m-email').textContent = m.email;
+  if (m.location) document.getElementById('m-location-badge').textContent = `📍 ${m.location}`;
+  if (m.phone)    document.getElementById('m-phone-badge').textContent    = `📞 ${m.phone}`;
+
+  const skills = (m.skills || '').split(',').filter(s => s.trim());
+  document.getElementById('m-skills-count').textContent = `⚡ ${skills.length} skill${skills.length !== 1 ? 's' : ''}`;
+
+  // Detail
+  document.getElementById('d-name').textContent     = m.name || '—';
+  document.getElementById('d-email').textContent    = m.email || '—';
+  document.getElementById('d-location').textContent = m.location || '—';
+  document.getElementById('d-phone').textContent    = m.phone || '—';
+  document.getElementById('d-dob').textContent      = m.dob ? fmtDate(m.dob) : '—';
+
+  // Skills
+  const skillsEl = document.getElementById('m-skills');
+  if (skills.length) {
+    skillsEl.innerHTML = skills.map(s => `<span class="skill-chip">${s.trim()}</span>`).join('');
+  }
+
+  // Show/hide CTAs based on login
+  const user = Auth.get();
+  if (user) {
+    document.getElementById('cta-signup').style.display = 'none';
+    document.getElementById('cta-login').textContent = 'Go to Dashboard →';
+    document.getElementById('cta-login').href = './dashboard.html';
+  }
+
+  document.getElementById('profile-content').style.display = 'block';
+
+  // Related mentors (others, up to 3)
+  const { data: allData } = await apiFetch('/mentor/all');
+  const others = (allData?.data || []).filter(x => x.id !== m.id).slice(0, 3);
+  const relEl = document.getElementById('related-mentors');
+  if (others.length) {
+    relEl.innerHTML = others.map(o => `
+      <a href="./mentor-detail.html?id=${o.id}" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--white);transition:all 0.18s;" class="mentor-mini">
+        <div class="avatar avatar-sm">${initials(o.name)}</div>
+        <div style="min-width:0;">
+          <div style="font-weight:600;font-size:0.85rem;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${o.name}</div>
+          <div style="font-size:0.75rem;color:var(--muted);">${(o.skills||'').split(',').slice(0,2).map(s=>s.trim()).filter(Boolean).join(', ') || 'No skills'}</div>
+        </div>
+      </a>`).join('');
+  } else {
+    relEl.innerHTML = `<span style="color:var(--muted);font-size:0.82rem;">No other mentors yet.</span>`;
+  }
+});
+
+function showError() {
+  document.getElementById('loading-state').style.display = 'none';
+  document.getElementById('error-state').style.display = 'flex';
+}
+</script>
+<style>
+.mentor-mini:hover { border-color:rgba(212,135,10,0.3)!important; background:rgba(212,135,10,0.04)!important; }
+</style>
+</body>
+</html>

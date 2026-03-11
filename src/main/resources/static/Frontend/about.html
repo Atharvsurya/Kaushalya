@@ -160,23 +160,11 @@
           </div>
         </div>
         <div>
-          <div class="section-label">Tech Stack</div>
-          <h2 class="section-title mb-24" style="margin-bottom:32px;">Built on solid foundations</h2>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            ${[
-              ['☕ Backend','Java 17 + Spring Boot 3'],
-              ['🗄️ Database','MySQL / H2 (dev) via Spring Data JPA'],
-              ['🔐 Security','Spring Security + BCrypt password hashing'],
-              ['🌐 API','RESTful JSON endpoints with CORS support'],
-              ['🎨 Frontend','Vanilla HTML5, CSS3, ES6 JavaScript'],
-              ['📐 Design','Custom design system — no UI frameworks'],
-            ].map(([label, val]) => `
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--cream);border-radius:8px;border:1px solid var(--border);">
-                <span style="font-weight:600;font-size:0.875rem;color:var(--ink);">${label}</span>
-                <span style="font-size:0.82rem;color:var(--muted);">${val}</span>
-              </div>`).join('')}
-          </div>
-        </div>
+    <div class="section-label">Tech Stack</div>
+    <h2 class="section-title mb-24" style="margin-bottom:32px;">Built on solid foundations</h2>
+    <div id="tech-stack-list" style="display:flex;flex-direction:column;gap:12px;">
+    </div>
+  </div>
       </div>
     </div>
   </section>
@@ -206,6 +194,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('ab-students').textContent = data.data.totalStudents ?? '—';
   }
 });
+
+const stackData = [
+      ['☕ Backend', 'Java 17 + Spring Boot 3.5'],
+      ['🗄️ Database', 'H2 Persistent (Dev) / MySQL (Prod)'],
+      ['🔐 Security', 'Spring Security + BCrypt Hashing'],
+      ['📂 Persistence', 'Spring Data JPA (Hibernate)'],
+      ['🌐 API', 'RESTful Endpoints with JSON'],
+      ['🎨 Frontend', 'Vanilla HTML5, CSS3, ES6+'],
+      ['📐 Design', 'Custom System (No UI Frameworks)']
+    ];
+
+    const listContainer = document.getElementById('tech-stack-list');
+    
+    listContainer.innerHTML = stackData.map(([label, val]) => `
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:var(--cream); border-radius:8px; border:1px solid var(--border); transition: 0.2s;">
+        <span style="font-weight:600; font-size:0.875rem; color:var(--ink);">${label}</span>
+        <span style="font-size:0.82rem; color:var(--muted);">${val}</span>
+      </div>
+    `).join('');
 </script>
 </body>
 </html>

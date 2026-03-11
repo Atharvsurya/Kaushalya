@@ -2,6 +2,7 @@ package com.kaushalya.web.controller;
 
 import com.kaushalya.web.dto.*;
 import com.kaushalya.web.service.UserService;
+import com.kaushalya.web.repository.ContactMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Admin Dashboard endpoints — used by admin.html
+ * Admin Dashboard endpoints — admin.html
  *
- *  GET  /api/admin/stats          → dashboard cards (Total Users, Mentors, Students)
- *  GET  /api/admin/users          → User Management table (all users)
- *  GET  /api/admin/users/role/{role} → filter by STUDENT | MENTOR
- *  DELETE /api/admin/users/{id}   → delete a user
+ *  GET    /api/admin/stats             → dashboard cards (Users, Mentors, Students, Admins, Pending Messages)
+ *  GET    /api/admin/users             → all users
+ *  GET    /api/admin/users/role/{role} → filter STUDENT | MENTOR | ADMIN
+ *  DELETE /api/admin/users/{id}        → delete user
  */
 @RestController
 @RequestMapping("/api/admin")
@@ -25,25 +26,24 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    /** admin.html → dashboard stat cards */
+    @Autowired
+    private ContactMessageRepository contactMessageRepository;
+
     @GetMapping("/stats")
     public ResponseEntity<ApiResponse<Map<String, Long>>> getDashboardStats() {
-        return ResponseEntity.ok(userService.getDashboardStats());
+        return ResponseEntity.ok(userService.getDashboardStats(contactMessageRepository));
     }
 
-    /** admin.html → User Management — full user list */
     @GetMapping("/users")
     public ResponseEntity<ApiResponse<List<UserResponse>>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    /** admin.html → filter users by role */
     @GetMapping("/users/role/{role}")
     public ResponseEntity<ApiResponse<List<UserResponse>>> getUsersByRole(@PathVariable String role) {
         return ResponseEntity.ok(userService.getUsersByRole(role));
     }
 
-    /** admin.html → delete user from User Management table */
     @DeleteMapping("/users/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteUser(@PathVariable Long id) {
         ApiResponse<Void> res = userService.deleteUser(id);

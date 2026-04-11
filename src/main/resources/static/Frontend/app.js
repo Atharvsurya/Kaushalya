@@ -1,7 +1,3 @@
-/* ============================================================
-   KAUSHALYA — Shared Utilities v2
-   ============================================================ */
-
 const API = 'https://kaushalya-production.up.railway.app/api';
 const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days
 
@@ -58,7 +54,12 @@ async function apiFetch(path, opts = {}) {
     const data = await res.json();
     return { ok: res.ok, status: res.status, data };
   } catch (e) {
-    return { ok: false, status: 0, data: { message: 'Network error. Is the server running on port 8080?' } };
+    console.error("API Error:", e);
+    return { 
+      ok: false, 
+      status: 0, 
+      data: { message: 'Connection failed. Please check your internet or CORS settings.' } 
+    };
   }
 }
 

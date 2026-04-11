@@ -2,7 +2,7 @@
    KAUSHALYA — Shared Utilities v2
    ============================================================ */
 
-const API = 'http://localhost:8080/api';
+const API = 'kaushalya-production.up.railway.app';
 const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 const Auth = {

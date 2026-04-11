@@ -54,11 +54,10 @@ async function apiFetch(path, opts = {}) {
     const data = await res.json();
     return { ok: res.ok, status: res.status, data };
   } catch (e) {
-    console.error("API Error:", e);
     return { 
       ok: false, 
       status: 0, 
-      data: { message: 'Connection failed. Please check your internet or CORS settings.' } 
+      data: { message: 'Connection failed. Please check your internet.' } 
     };
   }
 }

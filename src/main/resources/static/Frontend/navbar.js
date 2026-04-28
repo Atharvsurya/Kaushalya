@@ -6,16 +6,16 @@ function injectNavbar(activePage = '') {
   <nav class="navbar">
     <a href="../index.html" class="nav-logo">Kaushal<span>ya</span></a>
     <div class="nav-links">
-      <a href="../index.html" class="${activePage==='home'?'active':''}">Home</a>
-      <a href="./mentors.html" class="${activePage==='mentors'?'active':''}">Mentors</a>
-      <a href="./skills.html" class="${activePage==='skills'?'active':''}">Skills</a>
-      <a href="./become-mentor.html" class="${activePage==='become-mentor'?'active':''}">Become a Mentor</a>
-      <a href="./about.html" class="${activePage==='about'?'active':''}">About</a>
-      <a href="./contact.html" class="${activePage==='contact'?'active':''}">Contact</a>
+      <a href="../index.html" class="${activePage === 'home' ? 'active' : ''}">Home</a>
+      <a href="/Frontend/mentors.html" class="${activePage === 'mentors' ? 'active' : ''}">Mentors</a>
+      <a href="/Frontend/skills.html" class="${activePage === 'skills' ? 'active' : ''}">Skills</a>
+      <a href="/Frontend/become-mentor.html" class="${activePage === 'become-mentor' ? 'active' : ''}">Become a Mentor</a>
+      <a href="/Frontend/about.html" class="${activePage === 'about' ? 'active' : ''}">About</a>
+      <a href="/Frontend/contact.html" class="${activePage === 'contact' ? 'active' : ''}">Contact</a>
     </div>
     <div class="nav-cta">
-      <a href="./login.html" id="nav-login-btn" class="btn btn-ghost">Log in</a>
-      <a href="./signup.html" id="nav-signup-btn" class="btn btn-primary">Sign up</a>
+      <a href="/Frontend/login.html" id="nav-login-btn" class="btn btn-ghost">Log in</a>
+      <a href="/Frontend/signup.html" id="nav-signup-btn" class="btn btn-primary">Sign up</a>
       <div id="nav-user-menu" class="dropdown" style="display:none;">
         <div id="nav-user-trigger" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 10px;border-radius:8px;border:1.5px solid var(--border);background:var(--white);transition:all 0.2s;">
           <div class="avatar avatar-sm" id="nav-user-avatar"></div>
@@ -55,13 +55,13 @@ function injectNavbar(activePage = '') {
   </nav>
   <div class="mobile-nav">
     <a href="../index.html">Home</a>
-    <a href="./mentors.html">Mentors</a>
-    <a href="./skills.html">Skills</a>
-    <a href="./become-mentor.html">Become a Mentor</a>
-    <a href="./about.html">About</a>
-    <a href="./contact.html">Contact</a>
-    <a href="./login.html">Log in</a>
-    <a href="./signup.html">Sign up</a>
+    <a href="/Frontend/mentors.html">Mentors</a>
+    <a href="/Frontend/skills.html">Skills</a>
+    <a href="/Frontend/become-mentor.html">Become a Mentor</a>
+    <a href="/Frontend/about.html">About</a>
+    <a href="/Frontend/contact.html">Contact</a>
+    <a href="/Frontend/login.html">Log in</a>
+    <a href="/Frontend/signup.html">Sign up</a>
   </div>`;
   document.body.insertAdjacentHTML('afterbegin', nav);
 }

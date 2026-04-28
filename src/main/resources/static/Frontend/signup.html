@@ -1,203 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Create Account — Kaushalya</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
   <link rel="stylesheet" href="./style.css" />
   <style>
-    .role-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .role-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
     .role-card {
       border: 2px solid var(--cream-dark);
       border-radius: var(--radius-sm);
       padding: 16px;
-      cursor: pointer; text-align: center;
+      cursor: pointer;
+      text-align: center;
       transition: all 0.2s;
       background: var(--white);
     }
-    .role-card:hover { border-color: var(--amber); }
-    .role-card.selected { border-color: var(--amber); background: rgba(212,135,10,0.06); }
-    .role-card input { display: none; }
-    .role-card .icon { font-size: 1.6rem; margin-bottom: 6px; }
-    .role-card strong { display: block; font-size: 0.875rem; font-weight: 700; color: var(--ink); }
-    .role-card span { font-size: 0.75rem; color: var(--muted); }
+
+    .role-card:hover {
+      border-color: var(--amber);
+    }
+
+    .role-card.selected {
+      border-color: var(--amber);
+      background: rgba(212, 135, 10, 0.06);
+    }
+
+    .role-card input {
+      display: none;
+    }
+
+    .role-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .role-card strong {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .role-card span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
   </style>
 </head>
+
 <body>
-<div class="auth-page">
-  <div class="auth-left">
-    <div class="auth-left-content">
-      <a href="../index.html" class="auth-brand">Kaushal<span>ya</span></a>
-      <p class="auth-tagline">Join thousands of learners and mentors</p>
-      <div class="auth-feature-list">
-        <div class="auth-feature">
-          <div class="auth-feature-icon">📚</div>
-          <div class="auth-feature-text">
-            <strong>Learn any skill</strong>
-            <span>Java, React, Design, Data Science & more</span>
+  <div class="auth-page">
+    <div class="auth-left">
+      <div class="auth-left-content">
+        <a href="../index.html" class="auth-brand">Kaushal<span>ya</span></a>
+        <p class="auth-tagline">Join thousands of learners and mentors</p>
+        <div class="auth-feature-list">
+          <div class="auth-feature">
+            <div class="auth-feature-icon">📚</div>
+            <div class="auth-feature-text">
+              <strong>Learn any skill</strong>
+              <span>Java, React, Design, Data Science & more</span>
+            </div>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">🧑‍🏫</div>
+            <div class="auth-feature-text">
+              <strong>Teach & earn</strong>
+              <span>Share expertise as a verified mentor</span>
+            </div>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon">🌍</div>
+            <div class="auth-feature-text">
+              <strong>India-wide network</strong>
+              <span>Connect locally or learn remotely</span>
+            </div>
           </div>
         </div>
-        <div class="auth-feature">
-          <div class="auth-feature-icon">🧑‍🏫</div>
-          <div class="auth-feature-text">
-            <strong>Teach & earn</strong>
-            <span>Share expertise as a verified mentor</span>
+      </div>
+    </div>
+
+    <div class="auth-right">
+      <div class="auth-box" style="max-width:460px;">
+        <h1>Create your account</h1>
+        <p class="sub">Join Kaushalya — it's completely free</p>
+
+        <div id="alert-area"></div>
+
+        <form class="auth-form" id="signup-form" novalidate>
+          <!-- Role selection -->
+          <div class="form-group">
+            <label class="form-label">I want to…</label>
+            <div class="role-cards">
+              <label class="role-card selected" id="card-student">
+                <input type="radio" name="role" value="STUDENT" checked />
+                <div class="icon">🎓</div>
+                <strong>Learn</strong>
+                <span>I'm a Student</span>
+              </label>
+              <label class="role-card" id="card-mentor">
+                <input type="radio" name="role" value="MENTOR" />
+                <div class="icon">🧑‍🏫</div>
+                <strong>Teach</strong>
+                <span>I'm a Mentor</span>
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="auth-feature">
-          <div class="auth-feature-icon">🌍</div>
-          <div class="auth-feature-text">
-            <strong>India-wide network</strong>
-            <span>Connect locally or learn remotely</span>
+
+          <div class="form-group">
+            <label class="form-label" for="name">Full name</label>
+            <input type="text" id="name" class="form-input" placeholder="Arjun Sharma" autocomplete="name" required />
           </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email address</label>
+            <input type="email" id="email" class="form-input" placeholder="you@example.com" autocomplete="email"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div style="position:relative;">
+              <input type="password" id="password" class="form-input" placeholder="Min. 6 characters"
+                autocomplete="new-password" required style="padding-right:48px;" />
+              <button type="button" id="toggle-pass"
+                style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;">👁</button>
+            </div>
+            <span class="form-hint">Must be at least 6 characters</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="confirm-password">Confirm password</label>
+            <input type="password" id="confirm-password" class="form-input" placeholder="Re-enter your password"
+              autocomplete="new-password" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary w-full btn-lg" id="submit-btn">Create Account</button>
+
+          <p style="font-size:0.78rem;color:var(--muted);text-align:center;line-height:1.6;">
+            By signing up you agree to our Terms of Service and Privacy Policy.
+          </p>
+        </form>
+
+        <div class="auth-footer mt-16">
+          Already have an account? <a href="./login.html">Log in</a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="auth-right">
-    <div class="auth-box" style="max-width:460px;">
-      <h1>Create your account</h1>
-      <p class="sub">Join Kaushalya — it's completely free</p>
+  <script src="./app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (Auth.isLoggedIn()) { window.location.href = './dashboard.html'; return; }
 
-      <div id="alert-area"></div>
+      const form = document.getElementById('signup-form');
+      const alertArea = document.getElementById('alert-area');
+      const submitBtn = document.getElementById('submit-btn');
 
-      <form class="auth-form" id="signup-form" novalidate>
-        <!-- Role selection -->
-        <div class="form-group">
-          <label class="form-label">I want to…</label>
-          <div class="role-cards">
-            <label class="role-card selected" id="card-student">
-              <input type="radio" name="role" value="STUDENT" checked />
-              <div class="icon">🎓</div>
-              <strong>Learn</strong>
-              <span>I'm a Student</span>
-            </label>
-            <label class="role-card" id="card-mentor">
-              <input type="radio" name="role" value="MENTOR" />
-              <div class="icon">🧑‍🏫</div>
-              <strong>Teach</strong>
-              <span>I'm a Mentor</span>
-            </label>
-          </div>
-        </div>
+      // Role card toggle
+      document.querySelectorAll('.role-card').forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+        });
+      });
 
-        <div class="form-group">
-          <label class="form-label" for="name">Full name</label>
-          <input type="text" id="name" class="form-input" placeholder="Arjun Sharma" autocomplete="name" required />
-        </div>
+      // Password toggle
+      document.getElementById('toggle-pass').addEventListener('click', () => {
+        const p = document.getElementById('password');
+        p.type = p.type === 'password' ? 'text' : 'password';
+      });
 
-        <div class="form-group">
-          <label class="form-label" for="email">Email address</label>
-          <input type="email" id="email" class="form-input" placeholder="you@example.com" autocomplete="email" required />
-        </div>
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        alertArea.innerHTML = '';
 
-        <div class="form-group">
-          <label class="form-label" for="password">Password</label>
-          <div style="position:relative;">
-            <input type="password" id="password" class="form-input" placeholder="Min. 6 characters" autocomplete="new-password" required style="padding-right:48px;" />
-            <button type="button" id="toggle-pass" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;">👁</button>
-          </div>
-          <span class="form-hint">Must be at least 6 characters</span>
-        </div>
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        const role = document.querySelector('input[name="role"]:checked')?.value || 'STUDENT';
 
-        <div class="form-group">
-          <label class="form-label" for="confirm-password">Confirm password</label>
-          <input type="password" id="confirm-password" class="form-input" placeholder="Re-enter your password" autocomplete="new-password" required />
-        </div>
+        // Client-side validation
+        if (!name) { alertArea.innerHTML = `<div class="alert alert-error mb-16">Name is required.</div>`; return; }
+        if (!email) { alertArea.innerHTML = `<div class="alert alert-error mb-16">Email is required.</div>`; return; }
+        if (password.length < 6) { alertArea.innerHTML = `<div class="alert alert-error mb-16">Password must be at least 6 characters.</div>`; return; }
+        if (password !== confirmPassword) { alertArea.innerHTML = `<div class="alert alert-error mb-16">Passwords do not match.</div>`; return; }
 
-        <button type="submit" class="btn btn-primary w-full btn-lg" id="submit-btn">Create Account</button>
+        setLoading(submitBtn, true);
+        const { ok, data } = await apiFetch('/auth/register', {
+          method: 'POST',
+          body: JSON.stringify({ name, email, password, confirmPassword, role })
+        });
+        setLoading(submitBtn, false, 'Create Account');
 
-        <p style="font-size:0.78rem;color:var(--muted);text-align:center;line-height:1.6;">
-          By signing up you agree to our Terms of Service and Privacy Policy.
-        </p>
-      </form>
-
-      <div class="auth-footer mt-16">
-        Already have an account? <a href="./login.html">Log in</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="./app.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  if (Auth.isLoggedIn()) { window.location.href = './dashboard.html'; return; }
-
-  const form = document.getElementById('signup-form');
-  const alertArea = document.getElementById('alert-area');
-  const submitBtn = document.getElementById('submit-btn');
-
-  // Role card toggle
-  document.querySelectorAll('.role-card').forEach(card => {
-    card.addEventListener('click', () => {
-      document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
+        if (ok && data.success) {
+          Auth.save(data.data);
+          Toast.success('Account created! Redirecting…');
+          setTimeout(() => {
+            const r = data.data.role;
+            window.location.href = r === 'MENTOR' ? './mentor-panel.html' : './dashboard.html';
+          }, 900);
+        } else {
+          alertArea.innerHTML = `<div class="alert alert-error mb-16">⚠ ${data.message || 'Registration failed.'}</div>`;
+        }
+      });
     });
-  });
-
-  // Password toggle
-  document.getElementById('toggle-pass').addEventListener('click', () => {
-    const p = document.getElementById('password');
-    p.type = p.type === 'password' ? 'text' : 'password';
-  });
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    alertArea.innerHTML = '';
-
-    const name     = document.getElementById('name').value.trim();
-    const email    = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    const role     = document.querySelector('input[name="role"]:checked')?.value || 'STUDENT';
-
-    // Client-side validation
-    if (!name) { alertArea.innerHTML = `<div class="alert alert-error mb-16">Name is required.</div>`; return; }
-    if (!email) { alertArea.innerHTML = `<div class="alert alert-error mb-16">Email is required.</div>`; return; }
-    if (password.length < 6) { alertArea.innerHTML = `<div class="alert alert-error mb-16">Password must be at least 6 characters.</div>`; return; }
-    if (password !== confirmPassword) { alertArea.innerHTML = `<div class="alert alert-error mb-16">Passwords do not match.</div>`; return; }
-
-    setLoading(submitBtn, true);
-    const { ok, data } = await apiFetch('/auth/register', {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password, confirmPassword, role })
-    });
-    setLoading(submitBtn, false, 'Create Account');
-
-    if (ok && data.success) {
-      Auth.save(data.data);
-      Toast.success('Account created! Redirecting…');
-      setTimeout(() => {
-        const r = data.data.role;
-        window.location.href = r === 'MENTOR' ? './mentor-panel.html' : './dashboard.html';
-      }, 900);
-    } else {
-      alertArea.innerHTML = `<div class="alert alert-error mb-16">⚠ ${data.message || 'Registration failed.'}</div>`;
-    }
-  });
-});
-</script>
+  </script>
 </body>
+
 </html>
 <!-- Inline validation + strength enhancement injected by app.js upgrade -->
 <script>
-// Add strength meter after DOMContentLoaded runs in the original script
-document.addEventListener('DOMContentLoaded', () => {
-  // Add strength meter container after password input
-  const pwInput = document.getElementById('password');
-  if (pwInput && !document.getElementById('pw-strength')) {
-    const div = document.createElement('div');
-    div.id = 'pw-strength';
-    pwInput.parentElement.insertAdjacentElement('afterend', div);
-    initPasswordStrength('password', 'pw-strength');
-  }
-  // Inline validation on blur
-  const emailEl = document.getElementById('email');
-  const nameEl  = document.getElementById('name');
-  if (nameEl)  nameEl.addEventListener('blur',  () => validateField(nameEl,  { required: true, requiredMsg: 'Name is required.' }));
-  if (emailEl) emailEl.addEventListener('blur', () => validateField(emailEl, { required: true, email: true }));
-}, { once: false });
+  // Add strength meter after DOMContentLoaded runs in the original script
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add strength meter container after password input
+    const pwInput = document.getElementById('password');
+    if (pwInput && !document.getElementById('pw-strength')) {
+      const div = document.createElement('div');
+      div.id = 'pw-strength';
+      pwInput.parentElement.insertAdjacentElement('afterend', div);
+      initPasswordStrength('password', 'pw-strength');
+    }
+    // Inline validation on blur
+    const emailEl = document.getElementById('email');
+    const nameEl = document.getElementById('name');
+    if (nameEl) nameEl.addEventListener('blur', () => validateField(nameEl, { required: true, requiredMsg: 'Name is required.' }));
+    if (emailEl) emailEl.addEventListener('blur', () => validateField(emailEl, { required: true, email: true }));
+  }, { once: false });
 </script>

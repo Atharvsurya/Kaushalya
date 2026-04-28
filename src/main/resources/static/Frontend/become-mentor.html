@@ -1,295 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Become a Mentor — Kaushalya</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
   <link rel="stylesheet" href="./style.css" />
   <style>
     .bm-hero {
       background: var(--ink-soft);
       padding: 80px 0 60px;
       text-align: center;
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
+
     .bm-hero::before {
-      content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(212,135,10,0.18), transparent 65%);
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(212, 135, 10, 0.18), transparent 65%);
       border-radius: 50%;
     }
-    .bm-hero h1 { font-family: var(--ff-display); font-size: clamp(2rem,4vw,3rem); color: var(--white); font-weight: 700; position:relative; }
-    .bm-hero p  { color: rgba(255,255,255,0.6); max-width: 520px; margin: 14px auto 0; font-size: 1rem; position:relative; }
+
+    .bm-hero h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      font-weight: 700;
+      position: relative;
+    }
+
+    .bm-hero p {
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 520px;
+      margin: 14px auto 0;
+      font-size: 1rem;
+      position: relative;
+    }
 
     /* Step indicator */
-    .steps-bar { display:flex; align-items:center; justify-content:center; gap:0; margin: 40px 0; }
-    .step-item { display:flex; align-items:center; gap:0; }
+    .steps-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 40px 0;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
     .step-circle {
-      width: 36px; height: 36px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.875rem; font-weight: 700;
-      background: var(--cream-dark); color: var(--muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      background: var(--cream-dark);
+      color: var(--muted);
       border: 2px solid var(--cream-dark);
       transition: all 0.3s;
     }
-    .step-circle.active { background: var(--amber); color: var(--white); border-color: var(--amber); }
-    .step-circle.done   { background: var(--success); color: var(--white); border-color: var(--success); }
-    .step-label { font-size: 0.75rem; font-weight: 600; color: var(--muted); margin-top: 4px; }
-    .step-line { width: 60px; height: 2px; background: var(--cream-dark); margin: 0 6px; flex-shrink:0; }
-    .step-line.done { background: var(--success); }
-    .step-wrap { display:flex; flex-direction:column; align-items:center; }
+
+    .step-circle.active {
+      background: var(--amber);
+      color: var(--white);
+      border-color: var(--amber);
+    }
+
+    .step-circle.done {
+      background: var(--success);
+      color: var(--white);
+      border-color: var(--success);
+    }
+
+    .step-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .step-line {
+      width: 60px;
+      height: 2px;
+      background: var(--cream-dark);
+      margin: 0 6px;
+      flex-shrink: 0;
+    }
+
+    .step-line.done {
+      background: var(--success);
+    }
+
+    .step-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     /* Skill categories */
-    .skill-category { margin-bottom: 28px; }
-    .skill-category h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; }
-    .skill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skill-btn {
-      padding: 7px 16px; border-radius: 20px;
-      border: 1.5px solid var(--border); background: var(--white);
-      font-size: 0.825rem; font-weight: 500; color: var(--slate);
-      cursor: pointer; transition: all 0.18s;
+    .skill-category {
+      margin-bottom: 28px;
     }
-    .skill-btn:hover { border-color: var(--amber); color: var(--amber); }
-    .skill-btn.selected { background: var(--amber); color: var(--white); border-color: var(--amber); }
+
+    .skill-category h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 10px;
+    }
+
+    .skill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-btn {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-size: 0.825rem;
+      font-weight: 500;
+      color: var(--slate);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .skill-btn:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .skill-btn.selected {
+      background: var(--amber);
+      color: var(--white);
+      border-color: var(--amber);
+    }
 
     /* Selected display */
     .selected-skills-bar {
-      background: rgba(212,135,10,0.08); border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm); padding: 12px 16px;
-      min-height: 48px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+      background: rgba(212, 135, 10, 0.08);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
     /* Benefits */
-    .benefit-item { display:flex; align-items:flex-start; gap:14px; padding:18px 0; border-bottom:1px solid var(--cream-dark); }
-    .benefit-item:last-child { border-bottom:none; }
-    .benefit-icon { font-size:1.5rem; flex-shrink:0; width:36px; text-align:center; }
-    .benefit-text strong { display:block; font-weight:700; font-size:0.95rem; color:var(--ink); }
-    .benefit-text span   { font-size:0.84rem; color:var(--slate-lt); line-height:1.6; }
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .benefit-item:last-child {
+      border-bottom: none;
+    }
+
+    .benefit-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      width: 36px;
+      text-align: center;
+    }
+
+    .benefit-text strong {
+      display: block;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .benefit-text span {
+      font-size: 0.84rem;
+      color: var(--slate-lt);
+      line-height: 1.6;
+    }
   </style>
 </head>
+
 <body>
-<script src="./navbar.js"></script>
-<script>injectNavbar('become-mentor');</script>
+  <script src="./navbar.js"></script>
+  <script>injectNavbar('become-mentor');</script>
 
-<div class="page-content">
-  <!-- Hero -->
-  <div class="bm-hero">
-    <div class="container" style="position:relative;z-index:1;">
-      <div class="hero-eyebrow" style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,135,10,0.15);border:1px solid rgba(212,135,10,0.3);border-radius:20px;padding:5px 14px;margin-bottom:16px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);">
-        🧑‍🏫 Mentor Program
-      </div>
-      <h1>Share your knowledge.<br>Shape someone's future.</h1>
-      <p>Join our growing community of expert mentors and help the next generation of professionals grow their skills.</p>
-    </div>
-  </div>
-
-  <!-- Steps bar -->
-  <div class="container">
-    <div class="steps-bar">
-      <div class="step-wrap">
-        <div class="step-circle active" id="step1-circle">1</div>
-        <div class="step-label">Your Info</div>
-      </div>
-      <div class="step-line" id="line1"></div>
-      <div class="step-wrap">
-        <div class="step-circle" id="step2-circle">2</div>
-        <div class="step-label">Skills</div>
-      </div>
-      <div class="step-line" id="line2"></div>
-      <div class="step-wrap">
-        <div class="step-circle" id="step3-circle">3</div>
-        <div class="step-label">Review</div>
+  <div class="page-content">
+    <!-- Hero -->
+    <div class="bm-hero">
+      <div class="container" style="position:relative;z-index:1;">
+        <div class="hero-eyebrow"
+          style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,135,10,0.15);border:1px solid rgba(212,135,10,0.3);border-radius:20px;padding:5px 14px;margin-bottom:16px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);">
+          🧑‍🏫 Mentor Program
+        </div>
+        <h1>Share your knowledge.<br>Shape someone's future.</h1>
+        <p>Join our growing community of expert mentors and help the next generation of professionals grow their skills.
+        </p>
       </div>
     </div>
-  </div>
 
-  <div class="section" style="padding-top:0;">
+    <!-- Steps bar -->
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:start;">
-        <!-- Form steps -->
-        <div>
-          <!-- Step 1: Account -->
-          <div id="step-1">
-            <div class="card">
-              <h2 style="font-family:var(--ff-display);font-size:1.4rem;font-weight:700;margin-bottom:6px;">Your account</h2>
-              <p style="color:var(--muted);font-size:0.875rem;margin-bottom:24px;">Already a member? Log in. New here? Create a mentor account.</p>
-
-              <div id="mentor-already-logged" style="display:none;">
-                <div class="alert alert-success mb-16" id="mentor-logged-msg">✓ You're logged in as a student. Continue to add your teaching skills.</div>
-                <button class="btn btn-primary w-full btn-lg" id="continue-existing-btn">Continue as <span id="continue-name"></span> →</button>
-              </div>
-
-              <div id="mentor-auth-form">
-                <div class="tabs mb-24" style="margin-bottom:24px;">
-                  <button class="tab-btn active" onclick="switchTab('login-tab','register-tab',this)">Log in</button>
-                  <button class="tab-btn" onclick="switchTab('register-tab','login-tab',this)">Create account</button>
-                </div>
-
-                <!-- Login tab -->
-                <div id="login-tab" class="tab-content active">
-                  <div id="login-alert"></div>
-                  <div style="display:flex;flex-direction:column;gap:16px;">
-                    <div class="form-group">
-                      <label class="form-label">Email</label>
-                      <input type="email" id="l-email" class="form-input" placeholder="your@email.com" />
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Password</label>
-                      <input type="password" id="l-pass" class="form-input" placeholder="••••••••" />
-                    </div>
-                    <button class="btn btn-primary w-full" id="mentor-login-btn">Log In & Continue →</button>
-                    <p style="text-align:center;"><a href="./forgot-password.html" style="font-size:0.82rem;color:var(--amber);">Forgot password?</a></p>
-                  </div>
-                </div>
-
-                <!-- Register tab -->
-                <div id="register-tab" class="tab-content">
-                  <div id="register-alert"></div>
-                  <div style="display:flex;flex-direction:column;gap:16px;">
-                    <div class="form-group">
-                      <label class="form-label">Full Name</label>
-                      <input type="text" id="r-name" class="form-input" placeholder="Priya Patel" />
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Email</label>
-                      <input type="email" id="r-email" class="form-input" placeholder="your@email.com" />
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Password</label>
-                      <input type="password" id="r-pass" class="form-input" placeholder="Min. 6 characters" />
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Confirm Password</label>
-                      <input type="password" id="r-cpass" class="form-input" placeholder="Re-enter password" />
-                    </div>
-                    <button class="btn btn-primary w-full" id="mentor-register-btn">Create Mentor Account →</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 2: Skills -->
-          <div id="step-2" style="display:none;">
-            <div class="card">
-              <h2 style="font-family:var(--ff-display);font-size:1.4rem;font-weight:700;margin-bottom:6px;">What will you teach?</h2>
-              <p style="color:var(--muted);font-size:0.875rem;margin-bottom:20px;">Select the skills you can mentor students in. Be specific — it helps students find you.</p>
-
-              <!-- Selected bar -->
-              <div style="margin-bottom:20px;">
-                <label class="form-label mb-8">Selected skills</label>
-                <div class="selected-skills-bar" id="selected-bar">
-                  <span style="color:var(--muted);font-size:0.82rem;">Click skills below to add them</span>
-                </div>
-              </div>
-
-              <!-- Or type custom -->
-              <div class="form-group mb-24" style="margin-bottom:20px;">
-                <label class="form-label">Or type custom skills</label>
-                <input type="text" id="custom-skill-input" class="form-input" placeholder="e.g. Blockchain, UX Research…" />
-                <span class="form-hint">Press Enter or comma to add</span>
-              </div>
-
-              <!-- Categories -->
-              <div id="skill-categories"></div>
-
-              <div style="display:flex;gap:12px;margin-top:24px;">
-                <button class="btn btn-outline" id="back-to-step1">← Back</button>
-                <button class="btn btn-primary" id="go-to-step3">Continue to Review →</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 3: Review & Submit -->
-          <div id="step-3" style="display:none;">
-            <div class="card">
-              <h2 style="font-family:var(--ff-display);font-size:1.4rem;font-weight:700;margin-bottom:6px;">Review & confirm</h2>
-              <p style="color:var(--muted);font-size:0.875rem;margin-bottom:24px;">Your mentor profile is ready. Confirm to go live.</p>
-
-              <div id="review-content" style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;"></div>
-
-              <!-- Additional profile fields -->
-              <div style="border-top:1px solid var(--cream-dark);padding-top:20px;">
-                <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:16px;">Optional: Complete your profile</h3>
-                <div style="display:flex;flex-direction:column;gap:14px;">
-                  <div class="grid-2">
-                    <div class="form-group">
-                      <label class="form-label">Phone</label>
-                      <input type="tel" id="s3-phone" class="form-input" placeholder="+91 98765 43210" />
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Location</label>
-                      <input type="text" id="s3-location" class="form-input" placeholder="Mumbai, MH" />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Date of Birth</label>
-                    <input type="date" id="s3-dob" class="form-input" />
-                  </div>
-                </div>
-              </div>
-
-              <div id="submit-alert" style="margin-top:16px;"></div>
-
-              <div style="display:flex;gap:12px;margin-top:20px;">
-                <button class="btn btn-outline" id="back-to-step2">← Back</button>
-                <button class="btn btn-primary btn-lg" id="submit-mentor-btn" style="flex:1;">🎉 Confirm — Go Live as Mentor</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Success -->
-          <div id="step-success" style="display:none;">
-            <div class="card text-center" style="padding:48px 32px;">
-              <div style="font-size:4rem;margin-bottom:16px;">🎉</div>
-              <h2 style="font-family:var(--ff-display);font-size:1.8rem;font-weight:700;margin-bottom:10px;">You're a mentor!</h2>
-              <p style="color:var(--muted);margin-bottom:28px;">Your mentor profile is now live. Students can discover and connect with you.</p>
-              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-                <a href="./mentor-panel.html" class="btn btn-primary btn-lg">Go to Mentor Panel →</a>
-                <a href="./profile.html" class="btn btn-outline btn-lg">View My Profile</a>
-              </div>
-            </div>
-          </div>
+      <div class="steps-bar">
+        <div class="step-wrap">
+          <div class="step-circle active" id="step1-circle">1</div>
+          <div class="step-label">Your Info</div>
         </div>
+        <div class="step-line" id="line1"></div>
+        <div class="step-wrap">
+          <div class="step-circle" id="step2-circle">2</div>
+          <div class="step-label">Skills</div>
+        </div>
+        <div class="step-line" id="line2"></div>
+        <div class="step-wrap">
+          <div class="step-circle" id="step3-circle">3</div>
+          <div class="step-label">Review</div>
+        </div>
+      </div>
+    </div>
 
-        <!-- Right: benefits -->
-        <div>
-          <div class="card" style="position:sticky;top:90px;">
-            <h3 style="font-weight:700;font-size:1rem;margin-bottom:16px;">Why mentor on Kaushalya?</h3>
-            <div class="benefit-item">
-              <div class="benefit-icon">💡</div>
-              <div class="benefit-text">
-                <strong>Share your expertise</strong>
-                <span>Teach what you know and help others grow in areas you've mastered.</span>
+    <div class="section" style="padding-top:0;">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:start;">
+          <!-- Form steps -->
+          <div>
+            <!-- Step 1: Account -->
+            <div id="step-1">
+              <div class="card">
+                <h2 style="font-family:var(--ff-display);font-size:1.4rem;font-weight:700;margin-bottom:6px;">Your
+                  account</h2>
+                <p style="color:var(--muted);font-size:0.875rem;margin-bottom:24px;">Already a member? Log in. New here?
+                  Create a mentor account.</p>
+
+                <div id="mentor-already-logged" style="display:none;">
+                  <div class="alert alert-success mb-16" id="mentor-logged-msg">✓ You're logged in as a student.
+                    Continue to add your teaching skills.</div>
+                  <button class="btn btn-primary w-full btn-lg" id="continue-existing-btn">Continue as <span
+                      id="continue-name"></span> →</button>
+                </div>
+
+                <div id="mentor-auth-form">
+                  <div class="tabs mb-24" style="margin-bottom:24px;">
+                    <button class="tab-btn active" onclick="switchTab('login-tab','register-tab',this)">Log in</button>
+                    <button class="tab-btn" onclick="switchTab('register-tab','login-tab',this)">Create account</button>
+                  </div>
+
+                  <!-- Login tab -->
+                  <div id="login-tab" class="tab-content active">
+                    <div id="login-alert"></div>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                      <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="l-email" class="form-input" placeholder="your@email.com" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="l-pass" class="form-input" placeholder="••••••••" />
+                      </div>
+                      <button class="btn btn-primary w-full" id="mentor-login-btn">Log In & Continue →</button>
+                      <p style="text-align:center;"><a href="./forgot-password.html"
+                          style="font-size:0.82rem;color:var(--amber);">Forgot password?</a></p>
+                    </div>
+                  </div>
+
+                  <!-- Register tab -->
+                  <div id="register-tab" class="tab-content">
+                    <div id="register-alert"></div>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                      <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" id="r-name" class="form-input" placeholder="Priya Patel" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="r-email" class="form-input" placeholder="your@email.com" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="r-pass" class="form-input" placeholder="Min. 6 characters" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" id="r-cpass" class="form-input" placeholder="Re-enter password" />
+                      </div>
+                      <button class="btn btn-primary w-full" id="mentor-register-btn">Create Mentor Account →</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">🌱</div>
-              <div class="benefit-text">
-                <strong>Build your community</strong>
-                <span>Grow a student base and establish yourself as a thought leader.</span>
+
+            <!-- Step 2: Skills -->
+            <div id="step-2" style="display:none;">
+              <div class="card">
+                <h2 style="font-family:var(--ff-display);font-size:1.4rem;font-weight:700;margin-bottom:6px;">What will
+                  you teach?</h2>
+                <p style="color:var(--muted);font-size:0.875rem;margin-bottom:20px;">Select the skills you can mentor
+                  students in. Be specific — it helps students find you.</p>
+
+                <!-- Selected bar -->
+                <div style="margin-bottom:20px;">
+                  <label class="form-label mb-8">Selected skills</label>
+                  <div class="selected-skills-bar" id="selected-bar">
+                    <span style="color:var(--muted);font-size:0.82rem;">Click skills below to add them</span>
+                  </div>
+                </div>
+
+                <!-- Or type custom -->
+                <div class="form-group mb-24" style="margin-bottom:20px;">
+                  <label class="form-label">Or type custom skills</label>
+                  <input type="text" id="custom-skill-input" class="form-input"
+                    placeholder="e.g. Blockchain, UX Research…" />
+                  <span class="form-hint">Press Enter or comma to add</span>
+                </div>
+
+                <!-- Categories -->
+                <div id="skill-categories"></div>
+
+                <div style="display:flex;gap:12px;margin-top:24px;">
+                  <button class="btn btn-outline" id="back-to-step1">← Back</button>
+                  <button class="btn btn-primary" id="go-to-step3">Continue to Review →</button>
+                </div>
               </div>
             </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">🎯</div>
-              <div class="benefit-text">
-                <strong>Skill-matched students</strong>
-                <span>Students find you by the exact skills you list — no irrelevant requests.</span>
+
+            <!-- Step 3: Review & Submit -->
+            <div id="step-3" style="display:none;">
+              <div class="card">
+                <h2 style="font-family:var(--ff-display);font-size:1.4rem;font-weight:700;margin-bottom:6px;">Review &
+                  confirm</h2>
+                <p style="color:var(--muted);font-size:0.875rem;margin-bottom:24px;">Your mentor profile is ready.
+                  Confirm to go live.</p>
+
+                <div id="review-content" style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;"></div>
+
+                <!-- Additional profile fields -->
+                <div style="border-top:1px solid var(--cream-dark);padding-top:20px;">
+                  <h3 style="font-weight:700;font-size:0.95rem;margin-bottom:16px;">Optional: Complete your profile</h3>
+                  <div style="display:flex;flex-direction:column;gap:14px;">
+                    <div class="grid-2">
+                      <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" id="s3-phone" class="form-input" placeholder="+91 98765 43210" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <input type="text" id="s3-location" class="form-input" placeholder="Mumbai, MH" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Date of Birth</label>
+                      <input type="date" id="s3-dob" class="form-input" />
+                    </div>
+                  </div>
+                </div>
+
+                <div id="submit-alert" style="margin-top:16px;"></div>
+
+                <div style="display:flex;gap:12px;margin-top:20px;">
+                  <button class="btn btn-outline" id="back-to-step2">← Back</button>
+                  <button class="btn btn-primary btn-lg" id="submit-mentor-btn" style="flex:1;">🎉 Confirm — Go Live as
+                    Mentor</button>
+                </div>
               </div>
             </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">📊</div>
-              <div class="benefit-text">
-                <strong>Dedicated mentor panel</strong>
-                <span>View all your students and manage your mentorship from one place.</span>
+
+            <!-- Success -->
+            <div id="step-success" style="display:none;">
+              <div class="card text-center" style="padding:48px 32px;">
+                <div style="font-size:4rem;margin-bottom:16px;">🎉</div>
+                <h2 style="font-family:var(--ff-display);font-size:1.8rem;font-weight:700;margin-bottom:10px;">You're a
+                  mentor!</h2>
+                <p style="color:var(--muted);margin-bottom:28px;">Your mentor profile is now live. Students can discover
+                  and connect with you.</p>
+                <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                  <a href="./mentor-panel.html" class="btn btn-primary btn-lg">Go to Mentor Panel →</a>
+                  <a href="./profile.html" class="btn btn-outline btn-lg">View My Profile</a>
+                </div>
               </div>
             </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">🔓</div>
-              <div class="benefit-text">
-                <strong>Free to join</strong>
-                <span>No cost, no commitments. Start mentoring at your own pace.</span>
+          </div>
+
+          <!-- Right: benefits -->
+          <div>
+            <div class="card" style="position:sticky;top:90px;">
+              <h3 style="font-weight:700;font-size:1rem;margin-bottom:16px;">Why mentor on Kaushalya?</h3>
+              <div class="benefit-item">
+                <div class="benefit-icon">💡</div>
+                <div class="benefit-text">
+                  <strong>Share your expertise</strong>
+                  <span>Teach what you know and help others grow in areas you've mastered.</span>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">🌱</div>
+                <div class="benefit-text">
+                  <strong>Build your community</strong>
+                  <span>Grow a student base and establish yourself as a thought leader.</span>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">🎯</div>
+                <div class="benefit-text">
+                  <strong>Skill-matched students</strong>
+                  <span>Students find you by the exact skills you list — no irrelevant requests.</span>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">📊</div>
+                <div class="benefit-text">
+                  <strong>Dedicated mentor panel</strong>
+                  <span>View all your students and manage your mentorship from one place.</span>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">🔓</div>
+                <div class="benefit-text">
+                  <strong>Free to join</strong>
+                  <span>No cost, no commitments. Start mentoring at your own pace.</span>
+                </div>
               </div>
             </div>
           </div>
@@ -297,156 +448,155 @@
       </div>
     </div>
   </div>
-</div>
 
-<script src="./app.js"></script>
-<script>
-const SKILL_CATEGORIES = {
-  'Dance':          ['Classical Dance','Modern Dance','Breakdance','Hip-Hop Dance','Contemporary Dance'],
-  'Music':          ['Classical Music','Western Music','Jazz','Folk & World Music'],
-  'Instruments':    ['Piano','Guitar','Flute','Violin','Tabla','Drums'],
-  'Literature':     ['Creative Writing','Poetry','Storytelling & Narrative'],
-  'Design & UI/UX': ['Adobe Creative Suite','Figma','Canva','Typography','Motion Design','Brand Identity'],
-  'Soft Skills':    ['Public Speaking','Communication','Leadership','Emotional Intelligence','Conflict Resolution','Time Management'],
-};
+  <script src="./app.js"></script>
+  <script>
+    const SKILL_CATEGORIES = {
+      'Dance': ['Classical Dance', 'Modern Dance', 'Breakdance', 'Hip-Hop Dance', 'Contemporary Dance'],
+      'Music': ['Classical Music', 'Western Music', 'Jazz', 'Folk & World Music'],
+      'Instruments': ['Piano', 'Guitar', 'Flute', 'Violin', 'Tabla', 'Drums'],
+      'Literature': ['Creative Writing', 'Poetry', 'Storytelling & Narrative'],
+      'Design & UI/UX': ['Adobe Creative Suite', 'Figma', 'Canva', 'Typography', 'Motion Design', 'Brand Identity'],
+      'Soft Skills': ['Public Speaking', 'Communication', 'Leadership', 'Emotional Intelligence', 'Conflict Resolution', 'Time Management'],
+    };
 
-let selectedSkills = new Set();
-let currentUser = null;
-let currentStep = 1;
+    let selectedSkills = new Set();
+    let currentUser = null;
+    let currentStep = 1;
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Build skill categories
-  const container = document.getElementById('skill-categories');
-  Object.entries(SKILL_CATEGORIES).forEach(([cat, skills]) => {
-    container.innerHTML += `
+    document.addEventListener('DOMContentLoaded', () => {
+      // Build skill categories
+      const container = document.getElementById('skill-categories');
+      Object.entries(SKILL_CATEGORIES).forEach(([cat, skills]) => {
+        container.innerHTML += `
       <div class="skill-category">
         <h4>${cat}</h4>
         <div class="skill-grid">
           ${skills.map(s => `<button class="skill-btn" data-skill="${s}">${s}</button>`).join('')}
         </div>
       </div>`;
-  });
-  container.querySelectorAll('.skill-btn').forEach(btn => {
-    btn.addEventListener('click', () => toggleSkill(btn.dataset.skill, btn));
-  });
+      });
+      container.querySelectorAll('.skill-btn').forEach(btn => {
+        btn.addEventListener('click', () => toggleSkill(btn.dataset.skill, btn));
+      });
 
-  // Custom skill input
-  document.getElementById('custom-skill-input').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ',') {
-      e.preventDefault();
-      const val = e.target.value.replace(',','').trim();
-      if (val) { toggleSkill(val); e.target.value = ''; }
-    }
-  });
+      // Custom skill input
+      document.getElementById('custom-skill-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ',') {
+          e.preventDefault();
+          const val = e.target.value.replace(',', '').trim();
+          if (val) { toggleSkill(val); e.target.value = ''; }
+        }
+      });
 
-  // Check if logged in
-  const user = Auth.get();
-  if (user) {
-    currentUser = user;
-    if (user.role === 'MENTOR') {
-      showStep(2);
-      if (user.skills) {
-        user.skills.split(',').forEach(s => { const t = s.trim(); if(t) toggleSkill(t); });
+      // Check if logged in
+      const user = Auth.get();
+      if (user) {
+        currentUser = user;
+        if (user.role === 'MENTOR') {
+          showStep(2);
+          if (user.skills) {
+            user.skills.split(',').forEach(s => { const t = s.trim(); if (t) toggleSkill(t); });
+          }
+        } else {
+          document.getElementById('mentor-already-logged').style.display = 'block';
+          document.getElementById('mentor-auth-form').style.display = 'none';
+          document.getElementById('mentor-logged-msg').textContent = `✓ Logged in as ${user.name} (${user.role}). Click Continue to set your teaching skills.`;
+          document.getElementById('continue-name').textContent = user.name.split(' ')[0];
+        }
       }
-    } else {
-      document.getElementById('mentor-already-logged').style.display = 'block';
-      document.getElementById('mentor-auth-form').style.display = 'none';
-      document.getElementById('mentor-logged-msg').textContent = `✓ Logged in as ${user.name} (${user.role}). Click Continue to set your teaching skills.`;
-      document.getElementById('continue-name').textContent = user.name.split(' ')[0];
-    }
-  }
 
-  // Continue as existing user
-  document.getElementById('continue-existing-btn')?.addEventListener('click', () => {
-    showStep(2);
-    if (currentUser?.skills) {
-      currentUser.skills.split(',').forEach(s => { const t = s.trim(); if(t) toggleSkill(t); });
-    }
-  });
+      // Continue as existing user
+      document.getElementById('continue-existing-btn')?.addEventListener('click', () => {
+        showStep(2);
+        if (currentUser?.skills) {
+          currentUser.skills.split(',').forEach(s => { const t = s.trim(); if (t) toggleSkill(t); });
+        }
+      });
 
-  // Login
-  document.getElementById('mentor-login-btn').addEventListener('click', async () => {
-    const alertEl = document.getElementById('login-alert');
-    alertEl.innerHTML = '';
-    const email = document.getElementById('l-email').value.trim();
-    const password = document.getElementById('l-pass').value;
-    if (!email || !password) { alertEl.innerHTML = `<div class="alert alert-error mb-16">Fill in all fields.</div>`; return; }
-    const btn = document.getElementById('mentor-login-btn');
-    setLoading(btn, true);
-    const { ok, data } = await apiFetch('/auth/login', { method:'POST', body:JSON.stringify({email,password}) });
-    setLoading(btn, false, 'Log In & Continue →');
-    if (ok && data.success) {
-      Auth.save(data.data); currentUser = data.data;
-      showStep(2);
-      if (currentUser.skills) {
-        currentUser.skills.split(',').forEach(s => { const t = s.trim(); if(t) toggleSkill(t); });
+      // Login
+      document.getElementById('mentor-login-btn').addEventListener('click', async () => {
+        const alertEl = document.getElementById('login-alert');
+        alertEl.innerHTML = '';
+        const email = document.getElementById('l-email').value.trim();
+        const password = document.getElementById('l-pass').value;
+        if (!email || !password) { alertEl.innerHTML = `<div class="alert alert-error mb-16">Fill in all fields.</div>`; return; }
+        const btn = document.getElementById('mentor-login-btn');
+        setLoading(btn, true);
+        const { ok, data } = await apiFetch('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+        setLoading(btn, false, 'Log In & Continue →');
+        if (ok && data.success) {
+          Auth.save(data.data); currentUser = data.data;
+          showStep(2);
+          if (currentUser.skills) {
+            currentUser.skills.split(',').forEach(s => { const t = s.trim(); if (t) toggleSkill(t); });
+          }
+        } else {
+          alertEl.innerHTML = `<div class="alert alert-error mb-16">⚠ ${data.message}</div>`;
+        }
+      });
+
+      // Register
+      document.getElementById('mentor-register-btn').addEventListener('click', async () => {
+        const alertEl = document.getElementById('register-alert');
+        alertEl.innerHTML = '';
+        const name = document.getElementById('r-name').value.trim();
+        const email = document.getElementById('r-email').value.trim();
+        const password = document.getElementById('r-pass').value;
+        const confirmPassword = document.getElementById('r-cpass').value;
+        if (!name || !email || !password) { alertEl.innerHTML = `<div class="alert alert-error mb-16">Fill in all fields.</div>`; return; }
+        if (password !== confirmPassword) { alertEl.innerHTML = `<div class="alert alert-error mb-16">Passwords do not match.</div>`; return; }
+        const btn = document.getElementById('mentor-register-btn');
+        setLoading(btn, true);
+        const { ok, data } = await apiFetch('/auth/register', { method: 'POST', body: JSON.stringify({ name, email, password, confirmPassword, role: 'MENTOR' }) });
+        setLoading(btn, false, 'Create Mentor Account →');
+        if (ok && data.success) {
+          Auth.save(data.data); currentUser = data.data;
+          showStep(2);
+        } else {
+          alertEl.innerHTML = `<div class="alert alert-error mb-16">⚠ ${data.message}</div>`;
+        }
+      });
+
+      // Step nav
+      document.getElementById('back-to-step1').addEventListener('click', () => showStep(1));
+      document.getElementById('go-to-step3').addEventListener('click', () => {
+        if (selectedSkills.size === 0) { Toast.error('Please select at least one skill.'); return; }
+        buildReview();
+        showStep(3);
+      });
+      document.getElementById('back-to-step2').addEventListener('click', () => showStep(2));
+      document.getElementById('submit-mentor-btn').addEventListener('click', submitMentor);
+    });
+
+    function toggleSkill(skill, btn) {
+      if (selectedSkills.has(skill)) {
+        selectedSkills.delete(skill);
+        if (btn) btn.classList.remove('selected');
+        // also unselect if exists
+        document.querySelectorAll(`.skill-btn[data-skill="${skill}"]`).forEach(b => b.classList.remove('selected'));
+      } else {
+        selectedSkills.add(skill);
+        if (btn) btn.classList.add('selected');
+        document.querySelectorAll(`.skill-btn[data-skill="${skill}"]`).forEach(b => b.classList.add('selected'));
       }
-    } else {
-      alertEl.innerHTML = `<div class="alert alert-error mb-16">⚠ ${data.message}</div>`;
+      updateSelectedBar();
     }
-  });
 
-  // Register
-  document.getElementById('mentor-register-btn').addEventListener('click', async () => {
-    const alertEl = document.getElementById('register-alert');
-    alertEl.innerHTML = '';
-    const name = document.getElementById('r-name').value.trim();
-    const email = document.getElementById('r-email').value.trim();
-    const password = document.getElementById('r-pass').value;
-    const confirmPassword = document.getElementById('r-cpass').value;
-    if (!name || !email || !password) { alertEl.innerHTML = `<div class="alert alert-error mb-16">Fill in all fields.</div>`; return; }
-    if (password !== confirmPassword) { alertEl.innerHTML = `<div class="alert alert-error mb-16">Passwords do not match.</div>`; return; }
-    const btn = document.getElementById('mentor-register-btn');
-    setLoading(btn, true);
-    const { ok, data } = await apiFetch('/auth/register', { method:'POST', body:JSON.stringify({name,email,password,confirmPassword,role:'MENTOR'}) });
-    setLoading(btn, false, 'Create Mentor Account →');
-    if (ok && data.success) {
-      Auth.save(data.data); currentUser = data.data;
-      showStep(2);
-    } else {
-      alertEl.innerHTML = `<div class="alert alert-error mb-16">⚠ ${data.message}</div>`;
+    function updateSelectedBar() {
+      const bar = document.getElementById('selected-bar');
+      if (selectedSkills.size === 0) {
+        bar.innerHTML = `<span style="color:var(--muted);font-size:0.82rem;">Click skills below to add them</span>`;
+      } else {
+        bar.innerHTML = [...selectedSkills].map(s =>
+          `<span class="skill-chip selected" style="cursor:pointer;" onclick="toggleSkill('${s}')">${s} ✕</span>`
+        ).join('');
+      }
     }
-  });
 
-  // Step nav
-  document.getElementById('back-to-step1').addEventListener('click', () => showStep(1));
-  document.getElementById('go-to-step3').addEventListener('click', () => {
-    if (selectedSkills.size === 0) { Toast.error('Please select at least one skill.'); return; }
-    buildReview();
-    showStep(3);
-  });
-  document.getElementById('back-to-step2').addEventListener('click', () => showStep(2));
-  document.getElementById('submit-mentor-btn').addEventListener('click', submitMentor);
-});
-
-function toggleSkill(skill, btn) {
-  if (selectedSkills.has(skill)) {
-    selectedSkills.delete(skill);
-    if (btn) btn.classList.remove('selected');
-    // also unselect if exists
-    document.querySelectorAll(`.skill-btn[data-skill="${skill}"]`).forEach(b => b.classList.remove('selected'));
-  } else {
-    selectedSkills.add(skill);
-    if (btn) btn.classList.add('selected');
-    document.querySelectorAll(`.skill-btn[data-skill="${skill}"]`).forEach(b => b.classList.add('selected'));
-  }
-  updateSelectedBar();
-}
-
-function updateSelectedBar() {
-  const bar = document.getElementById('selected-bar');
-  if (selectedSkills.size === 0) {
-    bar.innerHTML = `<span style="color:var(--muted);font-size:0.82rem;">Click skills below to add them</span>`;
-  } else {
-    bar.innerHTML = [...selectedSkills].map(s =>
-      `<span class="skill-chip selected" style="cursor:pointer;" onclick="toggleSkill('${s}')">${s} ✕</span>`
-    ).join('');
-  }
-}
-
-function buildReview() {
-  const u = currentUser;
-  document.getElementById('review-content').innerHTML = `
+    function buildReview() {
+      const u = currentUser;
+      document.getElementById('review-content').innerHTML = `
     <div style="display:flex;align-items:center;gap:14px;background:var(--cream);padding:14px;border-radius:10px;">
       <div class="avatar">${initials(u?.name || '?')}</div>
       <div>
@@ -457,78 +607,79 @@ function buildReview() {
     </div>
     <div>
       <div class="form-label mb-8" style="margin-bottom:8px;">Teaching skills (${selectedSkills.size})</div>
-      <div class="skills-list">${[...selectedSkills].map(s=>`<span class="skill-chip selected">${s}</span>`).join('')}</div>
+      <div class="skills-list">${[...selectedSkills].map(s => `<span class="skill-chip selected">${s}</span>`).join('')}</div>
     </div>`;
-}
+    }
 
-async function submitMentor() {
-  const alertEl = document.getElementById('submit-alert');
-  alertEl.innerHTML = '';
-  if (!currentUser) { alertEl.innerHTML = `<div class="alert alert-error">Please log in first.</div>`; return; }
-  if (selectedSkills.size === 0) { alertEl.innerHTML = `<div class="alert alert-error">Select at least one skill.</div>`; return; }
+    async function submitMentor() {
+      const alertEl = document.getElementById('submit-alert');
+      alertEl.innerHTML = '';
+      if (!currentUser) { alertEl.innerHTML = `<div class="alert alert-error">Please log in first.</div>`; return; }
+      if (selectedSkills.size === 0) { alertEl.innerHTML = `<div class="alert alert-error">Select at least one skill.</div>`; return; }
 
-  const phone    = document.getElementById('s3-phone').value.trim();
-  const location = document.getElementById('s3-location').value.trim();
-  const dob      = document.getElementById('s3-dob').value;
+      const phone = document.getElementById('s3-phone').value.trim();
+      const location = document.getElementById('s3-location').value.trim();
+      const dob = document.getElementById('s3-dob').value;
 
-  const btn = document.getElementById('submit-mentor-btn');
-  setLoading(btn, true);
+      const btn = document.getElementById('submit-mentor-btn');
+      setLoading(btn, true);
 
-  const payload = {
-    role: 'MENTOR',
-    skills: [...selectedSkills].join(','),
-    ...(phone ? { phone } : {}),
-    ...(location ? { location } : {}),
-    ...(dob ? { dob } : {}),
-  };
+      const payload = {
+        role: 'MENTOR',
+        skills: [...selectedSkills].join(','),
+        ...(phone ? { phone } : {}),
+        ...(location ? { location } : {}),
+        ...(dob ? { dob } : {}),
+      };
 
-  const { ok, data } = await apiFetch(`/auth/profile/${encodeURIComponent(currentUser.email)}`, {
-    method: 'PATCH', body: JSON.stringify(payload)
-  });
+      const { ok, data } = await apiFetch(`/auth/profile/${encodeURIComponent(currentUser.email)}`, {
+        method: 'PATCH', body: JSON.stringify(payload)
+      });
 
-  setLoading(btn, false, '🎉 Confirm — Go Live as Mentor');
+      setLoading(btn, false, '🎉 Confirm — Go Live as Mentor');
 
-  if (ok && data.success) {
-    Auth.save(data.data);
-    showStep('success');
-  } else {
-    alertEl.innerHTML = `<div class="alert alert-error mt-16">⚠ ${data.message || 'Submission failed. Please try again.'}</div>`;
-  }
-}
+      if (ok && data.success) {
+        Auth.save(data.data);
+        showStep('success');
+      } else {
+        alertEl.innerHTML = `<div class="alert alert-error mt-16">⚠ ${data.message || 'Submission failed. Please try again.'}</div>`;
+      }
+    }
 
-function showStep(step) {
-  currentStep = step;
-  document.getElementById('step-1').style.display = 'none';
-  document.getElementById('step-2').style.display = 'none';
-  document.getElementById('step-3').style.display = 'none';
-  document.getElementById('step-success').style.display = 'none';
+    function showStep(step) {
+      currentStep = step;
+      document.getElementById('step-1').style.display = 'none';
+      document.getElementById('step-2').style.display = 'none';
+      document.getElementById('step-3').style.display = 'none';
+      document.getElementById('step-success').style.display = 'none';
 
-  if (step === 'success') {
-    document.getElementById('step-success').style.display = 'block';
-    return;
-  }
+      if (step === 'success') {
+        document.getElementById('step-success').style.display = 'block';
+        return;
+      }
 
-  document.getElementById(`step-${step}`).style.display = 'block';
+      document.getElementById(`step-${step}`).style.display = 'block';
 
-  // Update circles
-  [1,2,3].forEach(i => {
-    const c = document.getElementById(`step${i}-circle`);
-    c.classList.remove('active','done');
-    if (i < step) c.classList.add('done');
-    else if (i === step) c.classList.add('active');
-  });
-  if (document.getElementById('line1')) {
-    document.getElementById('line1').classList.toggle('done', step > 1);
-    document.getElementById('line2').classList.toggle('done', step > 2);
-  }
-}
+      // Update circles
+      [1, 2, 3].forEach(i => {
+        const c = document.getElementById(`step${i}-circle`);
+        c.classList.remove('active', 'done');
+        if (i < step) c.classList.add('done');
+        else if (i === step) c.classList.add('active');
+      });
+      if (document.getElementById('line1')) {
+        document.getElementById('line1').classList.toggle('done', step > 1);
+        document.getElementById('line2').classList.toggle('done', step > 2);
+      }
+    }
 
-function switchTab(showId, hideId, btn) {
-  document.getElementById(showId).classList.add('active');
-  document.getElementById(hideId).classList.remove('active');
-  btn.closest('.tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-</script>
+    function switchTab(showId, hideId, btn) {
+      document.getElementById(showId).classList.add('active');
+      document.getElementById(hideId).classList.remove('active');
+      btn.closest('.tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
 </body>
+
 </html>

@@ -1,313 +1,555 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard — Kaushalya</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>"/>
-  <link rel="stylesheet" href="./style.css"/>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="stylesheet" href="./style.css" />
   <style>
-    .admin-layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 70px);}
-    .admin-sidebar{background:#0a0a1a;padding:28px 0;position:sticky;top:70px;height:calc(100vh - 70px);overflow-y:auto;}
-    .admin-sidebar-logo{padding:0 20px 24px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:16px;}
-    .admin-sidebar-logo strong{display:block;font-family:var(--ff-display);font-size:1rem;color:var(--white);}
-    .admin-sidebar-logo span{font-size:0.75rem;color:rgba(255,255,255,0.3);}
-    .admin-nav{padding:0 12px;}
-    .admin-nav a,.admin-nav-btn{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.5);margin-bottom:2px;transition:all 0.18s;cursor:pointer;background:none;border:none;width:100%;font-family:var(--ff-body);text-align:left;}
-    .admin-nav a:hover,.admin-nav-btn:hover{background:rgba(255,255,255,0.06);color:var(--white);}
-    .admin-nav a.active,.admin-nav-btn.active{background:rgba(212,135,10,0.18);color:var(--gold);}
-    .admin-section-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:14px 24px 6px;}
-    .admin-main{padding:32px;background:var(--cream);}
-    .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px;}
-    .admin-stat{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;}
-    .admin-stat .icon{font-size:1.6rem;margin-bottom:8px;}
-    .admin-stat .val{font-family:var(--ff-display);font-size:1.8rem;font-weight:700;line-height:1;color:var(--ink);}
-    .admin-stat .lbl{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
-    .admin-stat.highlight{border-color:rgba(212,135,10,0.3);background:rgba(212,135,10,0.05);}
-    .admin-stat.highlight .val{color:var(--amber);}
-    .table-toolbar{padding:14px 20px;border-bottom:1px solid var(--cream-dark);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-    .delete-btn{color:var(--error);font-size:0.8rem;font-weight:600;background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:4px;transition:background 0.15s;}
-    .delete-btn:hover{background:rgba(192,57,43,0.08);}
-    .panel-section{display:none;}.panel-section.active{display:block;}
-    .msg-badge{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--amber);color:var(--white);font-size:0.65rem;font-weight:700;margin-left:4px;}
-    .msg-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;transition:all 0.18s;}
-    .msg-card.pending{border-left:3px solid var(--amber);}
-    .msg-card.read{border-left:3px solid var(--success);opacity:0.72;}
-    @media(max-width:1200px){.stats-grid{grid-template-columns:repeat(3,1fr);}}
-    @media(max-width:900px){.admin-layout{grid-template-columns:1fr;}.admin-sidebar{display:none;}}
-    @media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr;}}
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: calc(100vh - 70px);
+    }
+
+    .admin-sidebar {
+      background: #0a0a1a;
+      padding: 28px 0;
+      position: sticky;
+      top: 70px;
+      height: calc(100vh - 70px);
+      overflow-y: auto;
+    }
+
+    .admin-sidebar-logo {
+      padding: 0 20px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 16px;
+    }
+
+    .admin-sidebar-logo strong {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    .admin-sidebar-logo span {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .admin-nav {
+      padding: 0 12px;
+    }
+
+    .admin-nav a,
+    .admin-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 2px;
+      transition: all 0.18s;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 100%;
+      font-family: var(--ff-body);
+      text-align: left;
+    }
+
+    .admin-nav a:hover,
+    .admin-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--white);
+    }
+
+    .admin-nav a.active,
+    .admin-nav-btn.active {
+      background: rgba(212, 135, 10, 0.18);
+      color: var(--gold);
+    }
+
+    .admin-section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+      padding: 14px 24px 6px;
+    }
+
+    .admin-main {
+      padding: 32px;
+      background: var(--cream);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .admin-stat {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .admin-stat .icon {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .admin-stat .val {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .admin-stat .lbl {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .admin-stat.highlight {
+      border-color: rgba(212, 135, 10, 0.3);
+      background: rgba(212, 135, 10, 0.05);
+    }
+
+    .admin-stat.highlight .val {
+      color: var(--amber);
+    }
+
+    .table-toolbar {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--cream-dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .delete-btn {
+      color: var(--error);
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+
+    .delete-btn:hover {
+      background: rgba(192, 57, 43, 0.08);
+    }
+
+    .panel-section {
+      display: none;
+    }
+
+    .panel-section.active {
+      display: block;
+    }
+
+    .msg-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--amber);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-left: 4px;
+    }
+
+    .msg-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      transition: all 0.18s;
+    }
+
+    .msg-card.pending {
+      border-left: 3px solid var(--amber);
+    }
+
+    .msg-card.read {
+      border-left: 3px solid var(--success);
+      opacity: 0.72;
+    }
+
+    @media(max-width:1200px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(max-width:900px) {
+      .admin-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-sidebar {
+        display: none;
+      }
+    }
+
+    @media(max-width:600px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
-<script src="./navbar.js"></script>
-<script>injectNavbar('');</script>
-<div class="page-content">
-<div class="admin-layout">
-  <aside class="admin-sidebar">
-    <div class="admin-sidebar-logo">
-      <strong>Admin Console</strong>
-      <span id="admin-email-small">Kaushalya Platform</span>
-    </div>
-    <div class="admin-nav">
-      <div class="admin-section-label">Panels</div>
-      <button class="admin-nav-btn active" id="nav-users" onclick="showPanel('users-panel',this)"><span>👥</span> User Management</button>
-      <button class="admin-nav-btn" id="nav-msgs" onclick="showPanel('messages-panel',this)">
-        <span>✉️</span> Contact Messages <span id="sidebar-badge" class="msg-badge" style="display:none;"></span>
-      </button>
-      <div class="admin-section-label">Quick Links</div>
-      <a href="./mentor-panel.html"><span>📋</span> Mentor Panel</a>
-      <a href="./profile.html"><span>👤</span> My Profile</a>
-      <a href="#" id="admin-logout"><span>🚪</span> Log Out</a>
-    </div>
-  </aside>
-  <main class="admin-main">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px;">
-      <div><h1 style="font-family:var(--ff-display);font-size:1.7rem;font-weight:700;">Admin Dashboard</h1><p style="color:var(--muted);font-size:0.875rem;margin-top:4px;">Platform overview and management</p></div>
-      <div style="display:flex;align-items:center;gap:10px;"><div class="avatar" id="admin-avatar">A</div><span id="admin-name" style="font-weight:600;font-size:0.9rem;"></span></div>
-    </div>
-    <div class="stats-grid">
-      <div class="admin-stat"><div class="icon">👥</div><div class="val" id="stat-total">—</div><div class="lbl">Total Users</div></div>
-      <div class="admin-stat"><div class="icon">🧑&zwj;🏫</div><div class="val" id="stat-mentors">—</div><div class="lbl">Mentors</div></div>
-      <div class="admin-stat"><div class="icon">🎓</div><div class="val" id="stat-students">—</div><div class="lbl">Students</div></div>
-      <div class="admin-stat"><div class="icon">🛡️</div><div class="val" id="stat-admins">—</div><div class="lbl">Admins</div></div>
-      <div class="admin-stat highlight"><div class="icon">📩</div><div class="val" id="stat-messages">—</div><div class="lbl">Pending Messages</div></div>
-    </div>
-
-    <!-- USERS PANEL -->
-    <div id="users-panel" class="panel-section active">
-      <div class="card" style="padding:0;overflow:hidden;">
-        <div class="table-toolbar">
-          <span style="font-weight:700;font-size:0.95rem;flex:1;" id="table-title">All Users</span>
-          <div class="tabs">
-            <button class="tab-btn active" onclick="filterRole('all',this)">All</button>
-            <button class="tab-btn" onclick="filterRole('MENTOR',this)">Mentors</button>
-            <button class="tab-btn" onclick="filterRole('STUDENT',this)">Students</button>
-            <button class="tab-btn" onclick="filterRole('ADMIN',this)">Admins</button>
+  <script src="./navbar.js"></script>
+  <script>injectNavbar('');</script>
+  <div class="page-content">
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <div class="admin-sidebar-logo">
+          <strong>Admin Console</strong>
+          <span id="admin-email-small">Kaushalya Platform</span>
+        </div>
+        <div class="admin-nav">
+          <div class="admin-section-label">Panels</div>
+          <button class="admin-nav-btn active" id="nav-users" onclick="showPanel('users-panel',this)"><span>👥</span>
+            User Management</button>
+          <button class="admin-nav-btn" id="nav-msgs" onclick="showPanel('messages-panel',this)">
+            <span>✉️</span> Contact Messages <span id="sidebar-badge" class="msg-badge" style="display:none;"></span>
+          </button>
+          <div class="admin-section-label">Quick Links</div>
+          <a href="./mentor-panel.html"><span>📋</span> Mentor Panel</a>
+          <a href="./profile.html"><span>👤</span> My Profile</a>
+          <a href="#" id="admin-logout"><span>🚪</span> Log Out</a>
+        </div>
+      </aside>
+      <main class="admin-main">
+        <div
+          style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px;">
+          <div>
+            <h1 style="font-family:var(--ff-display);font-size:1.7rem;font-weight:700;">Admin Dashboard</h1>
+            <p style="color:var(--muted);font-size:0.875rem;margin-top:4px;">Platform overview and management</p>
           </div>
-          <div style="position:relative;">
-            <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:0.85rem;">🔍</span>
-            <input type="text" id="admin-search" class="form-input" placeholder="Search…" style="padding-left:36px;width:190px;" oninput="applyFilters()"/>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="avatar" id="admin-avatar">A</div><span id="admin-name"
+              style="font-weight:600;font-size:0.9rem;"></span>
           </div>
-          <span id="user-count" class="badge badge-slate">0</span>
         </div>
-        <div class="table-wrap" style="border:none;border-radius:0;">
-          <table>
-            <thead><tr><th>ID</th><th>User</th><th>Email</th><th>Role</th><th>Skills</th><th>Location</th><th>Phone</th><th>Actions</th></tr></thead>
-            <tbody id="users-tbody"><tr><td colspan="8" style="text-align:center;color:var(--muted);padding:32px;">Loading…</td></tr></tbody>
-          </table>
+        <div class="stats-grid">
+          <div class="admin-stat">
+            <div class="icon">👥</div>
+            <div class="val" id="stat-total">—</div>
+            <div class="lbl">Total Users</div>
+          </div>
+          <div class="admin-stat">
+            <div class="icon">🧑&zwj;🏫</div>
+            <div class="val" id="stat-mentors">—</div>
+            <div class="lbl">Mentors</div>
+          </div>
+          <div class="admin-stat">
+            <div class="icon">🎓</div>
+            <div class="val" id="stat-students">—</div>
+            <div class="lbl">Students</div>
+          </div>
+          <div class="admin-stat">
+            <div class="icon">🛡️</div>
+            <div class="val" id="stat-admins">—</div>
+            <div class="lbl">Admins</div>
+          </div>
+          <div class="admin-stat highlight">
+            <div class="icon">📩</div>
+            <div class="val" id="stat-messages">—</div>
+            <div class="lbl">Pending Messages</div>
+          </div>
         </div>
-        <div id="users-pagination"></div>
-      </div>
-    </div>
 
-    <!-- MESSAGES PANEL -->
-    <div id="messages-panel" class="panel-section">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-        <div><h2 style="font-weight:700;font-size:1.1rem;">Contact Messages</h2><p style="color:var(--muted);font-size:0.82rem;margin-top:2px;">Messages submitted via the Contact page</p></div>
-        <div style="display:flex;gap:10px;align-items:center;">
-          <select id="msg-filter" class="form-input form-select" style="width:150px;" onchange="applyMsgFilter()">
-            <option value="">All Messages</option>
-            <option value="PENDING">Pending</option>
-            <option value="READ">Read</option>
-          </select>
-          <span id="msg-count" class="badge badge-amber">0</span>
+        <!-- USERS PANEL -->
+        <div id="users-panel" class="panel-section active">
+          <div class="card" style="padding:0;overflow:hidden;">
+            <div class="table-toolbar">
+              <span style="font-weight:700;font-size:0.95rem;flex:1;" id="table-title">All Users</span>
+              <div class="tabs">
+                <button class="tab-btn active" onclick="filterRole('all',this)">All</button>
+                <button class="tab-btn" onclick="filterRole('MENTOR',this)">Mentors</button>
+                <button class="tab-btn" onclick="filterRole('STUDENT',this)">Students</button>
+                <button class="tab-btn" onclick="filterRole('ADMIN',this)">Admins</button>
+              </div>
+              <div style="position:relative;">
+                <span
+                  style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:0.85rem;">🔍</span>
+                <input type="text" id="admin-search" class="form-input" placeholder="Search…"
+                  style="padding-left:36px;width:190px;" oninput="applyFilters()" />
+              </div>
+              <span id="user-count" class="badge badge-slate">0</span>
+            </div>
+            <div class="table-wrap" style="border:none;border-radius:0;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Skills</th>
+                    <th>Location</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="users-tbody">
+                  <tr>
+                    <td colspan="8" style="text-align:center;color:var(--muted);padding:32px;">Loading…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="users-pagination"></div>
+          </div>
         </div>
-      </div>
-      <div id="messages-list" style="display:flex;flex-direction:column;gap:12px;"></div>
-      <div id="msg-pagination"></div>
-    </div>
-  </main>
-</div>
-</div>
 
-<!-- Delete modal -->
-<div class="modal-overlay" id="delete-modal">
-  <div class="modal" style="max-width:420px;">
-    <div class="modal-header"><span class="modal-title">Delete User</span><button class="modal-close" onclick="closeDeleteModal()">✕</button></div>
-    <p style="color:var(--slate);font-size:0.9rem;margin-bottom:24px;">Are you sure you want to delete <strong id="delete-name"></strong>? This cannot be undone.</p>
-    <div style="display:flex;gap:12px;justify-content:flex-end;">
-      <button class="btn btn-outline" onclick="closeDeleteModal()">Cancel</button>
-      <button class="btn btn-danger" id="confirm-delete" onclick="doDeleteUser()">Delete User</button>
+        <!-- MESSAGES PANEL -->
+        <div id="messages-panel" class="panel-section">
+          <div
+            style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+            <div>
+              <h2 style="font-weight:700;font-size:1.1rem;">Contact Messages</h2>
+              <p style="color:var(--muted);font-size:0.82rem;margin-top:2px;">Messages submitted via the Contact page
+              </p>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <select id="msg-filter" class="form-input form-select" style="width:150px;" onchange="applyMsgFilter()">
+                <option value="">All Messages</option>
+                <option value="PENDING">Pending</option>
+                <option value="READ">Read</option>
+              </select>
+              <span id="msg-count" class="badge badge-amber">0</span>
+            </div>
+          </div>
+          <div id="messages-list" style="display:flex;flex-direction:column;gap:12px;"></div>
+          <div id="msg-pagination"></div>
+        </div>
+      </main>
     </div>
   </div>
-</div>
 
-<!-- View message modal -->
-<div class="modal-overlay" id="msg-modal">
-  <div class="modal" style="max-width:560px;">
-    <div class="modal-header"><span class="modal-title" id="msg-modal-subject">Message</span><button class="modal-close" onclick="document.getElementById('msg-modal').classList.remove('open')">✕</button></div>
-    <div id="msg-modal-body"></div>
-    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;">
-      <button class="btn btn-outline" onclick="document.getElementById('msg-modal').classList.remove('open')">Close</button>
-      <button class="btn btn-primary" id="msg-mark-read-btn" style="display:none;">Mark as Read</button>
-      <button class="btn btn-danger" id="msg-delete-btn">Delete</button>
+  <!-- Delete modal -->
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal" style="max-width:420px;">
+      <div class="modal-header"><span class="modal-title">Delete User</span><button class="modal-close"
+          onclick="closeDeleteModal()">✕</button></div>
+      <p style="color:var(--slate);font-size:0.9rem;margin-bottom:24px;">Are you sure you want to delete <strong
+          id="delete-name"></strong>? This cannot be undone.</p>
+      <div style="display:flex;gap:12px;justify-content:flex-end;">
+        <button class="btn btn-outline" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn btn-danger" id="confirm-delete" onclick="doDeleteUser()">Delete User</button>
+      </div>
     </div>
   </div>
-</div>
 
-<script src="./app.js"></script>
-<script>
-let allUsers=[],allMessages=[],currentRole='all',deleteUserId=null;
-let userPage=1,msgPage=1;
-const PER_PAGE=10;
+  <!-- View message modal -->
+  <div class="modal-overlay" id="msg-modal">
+    <div class="modal" style="max-width:560px;">
+      <div class="modal-header"><span class="modal-title" id="msg-modal-subject">Message</span><button
+          class="modal-close" onclick="document.getElementById('msg-modal').classList.remove('open')">✕</button></div>
+      <div id="msg-modal-body"></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;">
+        <button class="btn btn-outline"
+          onclick="document.getElementById('msg-modal').classList.remove('open')">Close</button>
+        <button class="btn btn-primary" id="msg-mark-read-btn" style="display:none;">Mark as Read</button>
+        <button class="btn btn-danger" id="msg-delete-btn">Delete</button>
+      </div>
+    </div>
+  </div>
 
-document.addEventListener('DOMContentLoaded',async()=>{
-  if(!requireRole('ADMIN'))return;
-  const user=Auth.get();
-  document.getElementById('admin-avatar').textContent=initials(user.name);
-  document.getElementById('admin-name').textContent=user.name;
-  document.getElementById('admin-email-small').textContent=user.email;
-  await Promise.all([loadStats(),loadUsers(),loadMessages()]);
-  document.getElementById('admin-logout').addEventListener('click',()=>{Auth.clear();Toast.info('Logged out');setTimeout(()=>window.location.href='../index.html',800);});
-  ['delete-modal','msg-modal'].forEach(id=>{document.getElementById(id).addEventListener('click',e=>{if(e.target===document.getElementById(id))document.getElementById(id).classList.remove('open');});});
-});
+  <script src="./app.js"></script>
+  <script>
+    let allUsers = [], allMessages = [], currentRole = 'all', deleteUserId = null;
+    let userPage = 1, msgPage = 1;
+    const PER_PAGE = 10;
 
-async function loadStats(){
-  const{data}=await apiFetch('/admin/stats');
-  if(data?.data){
-    const s=data.data;
-    document.getElementById('stat-total').textContent=s.totalUsers??'—';
-    document.getElementById('stat-mentors').textContent=s.totalMentors??'—';
-    document.getElementById('stat-students').textContent=s.totalStudents??'—';
-    document.getElementById('stat-admins').textContent=s.totalAdmins??'—';
-    document.getElementById('stat-messages').textContent=s.pendingMessages??'—';
-    const pm=s.pendingMessages||0;
-    const badge=document.getElementById('sidebar-badge');
-    if(pm>0){badge.style.display='inline-flex';badge.textContent=pm;}
-  }
-}
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!requireRole('ADMIN')) return;
+      const user = Auth.get();
+      document.getElementById('admin-avatar').textContent = initials(user.name);
+      document.getElementById('admin-name').textContent = user.name;
+      document.getElementById('admin-email-small').textContent = user.email;
+      await Promise.all([loadStats(), loadUsers(), loadMessages()]);
+      document.getElementById('admin-logout').addEventListener('click', () => { Auth.clear(); Toast.info('Logged out'); setTimeout(() => window.location.href = '../index.html', 800); });
+      ['delete-modal', 'msg-modal'].forEach(id => { document.getElementById(id).addEventListener('click', e => { if (e.target === document.getElementById(id)) document.getElementById(id).classList.remove('open'); }); });
+    });
 
-async function loadUsers(){
-  const{data}=await apiFetch('/admin/users');
-  allUsers=data?.data||[];applyFilters();
-}
+    async function loadStats() {
+      const { data } = await apiFetch('/admin/stats');
+      if (data?.data) {
+        const s = data.data;
+        document.getElementById('stat-total').textContent = s.totalUsers ?? '—';
+        document.getElementById('stat-mentors').textContent = s.totalMentors ?? '—';
+        document.getElementById('stat-students').textContent = s.totalStudents ?? '—';
+        document.getElementById('stat-admins').textContent = s.totalAdmins ?? '—';
+        document.getElementById('stat-messages').textContent = s.pendingMessages ?? '—';
+        const pm = s.pendingMessages || 0;
+        const badge = document.getElementById('sidebar-badge');
+        if (pm > 0) { badge.style.display = 'inline-flex'; badge.textContent = pm; }
+      }
+    }
 
-async function loadMessages(){
-  const{data}=await apiFetch('/contact');
-  allMessages=data?.data||[];applyMsgFilter();
-}
+    async function loadUsers() {
+      const { data } = await apiFetch('/admin/users');
+      allUsers = data?.data || []; applyFilters();
+    }
 
-function showPanel(panelId,btn){
-  document.querySelectorAll('.panel-section').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.admin-nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(panelId).classList.add('active');
-  btn.classList.add('active');
-}
+    async function loadMessages() {
+      const { data } = await apiFetch('/contact');
+      allMessages = data?.data || []; applyMsgFilter();
+    }
 
-function filterRole(role,btn){
-  currentRole=role;userPage=1;
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  applyFilters();
-}
+    function showPanel(panelId, btn) {
+      document.querySelectorAll('.panel-section').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(panelId).classList.add('active');
+      btn.classList.add('active');
+    }
 
-function applyFilters(){
-  const q=(document.getElementById('admin-search')?.value||'').toLowerCase();
-  let list=allUsers;
-  if(currentRole!=='all')list=list.filter(u=>u.role===currentRole);
-  if(q)list=list.filter(u=>u.name.toLowerCase().includes(q)||u.email.toLowerCase().includes(q)||(u.skills||'').toLowerCase().includes(q)||(u.location||'').toLowerCase().includes(q));
-  document.getElementById('table-title').textContent=currentRole==='all'?'All Users':`${currentRole.charAt(0)+currentRole.slice(1).toLowerCase()}s`;
-  document.getElementById('user-count').textContent=`${list.length} user${list.length!==1?'s':''}`;
-  const paged=paginate(list,userPage,PER_PAGE);
-  renderUsers(paged.items);
-  renderPagination(document.getElementById('users-pagination'),paged.page,paged.totalPages,(p)=>{userPage=p;applyFilters();});
-}
+    function filterRole(role, btn) {
+      currentRole = role; userPage = 1;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
 
-function applyMsgFilter(){
-  const f=document.getElementById('msg-filter')?.value||'';
-  let list=allMessages;
-  if(f)list=list.filter(m=>m.status===f);
-  document.getElementById('msg-count').textContent=`${list.length} message${list.length!==1?'s':''}`;
-  const paged=paginate(list,msgPage,PER_PAGE);
-  renderMessages(paged.items);
-  renderPagination(document.getElementById('msg-pagination'),paged.page,paged.totalPages,(p)=>{msgPage=p;applyMsgFilter();});
-}
+    function applyFilters() {
+      const q = (document.getElementById('admin-search')?.value || '').toLowerCase();
+      let list = allUsers;
+      if (currentRole !== 'all') list = list.filter(u => u.role === currentRole);
+      if (q) list = list.filter(u => u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q) || (u.skills || '').toLowerCase().includes(q) || (u.location || '').toLowerCase().includes(q));
+      document.getElementById('table-title').textContent = currentRole === 'all' ? 'All Users' : `${currentRole.charAt(0) + currentRole.slice(1).toLowerCase()}s`;
+      document.getElementById('user-count').textContent = `${list.length} user${list.length !== 1 ? 's' : ''}`;
+      const paged = paginate(list, userPage, PER_PAGE);
+      renderUsers(paged.items);
+      renderPagination(document.getElementById('users-pagination'), paged.page, paged.totalPages, (p) => { userPage = p; applyFilters(); });
+    }
 
-function renderUsers(list){
-  const tbody=document.getElementById('users-tbody');
-  const me=Auth.get();
-  if(!list.length){tbody.innerHTML=`<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:32px;">No users found.</td></tr>`;return;}
-  tbody.innerHTML=list.map(u=>{
-    const badge=u.role==='ADMIN'?'badge-blue':u.role==='MENTOR'?'badge-amber':'badge-green';
-    return `<tr>
+    function applyMsgFilter() {
+      const f = document.getElementById('msg-filter')?.value || '';
+      let list = allMessages;
+      if (f) list = list.filter(m => m.status === f);
+      document.getElementById('msg-count').textContent = `${list.length} message${list.length !== 1 ? 's' : ''}`;
+      const paged = paginate(list, msgPage, PER_PAGE);
+      renderMessages(paged.items);
+      renderPagination(document.getElementById('msg-pagination'), paged.page, paged.totalPages, (p) => { msgPage = p; applyMsgFilter(); });
+    }
+
+    function renderUsers(list) {
+      const tbody = document.getElementById('users-tbody');
+      const me = Auth.get();
+      if (!list.length) { tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:32px;">No users found.</td></tr>`; return; }
+      tbody.innerHTML = list.map(u => {
+        const badge = u.role === 'ADMIN' ? 'badge-blue' : u.role === 'MENTOR' ? 'badge-amber' : 'badge-green';
+        return `<tr>
       <td style="color:var(--muted);font-family:var(--ff-mono);font-size:0.8rem;">#${u.id}</td>
       <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-sm">${initials(u.name)}</div><span style="font-weight:600;">${u.name}</span></div></td>
       <td style="color:var(--muted);font-size:0.85rem;">${u.email}</td>
       <td><span class="badge ${badge}">${u.role}</span></td>
-      <td>${u.skills?u.skills.split(',').slice(0,2).map(s=>`<span class="skill-chip" style="font-size:0.68rem;padding:2px 7px;">${s.trim()}</span>`).join('')+(u.skills.split(',').length>2?` <span style="font-size:0.72rem;color:var(--muted);">+${u.skills.split(',').length-2}</span>`:''):'<span style="color:var(--muted);font-size:0.8rem;">—</span>'}</td>
-      <td style="color:var(--muted);font-size:0.85rem;">${u.location||'—'}</td>
-      <td style="color:var(--muted);font-size:0.85rem;">${u.phone||'—'}</td>
-      <td>${u.id!==me?.id?`<button class="delete-btn" onclick="openDeleteModal(${u.id},'${u.name.replace(/'/g,"\\'")}')">🗑 Delete</button>`:`<span style="font-size:0.75rem;color:var(--muted);">You</span>`}</td>
+      <td>${u.skills ? u.skills.split(',').slice(0, 2).map(s => `<span class="skill-chip" style="font-size:0.68rem;padding:2px 7px;">${s.trim()}</span>`).join('') + (u.skills.split(',').length > 2 ? ` <span style="font-size:0.72rem;color:var(--muted);">+${u.skills.split(',').length - 2}</span>` : '') : '<span style="color:var(--muted);font-size:0.8rem;">—</span>'}</td>
+      <td style="color:var(--muted);font-size:0.85rem;">${u.location || '—'}</td>
+      <td style="color:var(--muted);font-size:0.85rem;">${u.phone || '—'}</td>
+      <td>${u.id !== me?.id ? `<button class="delete-btn" onclick="openDeleteModal(${u.id},'${u.name.replace(/'/g, "\\'")}')">🗑 Delete</button>` : `<span style="font-size:0.75rem;color:var(--muted);">You</span>`}</td>
     </tr>`;
-  }).join('');
-}
+      }).join('');
+    }
 
-function renderMessages(list){
-  const container=document.getElementById('messages-list');
-  if(!list.length){container.innerHTML=`<div style="text-align:center;color:var(--muted);padding:48px;">No messages found.</div>`;return;}
-  container.innerHTML=list.map(m=>`
+    function renderMessages(list) {
+      const container = document.getElementById('messages-list');
+      if (!list.length) { container.innerHTML = `<div style="text-align:center;color:var(--muted);padding:48px;">No messages found.</div>`; return; }
+      container.innerHTML = list.map(m => `
     <div class="msg-card ${m.status.toLowerCase()}">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px;">
         <div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
             <div class="avatar avatar-sm">${initials(m.name)}</div>
             <strong>${m.name}</strong>
-            <span class="badge ${m.status==='READ'?'badge-green':'badge-amber'}">${m.status}</span>
+            <span class="badge ${m.status === 'READ' ? 'badge-green' : 'badge-amber'}">${m.status}</span>
           </div>
-          <div style="font-size:0.78rem;color:var(--muted);">${m.email}${m.phone?' · '+m.phone:''} · ${fmtDateTime(m.createdAt)}</div>
+          <div style="font-size:0.78rem;color:var(--muted);">${m.email}${m.phone ? ' · ' + m.phone : ''} · ${fmtDateTime(m.createdAt)}</div>
           <div style="font-weight:700;font-size:0.9rem;color:var(--ink);margin-top:6px;">📌 ${m.subject}</div>
         </div>
         <div style="display:flex;gap:8px;flex-shrink:0;">
-          ${m.status==='PENDING'?`<button class="btn btn-outline btn-sm" onclick="markRead(${m.id})">✓ Read</button>`:''}
+          ${m.status === 'PENDING' ? `<button class="btn btn-outline btn-sm" onclick="markRead(${m.id})">✓ Read</button>` : ''}
           <button class="btn btn-sm" style="background:rgba(212,135,10,0.1);color:var(--amber-dim);" onclick="viewMessage(${m.id})">View</button>
           <button class="delete-btn" onclick="deleteMessage(${m.id})">🗑</button>
         </div>
       </div>
       <p style="font-size:0.875rem;color:var(--slate-lt);line-height:1.6;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${m.message}</p>
     </div>`).join('');
-}
+    }
 
-function viewMessage(id){
-  const m=allMessages.find(x=>x.id===id);if(!m)return;
-  document.getElementById('msg-modal-subject').textContent=m.subject;
-  document.getElementById('msg-modal-body').innerHTML=`
+    function viewMessage(id) {
+      const m = allMessages.find(x => x.id === id); if (!m) return;
+      document.getElementById('msg-modal-subject').textContent = m.subject;
+      document.getElementById('msg-modal-body').innerHTML = `
     <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:14px;">
       <div><div class="form-label">From</div><div style="font-size:0.9rem;">${m.name}</div></div>
       <div><div class="form-label">Email</div><div style="font-size:0.9rem;">${m.email}</div></div>
-      ${m.phone?`<div><div class="form-label">Phone</div><div style="font-size:0.9rem;">${m.phone}</div></div>`:''}
-      <div><div class="form-label">Status</div><span class="badge ${m.status==='READ'?'badge-green':'badge-amber'}">${m.status}</span></div>
+      ${m.phone ? `<div><div class="form-label">Phone</div><div style="font-size:0.9rem;">${m.phone}</div></div>` : ''}
+      <div><div class="form-label">Status</div><span class="badge ${m.status === 'READ' ? 'badge-green' : 'badge-amber'}">${m.status}</span></div>
       <div><div class="form-label">Received</div><div style="font-size:0.82rem;color:var(--muted);">${fmtDateTime(m.createdAt)}</div></div>
     </div>
     <div style="background:var(--cream);border-radius:8px;padding:16px;font-size:0.9rem;color:var(--ink);line-height:1.75;white-space:pre-wrap;">${m.message}</div>`;
-  const rb=document.getElementById('msg-mark-read-btn');
-  rb.style.display=m.status==='PENDING'?'':'none';
-  rb.onclick=()=>markRead(id);
-  document.getElementById('msg-delete-btn').onclick=()=>deleteMessage(id);
-  document.getElementById('msg-modal').classList.add('open');
-}
+      const rb = document.getElementById('msg-mark-read-btn');
+      rb.style.display = m.status === 'PENDING' ? '' : 'none';
+      rb.onclick = () => markRead(id);
+      document.getElementById('msg-delete-btn').onclick = () => deleteMessage(id);
+      document.getElementById('msg-modal').classList.add('open');
+    }
 
-async function markRead(id){
-  const{ok}=await apiFetch(`/contact/${id}/read`,{method:'PATCH'});
-  if(ok){const m=allMessages.find(x=>x.id===id);if(m)m.status='READ';applyMsgFilter();loadStats();document.getElementById('msg-modal').classList.remove('open');Toast.success('Marked as read.');}
-}
+    async function markRead(id) {
+      const { ok } = await apiFetch(`/contact/${id}/read`, { method: 'PATCH' });
+      if (ok) { const m = allMessages.find(x => x.id === id); if (m) m.status = 'READ'; applyMsgFilter(); loadStats(); document.getElementById('msg-modal').classList.remove('open'); Toast.success('Marked as read.'); }
+    }
 
-async function deleteMessage(id){
-  if(!confirm('Delete this message?'))return;
-  const{ok}=await apiFetch(`/contact/${id}`,{method:'DELETE'});
-  if(ok){allMessages=allMessages.filter(m=>m.id!==id);applyMsgFilter();loadStats();document.getElementById('msg-modal').classList.remove('open');Toast.success('Message deleted.');}
-}
+    async function deleteMessage(id) {
+      if (!confirm('Delete this message?')) return;
+      const { ok } = await apiFetch(`/contact/${id}`, { method: 'DELETE' });
+      if (ok) { allMessages = allMessages.filter(m => m.id !== id); applyMsgFilter(); loadStats(); document.getElementById('msg-modal').classList.remove('open'); Toast.success('Message deleted.'); }
+    }
 
-function openDeleteModal(id,name){deleteUserId=id;document.getElementById('delete-name').textContent=name;document.getElementById('delete-modal').classList.add('open');}
-function closeDeleteModal(){deleteUserId=null;document.getElementById('delete-modal').classList.remove('open');}
+    function openDeleteModal(id, name) { deleteUserId = id; document.getElementById('delete-name').textContent = name; document.getElementById('delete-modal').classList.add('open'); }
+    function closeDeleteModal() { deleteUserId = null; document.getElementById('delete-modal').classList.remove('open'); }
 
-async function doDeleteUser(){
-  if(!deleteUserId)return;
-  const btn=document.getElementById('confirm-delete');setLoading(btn,true);
-  const{ok,data}=await apiFetch(`/admin/users/${deleteUserId}`,{method:'DELETE'});
-  setLoading(btn,false,'Delete User');closeDeleteModal();
-  if(ok&&data.success){allUsers=allUsers.filter(u=>u.id!==deleteUserId);applyFilters();loadStats();Toast.success('User deleted.');}
-  else Toast.error(data.message||'Delete failed.');
-}
-</script>
+    async function doDeleteUser() {
+      if (!deleteUserId) return;
+      const btn = document.getElementById('confirm-delete'); setLoading(btn, true);
+      const { ok, data } = await apiFetch(`/admin/users/${deleteUserId}`, { method: 'DELETE' });
+      setLoading(btn, false, 'Delete User'); closeDeleteModal();
+      if (ok && data.success) { allUsers = allUsers.filter(u => u.id !== deleteUserId); applyFilters(); loadStats(); Toast.success('User deleted.'); }
+      else Toast.error(data.message || 'Delete failed.');
+    }
+  </script>
 </body>
+
 </html>

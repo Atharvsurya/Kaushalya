@@ -1,218 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us — Kaushalya</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>"/>
-  <link rel="stylesheet" href="./style.css"/>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="stylesheet" href="./style.css" />
   <style>
-    .about-hero { background:var(--ink-soft); padding:96px 0 80px; position:relative; overflow:hidden; }
-    .about-hero::before { content:''; position:absolute; top:-100px; right:-80px; width:500px; height:500px; background:radial-gradient(circle,rgba(212,135,10,0.16),transparent 65%); border-radius:50%; }
-    .about-hero::after  { content:''; position:absolute; bottom:-60px; left:-60px; width:300px; height:300px; background:radial-gradient(circle,rgba(232,196,106,0.1),transparent 65%); border-radius:50%; }
-    .about-hero-inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; position:relative; z-index:1; }
-    .about-hero h1 { font-family:var(--ff-display); font-size:clamp(2.2rem,4vw,3.2rem); color:var(--white); font-weight:700; line-height:1.15; margin-bottom:18px; }
-    .about-hero h1 em { font-style:italic; color:var(--gold); }
-    .about-hero p { color:rgba(255,255,255,0.6); font-size:1.05rem; line-height:1.75; }
-    .stat-highlight { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:40px; }
-    .stat-h { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius); padding:20px; text-align:center; }
-    .stat-h strong { display:block; font-family:var(--ff-display); font-size:2rem; color:var(--gold); font-weight:700; }
-    .stat-h span { font-size:0.8rem; color:rgba(255,255,255,0.5); }
-    .value-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:32px; transition:all 0.2s; }
-    .value-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); border-color:rgba(212,135,10,0.25); }
-    .value-icon { font-size:2rem; margin-bottom:14px; }
-    .value-card h3 { font-weight:700; font-size:1.05rem; margin-bottom:8px; color:var(--ink); }
-    .value-card p  { font-size:0.875rem; color:var(--slate-lt); line-height:1.65; }
-    .timeline { position:relative; }
-    .timeline::before { content:''; position:absolute; left:20px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,var(--amber),var(--gold)); }
-    .timeline-item { display:flex; gap:28px; margin-bottom:36px; }
-    .timeline-dot { width:40px; height:40px; border-radius:50%; background:var(--amber); color:var(--white); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; z-index:1; }
-    .timeline-body strong { display:block; font-weight:700; font-size:1rem; color:var(--ink); margin-bottom:4px; }
-    .timeline-body p { font-size:0.875rem; color:var(--slate-lt); line-height:1.6; }
-    .team-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:28px; text-align:center; transition:all 0.2s; }
-    .team-card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
-    .team-avatar { width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,var(--amber),var(--gold)); color:var(--white); display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-size:1.6rem; font-weight:700; margin:0 auto 14px; }
-    .team-card strong { display:block; font-weight:700; font-size:1rem; color:var(--ink); }
-    .team-card .role  { font-size:0.8rem; color:var(--amber); font-weight:600; text-transform:uppercase; letter-spacing:0.06em; margin-top:4px; }
-    .team-card p { font-size:0.82rem; color:var(--muted); margin-top:8px; line-height:1.6; }
-    @media(max-width:768px){ .about-hero-inner{grid-template-columns:1fr;} .stat-highlight{grid-template-columns:1fr 1fr;} }
+    .about-hero {
+      background: var(--ink-soft);
+      padding: 96px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -80px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(212, 135, 10, 0.16), transparent 65%);
+      border-radius: 50%;
+    }
+
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(232, 196, 106, 0.1), transparent 65%);
+      border-radius: 50%;
+    }
+
+    .about-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-hero h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .about-hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .about-hero p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .stat-highlight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .stat-h {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-h strong {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 2rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .stat-h span {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .value-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all 0.2s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: rgba(212, 135, 10, 0.25);
+    }
+
+    .value-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .value-card h3 {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .value-card p {
+      font-size: 0.875rem;
+      color: var(--slate-lt);
+      line-height: 1.65;
+    }
+
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--amber), var(--gold));
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .timeline-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--amber);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .timeline-body strong {
+      display: block;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .timeline-body p {
+      font-size: 0.875rem;
+      color: var(--slate-lt);
+      line-height: 1.6;
+    }
+
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .team-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--amber), var(--gold));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 0 auto 14px;
+    }
+
+    .team-card strong {
+      display: block;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .team-card .role {
+      font-size: 0.8rem;
+      color: var(--amber);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    .team-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    @media(max-width:768px) {
+      .about-hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-highlight {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
-<script src="./navbar.js"></script>
-<script>injectNavbar('about');</script>
+  <script src="./navbar.js"></script>
+  <script>injectNavbar('about');</script>
 
-<div class="page-content">
-  <!-- Hero -->
-  <div class="about-hero">
-    <div class="container">
-      <div class="about-hero-inner">
-        <div>
-          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,135,10,0.15);border:1px solid rgba(212,135,10,0.3);border-radius:20px;padding:5px 14px;margin-bottom:18px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);">
-            🇮🇳 Made in India
+  <div class="page-content">
+    <!-- Hero -->
+    <div class="about-hero">
+      <div class="container">
+        <div class="about-hero-inner">
+          <div>
+            <div
+              style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,135,10,0.15);border:1px solid rgba(212,135,10,0.3);border-radius:20px;padding:5px 14px;margin-bottom:18px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);">
+              🇮🇳 Made in India
+            </div>
+            <h1>We believe every learner deserves a great <em>mentor</em></h1>
+            <p>Kaushalya was built to bridge the gap between aspiring professionals and industry experts across India —
+              making world-class mentorship accessible to everyone.</p>
           </div>
-          <h1>We believe every learner deserves a great <em>mentor</em></h1>
-          <p>Kaushalya was built to bridge the gap between aspiring professionals and industry experts across India — making world-class mentorship accessible to everyone.</p>
-        </div>
-        <div>
-          <div class="stat-highlight">
-            <div class="stat-h"><strong id="ab-mentors">—</strong><span>Expert Mentors</span></div>
-            <div class="stat-h"><strong id="ab-students">—</strong><span>Enrolled Students</span></div>
-            <div class="stat-h"><strong>50+</strong><span>Skills Covered</span></div>
-            <div class="stat-h"><strong>Free</strong><span>Always</span></div>
+          <div>
+            <div class="stat-highlight">
+              <div class="stat-h"><strong id="ab-mentors">—</strong><span>Expert Mentors</span></div>
+              <div class="stat-h"><strong id="ab-students">—</strong><span>Enrolled Students</span></div>
+              <div class="stat-h"><strong>50+</strong><span>Skills Covered</span></div>
+              <div class="stat-h"><strong>Free</strong><span>Always</span></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Mission -->
+    <section class="section" style="background:var(--white);">
+      <div class="container">
+        <div style="max-width:720px;margin:0 auto;text-align:center;">
+          <div class="section-label">Our Mission</div>
+          <h2 class="section-title mb-16" style="margin-bottom:16px;">Democratising mentorship across India</h2>
+          <p style="font-size:1.05rem;color:var(--slate-lt);line-height:1.8;">
+            The word <em style="font-style:italic;color:var(--amber);">Kaushalya</em> means skill in Sanskrit. Our
+            platform is built on one conviction: that the fastest way to grow is learning directly from someone who has
+            already walked the path. We connect ambitious learners with proven professionals across tech, design, data,
+            and beyond.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-24">
+          <div class="section-label">Our Values</div>
+          <h2 class="section-title">What we stand for</h2>
+        </div>
+        <div class="grid-3">
+          <div class="value-card">
+            <div class="value-icon">🌱</div>
+            <h3>Growth First</h3>
+            <p>Every feature we build serves one purpose: helping people grow faster. Learner outcomes are our north
+              star.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h3>Genuine Connection</h3>
+            <p>Real mentorship is a relationship, not a transaction. We facilitate authentic, long-term connections
+              between people.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🔓</div>
+            <h3>Open Access</h3>
+            <p>Great mentorship shouldn't be a privilege. Kaushalya is free and always will be — no paywalls, no
+              barriers.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🎯</div>
+            <h3>Skill Precision</h3>
+            <p>We match learners to mentors by specific skills — not vague categories — so you always find the right
+              expert.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🔒</div>
+            <h3>Trust & Safety</h3>
+            <p>Every account is secured, every interaction is private. We take data security as seriously as our users
+              do.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h3>Community</h3>
+            <p>Mentors, students, and admins form a living community. We build tools that help the whole ecosystem
+              thrive.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How we built it -->
+    <section class="section" style="background:var(--white);">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+          <div>
+            <div class="section-label">Our Journey</div>
+            <h2 class="section-title mb-24" style="margin-bottom:32px;">Built with purpose, one step at a time</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot">💡</div>
+                <div class="timeline-body">
+                  <strong>The Idea</strong>
+                  <p>Frustrated by inaccessible mentorship, a team of engineers set out to build a platform where any
+                    student could find any expert.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot">⚙️</div>
+                <div class="timeline-body">
+                  <strong>The Build</strong>
+                  <p>A Spring Boot backend was crafted with JPA, BCrypt security, and a clean REST API. Every endpoint
+                    designed around real user flows.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot">🚀</div>
+                <div class="timeline-body">
+                  <strong>Launch</strong>
+                  <p>Kaushalya went live with mentor registration, student enrollment, admin controls, and a
+                    full-featured frontend.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot">🌱</div>
+                <div class="timeline-body">
+                  <strong>Growing</strong>
+                  <p>The community is expanding. New skills, new mentors, new stories of growth emerge every week.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">Tech Stack</div>
+            <h2 class="section-title mb-24" style="margin-bottom:32px;">Built on solid foundations</h2>
+            <div id="tech-stack-list" style="display:flex;flex-direction:column;gap:12px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div
+          style="background:var(--ink-soft);border-radius:24px;padding:64px;text-align:center;position:relative;overflow:hidden;">
+          <div
+            style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(212,135,10,0.14),transparent 65%);border-radius:50%;">
+          </div>
+          <h2
+            style="font-family:var(--ff-display);font-size:2.2rem;color:var(--white);position:relative;margin-bottom:12px;">
+            Join our community</h2>
+          <p style="color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto 32px;position:relative;">Whether you're
+            here to learn or to teach, Kaushalya has a place for you.</p>
+          <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;">
+            <a href="./signup.html" class="btn btn-primary btn-lg">Get started free</a>
+            <a href="./contact.html" class="btn btn-lg"
+              style="background:rgba(255,255,255,0.1);color:var(--white);border:1px solid rgba(255,255,255,0.2);">Contact
+              us</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <!-- Mission -->
-  <section class="section" style="background:var(--white);">
-    <div class="container">
-      <div style="max-width:720px;margin:0 auto;text-align:center;">
-        <div class="section-label">Our Mission</div>
-        <h2 class="section-title mb-16" style="margin-bottom:16px;">Democratising mentorship across India</h2>
-        <p style="font-size:1.05rem;color:var(--slate-lt);line-height:1.8;">
-          The word <em style="font-style:italic;color:var(--amber);">Kaushalya</em> means skill in Sanskrit. Our platform is built on one conviction: that the fastest way to grow is learning directly from someone who has already walked the path. We connect ambitious learners with proven professionals across tech, design, data, and beyond.
-        </p>
-      </div>
-    </div>
-  </section>
+  <script src="./app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const { data } = await apiFetch('/admin/stats');
+      if (data?.data) {
+        document.getElementById('ab-mentors').textContent = data.data.totalMentors ?? '—';
+        document.getElementById('ab-students').textContent = data.data.totalStudents ?? '—';
+      }
+    });
 
-  <!-- Values -->
-  <section class="section">
-    <div class="container">
-      <div class="text-center mb-24">
-        <div class="section-label">Our Values</div>
-        <h2 class="section-title">What we stand for</h2>
-      </div>
-      <div class="grid-3">
-        <div class="value-card">
-          <div class="value-icon">🌱</div>
-          <h3>Growth First</h3>
-          <p>Every feature we build serves one purpose: helping people grow faster. Learner outcomes are our north star.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🤝</div>
-          <h3>Genuine Connection</h3>
-          <p>Real mentorship is a relationship, not a transaction. We facilitate authentic, long-term connections between people.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🔓</div>
-          <h3>Open Access</h3>
-          <p>Great mentorship shouldn't be a privilege. Kaushalya is free and always will be — no paywalls, no barriers.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🎯</div>
-          <h3>Skill Precision</h3>
-          <p>We match learners to mentors by specific skills — not vague categories — so you always find the right expert.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🔒</div>
-          <h3>Trust & Safety</h3>
-          <p>Every account is secured, every interaction is private. We take data security as seriously as our users do.</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🌍</div>
-          <h3>Community</h3>
-          <p>Mentors, students, and admins form a living community. We build tools that help the whole ecosystem thrive.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How we built it -->
-  <section class="section" style="background:var(--white);">
-    <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
-        <div>
-          <div class="section-label">Our Journey</div>
-          <h2 class="section-title mb-24" style="margin-bottom:32px;">Built with purpose, one step at a time</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-dot">💡</div>
-              <div class="timeline-body">
-                <strong>The Idea</strong>
-                <p>Frustrated by inaccessible mentorship, a team of engineers set out to build a platform where any student could find any expert.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot">⚙️</div>
-              <div class="timeline-body">
-                <strong>The Build</strong>
-                <p>A Spring Boot backend was crafted with JPA, BCrypt security, and a clean REST API. Every endpoint designed around real user flows.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot">🚀</div>
-              <div class="timeline-body">
-                <strong>Launch</strong>
-                <p>Kaushalya went live with mentor registration, student enrollment, admin controls, and a full-featured frontend.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot">🌱</div>
-              <div class="timeline-body">
-                <strong>Growing</strong>
-                <p>The community is expanding. New skills, new mentors, new stories of growth emerge every week.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-    <div class="section-label">Tech Stack</div>
-    <h2 class="section-title mb-24" style="margin-bottom:32px;">Built on solid foundations</h2>
-    <div id="tech-stack-list" style="display:flex;flex-direction:column;gap:12px;">
-    </div>
-  </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section">
-    <div class="container">
-      <div style="background:var(--ink-soft);border-radius:24px;padding:64px;text-align:center;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(212,135,10,0.14),transparent 65%);border-radius:50%;"></div>
-        <h2 style="font-family:var(--ff-display);font-size:2.2rem;color:var(--white);position:relative;margin-bottom:12px;">Join our community</h2>
-        <p style="color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto 32px;position:relative;">Whether you're here to learn or to teach, Kaushalya has a place for you.</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;">
-          <a href="./signup.html" class="btn btn-primary btn-lg">Get started free</a>
-          <a href="./contact.html" class="btn btn-lg" style="background:rgba(255,255,255,0.1);color:var(--white);border:1px solid rgba(255,255,255,0.2);">Contact us</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<script src="./app.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-  const { data } = await apiFetch('/admin/stats');
-  if (data?.data) {
-    document.getElementById('ab-mentors').textContent  = data.data.totalMentors  ?? '—';
-    document.getElementById('ab-students').textContent = data.data.totalStudents ?? '—';
-  }
-});
-
-const stackData = [
+    const stackData = [
       ['☕ Backend', 'Java 17 + Spring Boot 3.5'],
-      ['🗄️ Database', 'H2 Persistent (Dev) / MySQL (Prod)'],
+      ['🗄️ Database', 'MySQL'],
       ['🔐 Security', 'Spring Security + BCrypt Hashing'],
       ['📂 Persistence', 'Spring Data JPA (Hibernate)'],
       ['🌐 API', 'RESTful Endpoints with JSON'],
-      ['🎨 Frontend', 'Vanilla HTML5, CSS3, ES6+'],
+      ['🎨 Frontend', 'Vanilla HTML5, CSS3, JS ES6+'],
       ['📐 Design', 'Custom System (No UI Frameworks)']
     ];
 
     const listContainer = document.getElementById('tech-stack-list');
-    
+
     listContainer.innerHTML = stackData.map(([label, val]) => `
       <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:var(--cream); border-radius:8px; border:1px solid var(--border); transition: 0.2s;">
         <span style="font-weight:600; font-size:0.875rem; color:var(--ink);">${label}</span>
         <span style="font-size:0.82rem; color:var(--muted);">${val}</span>
       </div>
     `).join('');
-</script>
+  </script>
 </body>
+
 </html>

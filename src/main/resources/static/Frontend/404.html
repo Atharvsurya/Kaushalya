@@ -1,75 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page Not Found — Kaushalya</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>"/>
-  <link rel="stylesheet" href="./style.css"/>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+  <link rel="stylesheet" href="./style.css" />
   <style>
     .not-found-page {
       min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 40px 24px;
-      background: var(--ink-soft); position: relative; overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--ink-soft);
+      position: relative;
+      overflow: hidden;
     }
+
     .not-found-page::before {
-      content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(212,135,10,0.12), transparent 65%);
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 135, 10, 0.12), transparent 65%);
       border-radius: 50%;
     }
+
     .big-num {
       font-family: var(--ff-display);
       font-size: clamp(7rem, 20vw, 14rem);
-      font-weight: 700; line-height: 1;
+      font-weight: 700;
+      line-height: 1;
       color: transparent;
-      -webkit-text-stroke: 2px rgba(212,135,10,0.4);
+      -webkit-text-stroke: 2px rgba(212, 135, 10, 0.4);
       letter-spacing: -0.04em;
       position: relative;
       animation: floatNum 4s ease-in-out infinite alternate;
     }
+
     @keyframes floatNum {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-16px); }
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-16px);
+      }
     }
-    .nf-icon { font-size: 3rem; margin-bottom: -20px; position: relative; z-index: 1; animation: floatNum 3s ease-in-out infinite alternate; }
-    .nf-title { font-family: var(--ff-display); font-size: clamp(1.4rem, 3vw, 2rem); color: var(--white); font-weight: 700; margin-bottom: 12px; position: relative; }
-    .nf-sub { color: rgba(255,255,255,0.5); max-width: 420px; margin: 0 auto 36px; line-height: 1.7; position: relative; }
-    .nf-links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; }
-    .btn-ghost-light { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); border: 1.5px solid rgba(255,255,255,0.15); }
-    .btn-ghost-light:hover { background: rgba(255,255,255,0.14); color: var(--white); }
-    .grid-links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 48px; position: relative; }
+
+    .nf-icon {
+      font-size: 3rem;
+      margin-bottom: -20px;
+      position: relative;
+      z-index: 1;
+      animation: floatNum 3s ease-in-out infinite alternate;
+    }
+
+    .nf-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .nf-sub {
+      color: rgba(255, 255, 255, 0.5);
+      max-width: 420px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .nf-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+
+    .btn-ghost-light {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-ghost-light:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--white);
+    }
+
+    .grid-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 48px;
+      position: relative;
+    }
+
     .quick-link {
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-sm); padding: 14px 20px;
-      color: rgba(255,255,255,0.6); font-size: 0.875rem; font-weight: 500;
-      transition: all 0.2s; display: flex; align-items: center; gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 14px 20px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .quick-link:hover { background: rgba(212,135,10,0.15); border-color: rgba(212,135,10,0.3); color: var(--gold); }
+
+    .quick-link:hover {
+      background: rgba(212, 135, 10, 0.15);
+      border-color: rgba(212, 135, 10, 0.3);
+      color: var(--gold);
+    }
   </style>
 </head>
+
 <body>
-<div class="not-found-page">
-  <div class="nf-icon">🔍</div>
-  <div class="big-num">404</div>
-  <h1 class="nf-title">This page went on a learning journey</h1>
-  <p class="nf-sub">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
-  <div class="nf-links">
-    <a href="./index.html" class="btn btn-primary btn-lg">Go Home</a>
-    <a href="./mentors.html" class="btn btn-lg btn-ghost-light">Browse Mentors</a>
+  <div class="not-found-page">
+    <div class="nf-icon">🔍</div>
+    <div class="big-num">404</div>
+    <h1 class="nf-title">This page went on a learning journey</h1>
+    <p class="nf-sub">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+    <div class="nf-links">
+      <a href="../index.html" class="btn btn-primary btn-lg">Go Home</a>
+      <a href="./mentors.html" class="btn btn-lg btn-ghost-light">Browse Mentors</a>
+    </div>
+    <div class="grid-links">
+      <a href="./login.html" class="quick-link">🔐 Login</a>
+      <a href="./signup.html" class="quick-link">📝 Sign Up</a>
+      <a href="./skills.html" class="quick-link">⚡ Skills</a>
+      <a href="./contact.html" class="quick-link">✉️ Contact</a>
+      <a href="./about.html" class="quick-link">ℹ️ About</a>
+    </div>
   </div>
-  <div class="grid-links">
-    <a href="./login.html"    class="quick-link">🔐 Login</a>
-    <a href="./signup.html"   class="quick-link">📝 Sign Up</a>
-    <a href="./skills.html"   class="quick-link">⚡ Skills</a>
-    <a href="./contact.html"  class="quick-link">✉️ Contact</a>
-    <a href="./about.html"    class="quick-link">ℹ️ About</a>
-  </div>
-</div>
-<script>
-  // Redirect after 20 seconds
-  setTimeout(() => window.location.href = './index.html', 20000);
-</script>
+  <script>
+    // Redirect after 20 seconds
+    setTimeout(() => window.location.href = './index.html', 20000);
+  </script>
 </body>
+
 </html>

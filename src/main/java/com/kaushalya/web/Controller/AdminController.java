@@ -1,14 +1,21 @@
 package com.kaushalya.web.controller;
 
-import com.kaushalya.web.dto.*;
-import com.kaushalya.web.service.UserService;
-import com.kaushalya.web.repository.ContactMessageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.kaushalya.web.dto.ApiResponse;
+import com.kaushalya.web.dto.UserResponse;
+import com.kaushalya.web.repository.ContactMessageRepository;
+import com.kaushalya.web.service.UserService;
 
 /**
  * Admin Dashboard endpoints — admin.html

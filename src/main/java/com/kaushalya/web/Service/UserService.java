@@ -52,7 +52,7 @@ public class UserService {
         if (req.getEmail() == null || req.getPassword() == null) {
             return ApiResponse.fail("Email and password are required.");
         }
-        Optional<User> opt = userRepository.findByEmail(req.getEmail().toLowerCase().trim());
+        Optional<User> opt = userRepository.findByEmail(req.getEmail().toLowerCase().trim());       
         if (opt.isEmpty()) {
             return ApiResponse.fail("No account found with this email.");
         }

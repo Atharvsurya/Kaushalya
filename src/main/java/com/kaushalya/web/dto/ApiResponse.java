@@ -1,7 +1,7 @@
 package com.kaushalya.web.dto;
 
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /** Generic { success, message, data } wrapper for all API responses */
 @Data
@@ -17,5 +17,5 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> fail(String message) {
         return new ApiResponse<>(false, message, null);
-    }
+    }   
 }
